@@ -413,6 +413,285 @@ $newButton = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
+$button20 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(6, 6)
+    Name = "button20"
+    Size = [System.Drawing.Size]::new(251, 23)
+    TabIndex = 0
+    Text = "Узнать пароли от сохранённых Wi-Fi сетей"
+    UseVisualStyleBackColor = $true
+}
+
+$button21 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 35)
+    Name = "button21"
+    Size = [System.Drawing.Size]::new(113, 23)
+    TabIndex = 1
+    Text = "Установить winget"
+    UseVisualStyleBackColor = $true
+}
+
+$button22 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(127, 35)
+    Name = "button22"
+    Size = [System.Drawing.Size]::new(160, 23)
+    TabIndex = 2
+    Text = "Установить Microsoft Store"
+    UseVisualStyleBackColor = $true
+}
+
+$button23 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(263, 6)
+    Name = "button23"
+    Size = [System.Drawing.Size]::new(274, 23)
+    TabIndex = 3
+    Text = "Отображать расширения файлов в проводнике"
+    UseVisualStyleBackColor = $true
+}
+
+$button24 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 64)
+    Name = "button24"
+    Size = [System.Drawing.Size]::new(208, 23)
+    TabIndex = 4
+    Text = "Резервное копирование драйверов"
+    UseVisualStyleBackColor = $true
+}
+
+$button25 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(222, 64)
+    Name = "button25"
+    Size = [System.Drawing.Size]::new(165, 23)
+    TabIndex = 5
+    Text = "Восстановление драйверов"
+    UseVisualStyleBackColor = $true
+}
+
+$button26 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 93)
+    Name = "button26"
+    Size = [System.Drawing.Size]::new(208, 23)
+    TabIndex = 6
+    Text = "Полностью удалить Microsoft Edge"
+    UseVisualStyleBackColor = $true
+}
+
+$button27 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(222, 93)
+    Name = "button27"
+    Size = [System.Drawing.Size]::new(183, 23)
+    TabIndex = 7
+    Text = "Удалить шпионские exe-файлы"
+    UseVisualStyleBackColor = $true
+}
+
+# Создание кнопок
+$button13 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(48, 8)
+    Name = "button13"
+    Size = [System.Drawing.Size]::new(167, 23)
+    TabIndex = 0
+    Text = "Очистить лицензии Office16"
+    UseVisualStyleBackColor = $true
+}
+
+$button14 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(221, 8)
+    Name = "button14"
+    Size = [System.Drawing.Size]::new(176, 23)
+    TabIndex = 1
+    Text = "Инструмент удаления Office"
+    UseVisualStyleBackColor = $true
+}
+
+$button15 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(247, 71)
+    Name = "button15"
+    Size = [System.Drawing.Size]::new(260, 23)
+    TabIndex = 2
+    Text = "Проверить системные файлы на целостность"
+    UseVisualStyleBackColor = $true
+}
+
+$button16 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(48, 71)
+    Name = "button16"
+    Size = [System.Drawing.Size]::new(192, 23)
+    TabIndex = 3
+    Text = "Сброс KMS-активации Windows"
+    UseVisualStyleBackColor = $true
+}
+
+$button17 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(282, 136)
+    Name = "button17"
+    Size = [System.Drawing.Size]::new(175, 23)
+    TabIndex = 4
+    Text = "Очистить кеш MalwActivator"
+    UseVisualStyleBackColor = $true
+}
+
+$button18 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(403, 8)
+    Name = "button18"
+    Size = [System.Drawing.Size]::new(208, 43)
+    TabIndex = 5
+    Text = "Обойти гео-ограничения на Online-установку Office"
+    UseVisualStyleBackColor = $true
+}
+
+$button19 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 165)
+    Name = "button19"
+    Size = [System.Drawing.Size]::new(154, 23)
+    TabIndex = 8
+    Text = "У меня другая проблема!"
+    UseVisualStyleBackColor = $true
+}
+
+$button28 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 136)
+    Name = "button28"
+    Size = [System.Drawing.Size]::new(268, 23)
+    TabIndex = 9
+    Text = "Исправить открытие ссылок Telegram Desktop"
+    UseVisualStyleBackColor = $true
+}
+
+# Загрузка и установка изображений в PictureBox
+$pictureBox1 = New-Object System.Windows.Forms.PictureBox -Property @{
+    Location = [System.Drawing.Point]::new(8, 8)
+    Name = "pictureBox1"
+    Size = [System.Drawing.Size]::new(34, 39)
+    TabIndex = 6
+    TabStop = $false
+}
+
+$request1 = [System.Net.WebRequest]::Create('https://i.imgur.com/8L2KS9a.png')
+$image1 = [System.Drawing.Image]::FromStream($request1.GetResponse().GetResponseStream())
+$pictureBox1.Image = $image1
+
+$pictureBox2 = New-Object System.Windows.Forms.PictureBox -Property @{
+    Location = [System.Drawing.Point]::new(8, 71)
+    Name = "pictureBox2"
+    Size = [System.Drawing.Size]::new(34, 39)
+    TabIndex = 7
+    TabStop = $false
+}
+
+$request2 = [System.Net.WebRequest]::Create('https://i.imgur.com/sYPcWTh.png')
+$image2 = [System.Drawing.Image]::FromStream($request2.GetResponse().GetResponseStream())
+$pictureBox2.Image = $image2
+
+$label6 = New-Object System.Windows.Forms.Label -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(8, 5)
+    Name = "label6"
+    Size = [System.Drawing.Size]::new(102, 15)
+    TabIndex = 1
+    Text = "MalwActivator 2.0"
+}
+
+# Создание кнопок
+$button30 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(123, 23)
+    Name = "button30"
+    Size = [System.Drawing.Size]::new(109, 23)
+    TabIndex = 2
+    Text = "Тема на Lolzteam"
+    UseVisualStyleBackColor = $true
+}
+
+$button31 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(238, 23)
+    Name = "button31"
+    Size = [System.Drawing.Size]::new(56, 23)
+    TabIndex = 3
+    Text = "GitHub"
+    UseVisualStyleBackColor = $true
+}
+
+# Создание метки label7
+$label7 = New-Object System.Windows.Forms.Label -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(8, 91)
+    Name = "label7"
+    Size = [System.Drawing.Size]::new(86, 15)
+    TabIndex = 4
+    Text = "Есть вопросы?"
+}
+
+# Создание остальных кнопок
+$button32 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 109)
+    Name = "button32"
+    Size = [System.Drawing.Size]::new(124, 23)
+    TabIndex = 5
+    Text = "Написать в Telegram"
+    UseVisualStyleBackColor = $true
+}
+
+$button33 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(138, 109)
+    Name = "button33"
+    Size = [System.Drawing.Size]::new(156, 23)
+    TabIndex = 6
+    Text = "Написать в теме Lolzteam"
+    UseVisualStyleBackColor = $true
+}
+
+$button34 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(300, 109)
+    Name = "button34"
+    Size = [System.Drawing.Size]::new(156, 23)
+    TabIndex = 7
+    Text = "Написать в Issues GitHub"
+    UseVisualStyleBackColor = $true
+}
+
+$button29 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 23)
+    Name = "button29"
+    Size = [System.Drawing.Size]::new(109, 23)
+    TabIndex = 0
+    Text = "Статья на Malw.ru"
+    UseVisualStyleBackColor = $true
+}
+
+# Добавление всех элементов на вкладку Info
+$Infotab.Controls.Add($button34)
+$Infotab.Controls.Add($button33)
+$Infotab.Controls.Add($button32)
+$Infotab.Controls.Add($button29)
+$Infotab.Controls.Add($label7)
+$Infotab.Controls.Add($button31)
+$Infotab.Controls.Add($button30)
+$Infotab.Controls.Add($label6)
+
+
+
+# Добавление элементов на вкладку ProblemsTab
+$ProblemsTab.Controls.Add($button28)
+$ProblemsTab.Controls.Add($button19)
+$ProblemsTab.Controls.Add($pictureBox2)
+$ProblemsTab.Controls.Add($pictureBox1)
+$ProblemsTab.Controls.Add($button18)
+$ProblemsTab.Controls.Add($button17)
+$ProblemsTab.Controls.Add($button16)
+$ProblemsTab.Controls.Add($button15)
+$ProblemsTab.Controls.Add($button14)
+$ProblemsTab.Controls.Add($button13)
+
+
+$FunctionsTab.Controls.Add($button27)
+$FunctionsTab.Controls.Add($button26)
+$FunctionsTab.Controls.Add($button25)
+$FunctionsTab.Controls.Add($button24)
+$FunctionsTab.Controls.Add($button23)
+$FunctionsTab.Controls.Add($button22)
+$FunctionsTab.Controls.Add($button21)
+$FunctionsTab.Controls.Add($button20)
+
 # Добавление элементов на вкладку
 $downloadsTab.Controls.Add($DlWin10)
 $downloadsTab.Controls.Add($DlWin11)
@@ -468,6 +747,11 @@ $toolTip.SetToolTip($button9, "Онлайн-установщик Office с оф�
 $toolTip.SetToolTip($button10, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 $toolTip.SetToolTip($button11, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 $toolTip.SetToolTip($button12, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$tooltip.SetToolTip($button27, "Удалить CompatTelRunner.exe и wsqmcons.exe")
+$tooltip.SetToolTip($button25, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
+$tooltip.SetToolTip($button24, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
+$tooltip.SetToolTip($button22, "Только для LTSC-версий Windows без установленного Microsoft Store!")
+$tooltip.SetToolTip($button20, "Перед запуском убедитесь, что Wi-Fi сейчас включен")
 
 # Добавляем элементы на вкладку
 $activationTab.Controls.Add($radioButton1)
