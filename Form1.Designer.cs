@@ -17,8 +17,8 @@ namespace MAform {
             FunctionsTab = new TabPage { Location = new Point(4, 24), Name = "FunctionsTab", Size = new Size(619, 206), TabIndex = 2, Text = "Другие функции", UseVisualStyleBackColor = true };
             ProblemsTab = new TabPage { Location = new Point(4, 24), Name = "ProblemsTab", Padding = new Padding(3), Size = new Size(619, 206), TabIndex = 1, Text = "Решение проблем", UseVisualStyleBackColor = true };
             Info = new TabPage { Location = new Point(4, 24), Name = "Info", Size = new Size(619, 206), TabIndex = 3, Text = "Информация", UseVisualStyleBackColor = true };
-            radioButton1 = new RadioButton { AutoSize = true, Checked = true, Location = new Point(6, 6), Name = "radioButton1", Size = new Size(143, 19), TabIndex = 1, TabStop = true, Text = "Windows 10/11 (HWID)", UseVisualStyleBackColor = true };
             tooltip = new ToolTip(components) { AutoPopDelay = 5000, InitialDelay = 5, ReshowDelay = 100 };
+            radioButton1 = new RadioButton { AutoSize = true, Checked = true, Location = new Point(6, 6), Name = "radioButton1", Size = new Size(143, 19), TabIndex = 1, TabStop = true, Text = "Windows 10/11 (HWID)", UseVisualStyleBackColor = true };
             radioButton2 = new RadioButton { AutoSize = true, Location = new Point(6, 31), Name = "radioButton2", Size = new Size(130, 19), TabIndex = 2, Text = "Windows 8.1/8 KMS", UseVisualStyleBackColor = true };
             radioButton4 = new RadioButton { AutoSize = true, Location = new Point(214, 31), Name = "radioButton4", Size = new Size(83, 19), TabIndex = 4, Text = "Office 2021", UseVisualStyleBackColor = true };
             radioButton5 = new RadioButton { AutoSize = true, Location = new Point(6, 56), Name = "radioButton5", Size = new Size(193, 19), TabIndex = 5, Text = "Windows Server 2022/2019/2016", UseVisualStyleBackColor = true };

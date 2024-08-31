@@ -11,7 +11,7 @@ $form = New-Object System.Windows.Forms.Form -Property @{
     MaximizeBox = $false
     Text = "MalwActivator"
     ClientSize = [System.Drawing.Size]::new(627, 234)
-    Font = [System.Drawing.Font]::new("Segoe UI", 8.8)
+    Font = [System.Drawing.Font]::new("Segoe UI", 8.5)
 }
 
 $tabs = New-Object System.Windows.Forms.TabControl -Property @{
@@ -373,7 +373,6 @@ $button12 = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-# Метки
 $label2 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(362, 11)
@@ -406,6 +405,14 @@ $label5 = New-Object System.Windows.Forms.Label -Property @{
     Text = "Office 2013:"
 }
 
+$newButton = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 151)  # Расположить кнопку под кнопкой $button4
+    Name = "NewButton"
+    Size = [System.Drawing.Size]::new(312, 23)  # Размер такой же, как у $button4
+    Text = "Rufus — инструмент для записи ISO образов на флешку"
+    UseVisualStyleBackColor = $true
+}
+
 # Добавление элементов на вкладку
 $downloadsTab.Controls.Add($DlWin10)
 $downloadsTab.Controls.Add($DlWin11)
@@ -428,21 +435,39 @@ $downloadsTab.Controls.Add($label2)
 $downloadsTab.Controls.Add($label3)
 $downloadsTab.Controls.Add($label4)
 $downloadsTab.Controls.Add($label5)
-
+$downloadsTab.Controls.Add($newButton)
 
 $tooltip.SetToolTip($radioButton1, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
 $tooltip.SetToolTip($radioButton2, "Активация Windows 8 или Windows 8.1 через KMS")
-$tooltip.SetToolTip($radioButton4, "Активация Office 2021 с помощью добавления файла sppc.dll")
-$tooltip.SetToolTip($radioButton5, "Активация Windows Server 2022, 2019, 2016 и др.")
+$tooltip.SetToolTip($radioButton4, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019. Office потом автоматически конвертируется в 2021.")
+$tooltip.SetToolTip($radioButton5, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
 $tooltip.SetToolTip($radioButton6, "Активация Office 2013 с помощью добавления файла sppc.dll")
-$tooltip.SetToolTip($radioButton7, "Разрешить создание автономного аккаунта Minecraft")
-$tooltip.SetToolTip($radioButton8, "Отключить рекламные серверы TLauncher")
+$tooltip.SetToolTip($radioButton3, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
+$tooltip.SetToolTip($radioButton7, "Разрешить создание автономного аккаунта Minecraft в MultiMC, PolyMC или Prism Launcher без добавления аккаунта Microsoft")
+$tooltip.SetToolTip($radioButton8, 'Отключить добавление рекламных серверов от TLauncher в раздел "Сетевая игра" в Minecraft')
 $tooltip.SetToolTip($radioButton9, "Получить ключ активации Macro Recorder")
-$tooltip.SetToolTip($radioButton10, "Активировать MobaXterm последней версии")
+$tooltip.SetToolTip($radioButton10, "Активировать MobaXterm последней версии." + [Environment]::NewLine + "Если после активации MobaXterm перестал открываться, обновите его до последней версии на mobaxterm.mobatek.net")
 $tooltip.SetToolTip($radioButton11, "Получить ключ активации Charles 4.6.7")
 $tooltip.SetToolTip($radioButton12, "Активировать Visual Studio 2022 Professional/Enterprise")
-$tooltip.SetToolTip($radioButton13, "Активация Office 2016 с помощью добавления файла sppc.dll")
-$tooltip.SetToolTip($radioButton14, "Активация Office 2019 с помощью добавления файла sppc.dll")
+$tooltip.SetToolTip($radioButton13, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021. Office потом автоматически конвертируется в 2016.")
+$tooltip.SetToolTip($radioButton14, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021. Office потом автоматически конвертируется в 2019.")
+$toolTip.SetToolTip($DlWin10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
+$toolTip.SetToolTip($DlWin11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
+$toolTip.SetToolTip($DlWinLtsc, "ISO образ Windows 10 LTSC 2021")
+$toolTip.SetToolTip($Dl11Ltsc, "ISO образ Windows 11 LTSC 2024." + [Environment]::NewLine + "Английская версия! Русский язык можно будет поставить в Параметрах после установки.")
+$toolTip.SetToolTip($Dl2022, "ISO образ Windows Server 2022")
+$toolTip.SetToolTip($button1, "ISO образ Windows Server 2019")
+$toolTip.SetToolTip($button2, "ISO образ Windows Server 2016")
+$toolTip.SetToolTip($button3, "ISO образ Windows Server 2012")
+$toolTip.SetToolTip($button4, "ISO образ Windows 8.1 с официального сайта Microsoft")
+$toolTip.SetToolTip($button5, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($button6, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($button7, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($button8, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($button9, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($button10, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($button11, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($button12, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 
 # Добавляем элементы на вкладку
 $activationTab.Controls.Add($radioButton1)
