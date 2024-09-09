@@ -24,9 +24,9 @@ $tabs = New-Object System.Windows.Forms.TabControl -Property @{
     TabIndex = 0
 }
 
-$activationTab = New-Object System.Windows.Forms.TabPage -Property @{
+$AT = New-Object System.Windows.Forms.TabPage -Property @{
     Location = [System.Drawing.Point]::new(4, 24)
-    Name = "ActivationTab"
+    Name = "AT"
     Padding = [System.Windows.Forms.Padding]::new(3)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 0
@@ -72,7 +72,7 @@ $infoTab = New-Object System.Windows.Forms.TabPage -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$tabs.TabPages.Add($activationTab)
+$tabs.TabPages.Add($AT)
 $tabs.TabPages.Add($downloadsTab)
 $tabs.TabPages.Add($functionsTab)
 $tabs.TabPages.Add($problemsTab)
@@ -85,11 +85,13 @@ $tooltip = New-Object System.Windows.Forms.ToolTip -Property @{
     ShowAlways = $true
 }
 
-$radioButton1 = New-Object System.Windows.Forms.RadioButton -Property @{
+# AT
+
+$W10 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Checked = $true
     Location = [System.Drawing.Point]::new(6, 6)
-    Name = "radioButton1"
+    Name = "W10"
     Size = [System.Drawing.Size]::new(143, 19)
     TabIndex = 1
     TabStop = $true
@@ -97,145 +99,236 @@ $radioButton1 = New-Object System.Windows.Forms.RadioButton -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$radioButton2 = New-Object System.Windows.Forms.RadioButton -Property @{
+$W8 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 31)
-    Name = "radioButton2"
+    Name = "W8"
     Size = [System.Drawing.Size]::new(130, 19)
     TabIndex = 2
-    Text = "Windows 8.1/8 KMS"
+    Text = "Windows 8/8.1 (KMS)"
     UseVisualStyleBackColor = $true
 }
 
-$radioButton4 = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(214, 31)
-    Name = "radioButton4"
-    Size = [System.Drawing.Size]::new(83, 19)
-    TabIndex = 4
-    Text = "Office 2021"
-    UseVisualStyleBackColor = $true
-}
-
-$radioButton5 = New-Object System.Windows.Forms.RadioButton -Property @{
+$WS = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 56)
-    Name = "radioButton5"
+    Name = "WS"
     Size = [System.Drawing.Size]::new(193, 19)
     TabIndex = 5
     Text = "Windows Server 2022/2019/2016"
     UseVisualStyleBackColor = $true
 }
 
-$radioButton6 = New-Object System.Windows.Forms.RadioButton -Property @{
+$V = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(214, 106)
-    Name = "radioButton6"
-    Size = [System.Drawing.Size]::new(83, 19)
-    TabIndex = 6
-    Text = "Office 2013"
+    Location = [System.Drawing.Point]::new(6, 106) # расположение под Windows Server 2022...
+    Name = "V"
+    Size = [System.Drawing.Size]::new(54, 19)
+    TabIndex = 18
+    Text = "Visio 2016/2019/2021"
     UseVisualStyleBackColor = $true
 }
 
-$radioButton7 = New-Object System.Windows.Forms.RadioButton -Property @{
+$P = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 6)
-    Name = "radioButton7"
-    Size = [System.Drawing.Size]::new(201, 19)
-    TabIndex = 8
-    Text = "MultiMC/PolyMC/Prism Launcher"
-    UseVisualStyleBackColor = $true
-}
-
-$radioButton8 = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 31)
-    Name = "radioButton8"
-    Size = [System.Drawing.Size]::new(81, 19)
-    TabIndex = 9
-    Text = "TLauncher"
-    UseVisualStyleBackColor = $true
-}
-
-$radioButton9 = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 56)
-    Name = "radioButton9"
-    Size = [System.Drawing.Size]::new(109, 19)
-    TabIndex = 10
-    Text = "Macro Recorder"
-    UseVisualStyleBackColor = $true
-}
-
-$radioButton10 = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 81)
-    Name = "radioButton10"
-    Size = [System.Drawing.Size]::new(88, 19)
-    TabIndex = 11
-    Text = "MobaXterm"
-    UseVisualStyleBackColor = $true
-}
-
-$radioButton11 = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 106)
-    Name = "radioButton11"
+    Location = [System.Drawing.Point]::new(6, 131) # расположение под Visio
+    Name = "P"
     Size = [System.Drawing.Size]::new(64, 19)
-    TabIndex = 12
-    Text = "Charles"
+    TabIndex = 19
+    Text = "Project 2016/2019/2021"
     UseVisualStyleBackColor = $true
 }
 
-$radioButton12 = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 131)
-    Name = "radioButton12"
-    Size = [System.Drawing.Size]::new(244, 19)
-    TabIndex = 13
-    Text = "Visual Studio 2022 Professional/Enterprise"
-    UseVisualStyleBackColor = $true
-}
-
-$activateButton = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(515, 169)
-    Name = "Activate"
-    Size = [System.Drawing.Size]::new(96, 23)
-    TabIndex = 14
-    Text = "Активировать!"
-    UseVisualStyleBackColor = $true
-}
-
-# Создание и настройка дополнительных радиокнопок
-$radioButton3 = New-Object System.Windows.Forms.RadioButton -Property @{
+$O65 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 6)
-    Name = "radioButton3"
+    Name = "O65"
     Size = [System.Drawing.Size]::new(79, 19)
     TabIndex = 15
     Text = "Office 365"
     UseVisualStyleBackColor = $true
 }
 
-$radioButton14 = New-Object System.Windows.Forms.RadioButton -Property @{
+$O21 = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(214, 31)
+    Name = "O21"
+    Size = [System.Drawing.Size]::new(83, 19)
+    TabIndex = 4
+    Text = "Office 2021"
+    UseVisualStyleBackColor = $true
+}
+
+$O19 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 56)
-    Name = "radioButton14"
+    Name = "O19"
     Size = [System.Drawing.Size]::new(84, 19)
     TabIndex = 17
     Text = "Office 2019"
     UseVisualStyleBackColor = $true
 }
 
-$radioButton13 = New-Object System.Windows.Forms.RadioButton -Property @{
+$O16 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 81)
-    Name = "radioButton13"
+    Name = "O16"
     Size = [System.Drawing.Size]::new(84, 19)
     TabIndex = 16
     Text = "Office 2016"
     UseVisualStyleBackColor = $true
 }
+
+$O13 = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(214, 106)
+    Name = "O13"
+    Size = [System.Drawing.Size]::new(83, 19)
+    TabIndex = 6
+    Text = "Office 2013"
+    UseVisualStyleBackColor = $true
+}
+
+$PL = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(373, 6)
+    Name = "PL"
+    Size = [System.Drawing.Size]::new(201, 19)
+    TabIndex = 8
+    Text = "MultiMC/PolyMC/Prism Launcher"
+    UseVisualStyleBackColor = $true
+}
+
+$TL = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(373, 31)
+    Name = "TL"
+    Size = [System.Drawing.Size]::new(81, 19)
+    TabIndex = 9
+    Text = "TL"
+    UseVisualStyleBackColor = $true
+}
+
+$MR = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(373, 56)
+    Name = "MR"
+    Size = [System.Drawing.Size]::new(109, 19)
+    TabIndex = 10
+    Text = "Macro Recorder"
+    UseVisualStyleBackColor = $true
+}
+
+$MX = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(373, 81)
+    Name = "MX"
+    Size = [System.Drawing.Size]::new(88, 19)
+    TabIndex = 11
+    Text = "MobaXterm"
+    UseVisualStyleBackColor = $true
+}
+
+$C = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(373, 106)
+    Name = "C"
+    Size = [System.Drawing.Size]::new(64, 19)
+    TabIndex = 12
+    Text = "Charles"
+    UseVisualStyleBackColor = $true
+}
+
+$VS = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(373, 131)
+    Name = "VS"
+    Size = [System.Drawing.Size]::new(244, 19)
+    TabIndex = 13
+    Text = "Visual Studio 2022 Professional/Enterprise"
+    UseVisualStyleBackColor = $true
+}
+
+$Act = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(515, 169)
+    Name = "Act"
+    Size = [System.Drawing.Size]::new(96, 23)
+    TabIndex = 14
+    Text = "Активировать!"
+    UseVisualStyleBackColor = $true
+}
+
+
+$Act.Add_Click({
+    $prod = $AT.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked }
+    switch ($actprod.Name) {
+        "W10" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/HWID.ps1 | Invoke-Expression" -Verb RunAs
+        }
+        "W8" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/KMS.ps1 | Invoke-Expression" -Verb RunAs
+        }
+        "WS" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/ServerKMS.ps1 | Invoke-Expression" -Verb RunAs
+        }
+        "V" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/VisioProject.ps1 | Invoke-Expression -Product Visio" -Verb RunAs
+        }
+        "P" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/VisioProject.ps1 | Invoke-Expression -Product Project" -Verb RunAs
+        }
+        "O65" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 365" -Verb RunAs
+        }
+        "O21" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2021" -Verb RunAs
+        }
+        "O19" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2019" -Verb RunAs
+        }
+        "O16" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2016" -Verb RunAs
+        }
+        "O13" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs2013.ps1 | Invoke-Expression" -Verb RunAs
+        }
+        "PL" {
+            '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "MSA"}],"formatVersion": 3}' | Out-File "$env:APPDATA\PrismLauncher\accounts.json" -Encoding ASCII
+        }
+    }
+})
+
+$AT.Controls.Add($W10)
+$AT.Controls.Add($W8)
+$AT.Controls.Add($WS)
+$AT.Controls.Add($V)
+$AT.Controls.Add($P)
+$AT.Controls.Add($O65)
+$AT.Controls.Add($O21)
+$AT.Controls.Add($O19)
+$AT.Controls.Add($O16)
+$AT.Controls.Add($O13)
+$AT.Controls.Add($PL)
+$AT.Controls.Add($TL)
+$AT.Controls.Add($MR)
+$AT.Controls.Add($MX)
+$AT.Controls.Add($C)
+$AT.Controls.Add($VS)
+$AT.Controls.Add($Act)
+
+
+
+
+
+
+
+
+# Создание и настройка дополнительных радиокнопок
+
+
+
+
+
 
 $DlWin10 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 6)
@@ -658,6 +751,9 @@ $button29 = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
+# Добавление новых радиокнопок на вкладку AT
+
+
 # Добавление всех элементов на вкладку Info
 $Infotab.Controls.Add($button34)
 $Infotab.Controls.Add($button33)
@@ -716,20 +812,20 @@ $downloadsTab.Controls.Add($label4)
 $downloadsTab.Controls.Add($label5)
 $downloadsTab.Controls.Add($newButton)
 
-$tooltip.SetToolTip($radioButton1, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
-$tooltip.SetToolTip($radioButton2, "Активация Windows 8 или Windows 8.1 через KMS")
-$tooltip.SetToolTip($radioButton4, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019. Office потом автоматически конвертируется в 2021.")
-$tooltip.SetToolTip($radioButton5, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
-$tooltip.SetToolTip($radioButton6, "Активация Office 2013 с помощью добавления файла sppc.dll")
-$tooltip.SetToolTip($radioButton3, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
-$tooltip.SetToolTip($radioButton7, "Разрешить создание автономного аккаунта Minecraft в MultiMC, PolyMC или Prism Launcher без добавления аккаунта Microsoft")
-$tooltip.SetToolTip($radioButton8, 'Отключить добавление рекламных серверов от TLauncher в раздел "Сетевая игра" в Minecraft')
-$tooltip.SetToolTip($radioButton9, "Получить ключ активации Macro Recorder")
-$tooltip.SetToolTip($radioButton10, "Активировать MobaXterm последней версии." + [Environment]::NewLine + "Если после активации MobaXterm перестал открываться, обновите его до последней версии на mobaxterm.mobatek.net")
-$tooltip.SetToolTip($radioButton11, "Получить ключ активации Charles 4.6.7")
-$tooltip.SetToolTip($radioButton12, "Активировать Visual Studio 2022 Professional/Enterprise")
-$tooltip.SetToolTip($radioButton13, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021. Office потом автоматически конвертируется в 2016.")
-$tooltip.SetToolTip($radioButton14, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021. Office потом автоматически конвертируется в 2019.")
+$tooltip.SetToolTip($W10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
+$tooltip.SetToolTip($W8, "Активация Windows 8 или Windows 8.1 через KMS")
+$tooltip.SetToolTip($O21, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019. Office потом автоматически конвертируется в 2021.")
+$tooltip.SetToolTip($WS, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
+$tooltip.SetToolTip($O13, "Активация Office 2013 с помощью добавления файла sppc.dll")
+$tooltip.SetToolTip($O65, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
+$tooltip.SetToolTip($PL, "Разрешить создание автономного аккаунта Minecraft в MultiMC, PolyMC или Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
+$tooltip.SetToolTip($TL, 'Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках')
+$tooltip.SetToolTip($MR, "Получить ключ активации Macro Recorder")
+$tooltip.SetToolTip($MX, "Активировать MobaXterm последней версии." + [Environment]::NewLine + "Если после активации MobaXterm перестал открываться, обновите его до последней версии на mobaxterm.mobatek.net")
+$tooltip.SetToolTip($C, "Получить ключ активации Charles 4.6.7")
+$tooltip.SetToolTip($VS, "Активировать Visual Studio 2022 Professional/Enterprise")
+$tooltip.SetToolTip($O16, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021. Office потом автоматически конвертируется в 2016.")
+$tooltip.SetToolTip($O19, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021. Office потом автоматически конвертируется в 2019.")
 $toolTip.SetToolTip($DlWin10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
 $toolTip.SetToolTip($DlWin11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
 $toolTip.SetToolTip($DlWinLtsc, "ISO образ Windows 10 LTSC 2021")
@@ -752,23 +848,15 @@ $tooltip.SetToolTip($button25, 'Перед переустановкой Windows 
 $tooltip.SetToolTip($button24, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
 $tooltip.SetToolTip($button22, "Только для LTSC-версий Windows без установленного Microsoft Store!")
 $tooltip.SetToolTip($button20, "Перед запуском убедитесь, что Wi-Fi сейчас включен")
+$tooltip.SetToolTip($button15, "sfc /scannow и DISM /Online /Cleanup-Image /RestoreHealth")
+$tooltip.SetToolTip($button28, "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe")
+$tooltip.SetToolTip($button17, "Удалить папку %temp%\MalwActivator")
+$tooltip.SetToolTip($V, "Через KMS, будет активирован как Visio 2021 (более старые версии обновятся)")
+$tooltip.SetToolTip($P, "Через KMS, будет активирован как Project 2021 (более старые версии обновятся)")
+$tooltip.SetToolTip($button19, "Даже если проблема не связана с MalwActivator, всё равно напишите")
 
 # Добавляем элементы на вкладку
-$activationTab.Controls.Add($radioButton1)
-$activationTab.Controls.Add($radioButton2)
-$activationTab.Controls.Add($radioButton4)
-$activationTab.Controls.Add($radioButton5)
-$activationTab.Controls.Add($radioButton6)
-$activationTab.Controls.Add($radioButton7)
-$activationTab.Controls.Add($radioButton8)
-$activationTab.Controls.Add($radioButton9)
-$activationTab.Controls.Add($radioButton10)
-$activationTab.Controls.Add($radioButton11)
-$activationTab.Controls.Add($radioButton12)
-$activationTab.Controls.Add($activateButton)
-$activationTab.Controls.Add($radioButton3)
-$activationTab.Controls.Add($radioButton14)
-$activationTab.Controls.Add($radioButton13)
+
 
 $form.Controls.Add($tabs)
 $form.ShowDialog()
