@@ -195,7 +195,7 @@ $PL = New-Object System.Windows.Forms.RadioButton -Property @{
     Name = "PL"
     Size = [System.Drawing.Size]::new(201, 19)
     TabIndex = 8
-    Text = "MultiMC/PolyMC/Prism Launcher"
+    Text = "Prism Launcher"
     UseVisualStyleBackColor = $true
 }
 
@@ -293,7 +293,11 @@ $Act.Add_Click({
             Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs2013.ps1 | Invoke-Expression" -Verb RunAs
         }
         "PL" {
-            '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "MSA"}],"formatVersion": 3}' | Out-File "$env:APPDATA\PrismLauncher\accounts.json" -Encoding ASCII
+            if (Test-Path "$env:APPDATA\PrismLauncher") {
+                '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "MSA"}],"formatVersion": 3}' | Out-File "$env:APPDATA\PrismLauncher\accounts.json" -Encoding ASCII
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("Prism Launcher не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
         }
     }
 })
@@ -818,7 +822,7 @@ $tooltip.SetToolTip($O21, "Активация Office 2021 путём добав�
 $tooltip.SetToolTip($WS, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
 $tooltip.SetToolTip($O13, "Активация Office 2013 с помощью добавления файла sppc.dll")
 $tooltip.SetToolTip($O65, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
-$tooltip.SetToolTip($PL, "Разрешить создание автономного аккаунта Minecraft в MultiMC, PolyMC или Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
+$tooltip.SetToolTip($PL, "Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
 $tooltip.SetToolTip($TL, 'Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках')
 $tooltip.SetToolTip($MR, "Получить ключ активации Macro Recorder")
 $tooltip.SetToolTip($MX, "Активировать MobaXterm последней версии." + [Environment]::NewLine + "Если после активации MobaXterm перестал открываться, обновите его до последней версии на mobaxterm.mobatek.net")
