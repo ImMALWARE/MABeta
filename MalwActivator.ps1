@@ -121,7 +121,7 @@ $WS = New-Object System.Windows.Forms.RadioButton -Property @{
 
 $V = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(6, 106) # расположение под Windows Server 2022...
+    Location = [System.Drawing.Point]::new(6, 106)
     Name = "V"
     Size = [System.Drawing.Size]::new(54, 19)
     TabIndex = 18
@@ -131,7 +131,7 @@ $V = New-Object System.Windows.Forms.RadioButton -Property @{
 
 $P = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(6, 131) # расположение под Visio
+    Location = [System.Drawing.Point]::new(6, 131)
     Name = "P"
     Size = [System.Drawing.Size]::new(64, 19)
     TabIndex = 19
@@ -295,9 +295,60 @@ $Act.Add_Click({
         "PL" {
             if (Test-Path "$env:APPDATA\PrismLauncher") {
                 '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "MSA"}],"formatVersion": 3}' | Out-File "$env:APPDATA\PrismLauncher\accounts.json" -Encoding ASCII
+                [System.Windows.Forms.MessageBox]::Show("Автономный аккаунт в Prism Launcher разблокирован!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
             } else {
                 [System.Windows.Forms.MessageBox]::Show("Prism Launcher не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
             }
+        }
+        "TL" {
+            if (Test-Path "$env:appdata\.minecraft\TlauncherProfiles.json") {
+                $file = Get-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json" -Raw
+                if ($file -match '"premiumAccount": false') {
+                    $file -replace '"premiumAccount": false', '"premiumAccount": true' | Set-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         [System.Windows.Forms.MessageBox]::Show("Premium-аккаунт в TL разблокирован! Теперь вы можете отключить добавление рекламных серверов в его настройках", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                }
+    # Проверяем, есть ли в файле строки "premiumAccount": false
+    if ($content -match '"premiumAccount": false') {
+        # Заменяем все "premiumAccount": false на "premiumAccount": true
+        $content = $content -replace '"premiumAccount": false', '"premiumAccount": true'
+
+        # Сохраняем изменения в файл
+        $content | Set-Content -Path $filePath
+
+        # Выводим сообщение об успешной замене
+        Write-Host "Все вхождения 'premiumAccount': false успешно заменены на 'premiumAccount': true."
+    } else {
+        # Выводим сообщение об ошибке, если строки "premiumAccount": false не найдены
+        Write-Host "Ошибка: Строки 'premiumAccount': false не найдены в файле."
+    }
+            }
+            # Указываем путь к файлу
+$filePath = 
+
+# Проверяем, существует ли файл
+if (Test-Path -Path $filePath) {
+    # Читаем содержимое файла
+    $content = Get-Content -Path $filePath -Raw
+
+    # Проверяем, есть ли в файле строки "premiumAccount": false
+    if ($content -match '"premiumAccount": false') {
+        # Заменяем все "premiumAccount": false на "premiumAccount": true
+        $content = $content -replace '"premiumAccount": false', '"premiumAccount": true'
+
+        # Сохраняем изменения в файл
+        $content | Set-Content -Path $filePath
+
+        # Выводим сообщение об успешной замене
+        Write-Host "Все вхождения 'premiumAccount': false успешно заменены на 'premiumAccount': true."
+    } else {
+        # Выводим сообщение об ошибке, если строки "premiumAccount": false не найдены
+        Write-Host "Ошибка: Строки 'premiumAccount': false не найдены в файле."
+    }
+} else {
+    # Выводим сообщение об ошибке, если файл не найден
+    Write-Host "Ошибка: Файл '$filePath' не найден."
+}
+
         }
     }
 })
