@@ -305,50 +305,21 @@ $Act.Add_Click({
                 $file = Get-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json" -Raw
                 if ($file -match '"premiumAccount": false') {
                     $file -replace '"premiumAccount": false', '"premiumAccount": true' | Set-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         [System.Windows.Forms.MessageBox]::Show("Premium-аккаунт в TL разблокирован! Теперь вы можете отключить добавление рекламных серверов в его настройках", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                    [System.Windows.Forms.MessageBox]::Show("Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
                 }
-    # Проверяем, есть ли в файле строки "premiumAccount": false
-    if ($content -match '"premiumAccount": false') {
-        # Заменяем все "premiumAccount": false на "premiumAccount": true
-        $content = $content -replace '"premiumAccount": false', '"premiumAccount": true'
-
-        # Сохраняем изменения в файл
-        $content | Set-Content -Path $filePath
-
-        # Выводим сообщение об успешной замене
-        Write-Host "Все вхождения 'premiumAccount': false успешно заменены на 'premiumAccount': true."
-    } else {
-        # Выводим сообщение об ошибке, если строки "premiumAccount": false не найдены
-        Write-Host "Ошибка: Строки 'premiumAccount': false не найдены в файле."
-    }
+                else {
+                    [System.Windows.Forms.MessageBox]::Show("Ни один аккаунт не доблавен в TL", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error) 
+                }
             }
-            # Указываем путь к файлу
-$filePath = 
-
-# Проверяем, существует ли файл
-if (Test-Path -Path $filePath) {
-    # Читаем содержимое файла
-    $content = Get-Content -Path $filePath -Raw
-
-    # Проверяем, есть ли в файле строки "premiumAccount": false
-    if ($content -match '"premiumAccount": false') {
-        # Заменяем все "premiumAccount": false на "premiumAccount": true
-        $content = $content -replace '"premiumAccount": false', '"premiumAccount": true'
-
-        # Сохраняем изменения в файл
-        $content | Set-Content -Path $filePath
-
-        # Выводим сообщение об успешной замене
-        Write-Host "Все вхождения 'premiumAccount': false успешно заменены на 'premiumAccount': true."
-    } else {
-        # Выводим сообщение об ошибке, если строки "premiumAccount": false не найдены
-        Write-Host "Ошибка: Строки 'premiumAccount': false не найдены в файле."
-    }
-} else {
-    # Выводим сообщение об ошибке, если файл не найден
-    Write-Host "Ошибка: Файл '$filePath' не найден."
-}
-
+            else {
+                [System.Windows.Forms.MessageBox]::Show("TL не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
+        }
+        "MR" {
+            Start-Process "https://google.com" # MacroRecorder.html
+        }
+        "MX" {
+            
         }
     }
 })
