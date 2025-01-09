@@ -1,14 +1,4 @@
-Add-Type -AssemblyName System.Windows.Forms
-
-if ($PSUICulture -eq "ru-RU") {
-    $strings = @("Активация Office 2013 через подмену файла sppcs.dll", 'не найден! Загрузите его на вкладке "Скачивание"!')
-} else {
-    $strings = @("Activating Office 2013 via replacing sppcs.dll file", 'not found! Download it in "Downloads" tab!')
-}
-if (-not (test-path "$env:ProgramFiles\Microsoft Office 15\root\vfs\System")){ 
-    [System.Windows.Forms.MessageBox]::Show("Office 2013 " + $strings[1], "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
-    exit
-}
+Write-Output $(if ($PSUICulture -eq "ru-RU") {"Активация Office 2013 через подмену файла sppcs.dll"} else {"Activating Office 2013 via replacing sppcs.dll file"})
 
 cmd /c mklink "$env:ProgramFiles\Microsoft Office 15\root\vfs\System\sppcs.dll" "$env:SystemRoot\System32\sppc.dll"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12

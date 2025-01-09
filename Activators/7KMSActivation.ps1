@@ -1,4 +1,4 @@
-cd $env:SystemRoot\System32
+Set-Location $env:SystemRoot\System32
 cscript //nologo slmgr.vbs /ckms > $null
 cscript //nologo slmgr.vbs /upk > $null
 cscript //nologo slmgr.vbs /cpky > $null

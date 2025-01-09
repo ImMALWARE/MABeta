@@ -149,9 +149,19 @@ $O65 = New-Object System.Windows.Forms.RadioButton -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$O21 = New-Object System.Windows.Forms.RadioButton -Property @{
+$O24 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 31)
+    Name = "O21"
+    Size = [System.Drawing.Size]::new(83, 19)
+    TabIndex = 4
+    Text = "Office 2024"
+    UseVisualStyleBackColor = $true
+}
+
+$O21 = New-Object System.Windows.Forms.RadioButton -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(214, 56)
     Name = "O21"
     Size = [System.Drawing.Size]::new(83, 19)
     TabIndex = 4
@@ -161,7 +171,7 @@ $O21 = New-Object System.Windows.Forms.RadioButton -Property @{
 
 $O19 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(214, 56)
+    Location = [System.Drawing.Point]::new(214, 81)
     Name = "O19"
     Size = [System.Drawing.Size]::new(84, 19)
     TabIndex = 17
@@ -171,7 +181,7 @@ $O19 = New-Object System.Windows.Forms.RadioButton -Property @{
 
 $O16 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(214, 81)
+    Location = [System.Drawing.Point]::new(214, 106)
     Name = "O16"
     Size = [System.Drawing.Size]::new(84, 19)
     TabIndex = 16
@@ -181,7 +191,7 @@ $O16 = New-Object System.Windows.Forms.RadioButton -Property @{
 
 $O13 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(214, 106)
+    Location = [System.Drawing.Point]::new(214, 131)
     Name = "O13"
     Size = [System.Drawing.Size]::new(83, 19)
     TabIndex = 6
@@ -209,19 +219,9 @@ $TL = New-Object System.Windows.Forms.RadioButton -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$MR = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 56)
-    Name = "MR"
-    Size = [System.Drawing.Size]::new(109, 19)
-    TabIndex = 10
-    Text = "Macro Recorder"
-    UseVisualStyleBackColor = $true
-}
-
 $MX = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 81)
+    Location = [System.Drawing.Point]::new(373, 56)
     Name = "MX"
     Size = [System.Drawing.Size]::new(88, 19)
     TabIndex = 11
@@ -231,7 +231,7 @@ $MX = New-Object System.Windows.Forms.RadioButton -Property @{
 
 $C = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 106)
+    Location = [System.Drawing.Point]::new(373, 81)
     Name = "C"
     Size = [System.Drawing.Size]::new(64, 19)
     TabIndex = 12
@@ -241,7 +241,7 @@ $C = New-Object System.Windows.Forms.RadioButton -Property @{
 
 $VS = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 131)
+    Location = [System.Drawing.Point]::new(373, 106)
     Name = "VS"
     Size = [System.Drawing.Size]::new(244, 19)
     TabIndex = 13
@@ -258,10 +258,9 @@ $Act = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-
 $Act.Add_Click({
     $prod = $AT.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked }
-    switch ($actprod.Name) {
+    switch ($prod[0].Name) {
         "W10" {
             Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/HWID.ps1 | Invoke-Expression" -Verb RunAs
         }
@@ -278,19 +277,47 @@ $Act.Add_Click({
             Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/VisioProject.ps1 | Invoke-Expression -Product Project" -Verb RunAs
         }
         "O65" {
-            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 365" -Verb RunAs
+            if (test-path "$env:ProgramFiles\Microsoft Office\root\vfs\System") {
+                Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 365" -Verb RunAs
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("Office 365 не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
+        }
+        "O24" {
+            if (test-path "$env:ProgramFiles\Microsoft Office\root\vfs\System") {
+                Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2024" -Verb RunAs
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("Office 2024 не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
         }
         "O21" {
-            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2021" -Verb RunAs
+            if (test-path "$env:ProgramFiles\Microsoft Office\root\vfs\System") {
+                Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2021" -Verb RunAs
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("Office 2021 не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
         }
         "O19" {
-            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2019" -Verb RunAs
+            if (test-path "$env:ProgramFiles\Microsoft Office\root\vfs\System") {
+                Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2019" -Verb RunAs
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("Office 2019 не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
         }
         "O16" {
-            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2016" -Verb RunAs
+            if (test-path "$env:ProgramFiles\Microsoft Office\root\vfs\System") {
+                Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs.ps1 | Invoke-Expression -Product 2016" -Verb RunAs
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("Office 2016 не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
         }
         "O13" {
-            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs2013.ps1 | Invoke-Expression" -Verb RunAs
+            if (test-path "$env:ProgramFiles\Microsoft Office 15\root\vfs\System") {
+                Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/Osppcs2013.ps1 | Invoke-Expression" -Verb RunAs
+            }
+            else {
+                [System.Windows.Forms.MessageBox]::Show("Office 2013 не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
         }
         "PL" {
             if (Test-Path "$env:APPDATA\PrismLauncher") {
@@ -315,11 +342,18 @@ $Act.Add_Click({
                 [System.Windows.Forms.MessageBox]::Show("TL не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
             }
         }
-        "MR" {
-            Start-Process "https://google.com" # MacroRecorder.html
-        }
         "MX" {
-            
+            if (Test-Path "$(env:ProgramFiles(x86))\Mobatek\MobaXterm\version.dat") {
+                Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/MXT.ps1 | Invoke-Expression" -Verb RunAs
+            } else {
+                [System.Windows.Forms.MessageBox]::Show("MobaXterm не найден!", "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+            }
+        }
+        "C" {
+            Start-Process "https://gist.github.com/yutao8/e8c685ebadc9c4b2c84c76f9bff1f7a8"
+        }
+        "VS" {
+            Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/VS.ps1 | Invoke-Expression" -Verb RunAs
         }
     }
 })
@@ -330,13 +364,13 @@ $AT.Controls.Add($WS)
 $AT.Controls.Add($V)
 $AT.Controls.Add($P)
 $AT.Controls.Add($O65)
+$AT.Controls.Add($O24)
 $AT.Controls.Add($O21)
 $AT.Controls.Add($O19)
 $AT.Controls.Add($O16)
 $AT.Controls.Add($O13)
 $AT.Controls.Add($PL)
 $AT.Controls.Add($TL)
-$AT.Controls.Add($MR)
 $AT.Controls.Add($MX)
 $AT.Controls.Add($C)
 $AT.Controls.Add($VS)
@@ -604,16 +638,6 @@ $button27 = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-# Создание кнопок
-$button13 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(48, 8)
-    Name = "button13"
-    Size = [System.Drawing.Size]::new(167, 23)
-    TabIndex = 0
-    Text = "Очистить лицензии Office16"
-    UseVisualStyleBackColor = $true
-}
-
 $button14 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(221, 8)
     Name = "button14"
@@ -802,7 +826,6 @@ $ProblemsTab.Controls.Add($button17)
 $ProblemsTab.Controls.Add($button16)
 $ProblemsTab.Controls.Add($button15)
 $ProblemsTab.Controls.Add($button14)
-$ProblemsTab.Controls.Add($button13)
 
 
 $FunctionsTab.Controls.Add($button27)
@@ -840,18 +863,18 @@ $downloadsTab.Controls.Add($newButton)
 
 $tooltip.SetToolTip($W10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
 $tooltip.SetToolTip($W8, "Активация Windows 8 или Windows 8.1 через KMS")
-$tooltip.SetToolTip($O21, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019. Office потом автоматически конвертируется в 2021.")
+$tooltip.SetToolTip($O24, "Активация Office 2024 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2021. Office потом автоматически конвертируется в 2024.")
+$tooltip.SetToolTip($O21, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2024. Office потом автоматически конвертируется в 2021.")
 $tooltip.SetToolTip($WS, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
 $tooltip.SetToolTip($O13, "Активация Office 2013 с помощью добавления файла sppc.dll")
 $tooltip.SetToolTip($O65, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
 $tooltip.SetToolTip($PL, "Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
 $tooltip.SetToolTip($TL, 'Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках')
-$tooltip.SetToolTip($MR, "Получить ключ активации Macro Recorder")
-$tooltip.SetToolTip($MX, "Активировать MobaXterm последней версии." + [Environment]::NewLine + "Если после активации MobaXterm перестал открываться, обновите его до последней версии на mobaxterm.mobatek.net")
-$tooltip.SetToolTip($C, "Получить ключ активации Charles 4.6.7")
+$tooltip.SetToolTip($MX, "Активировать MobaXterm")
+$tooltip.SetToolTip($C, "Получить ключ активации Charles Proxy")
 $tooltip.SetToolTip($VS, "Активировать Visual Studio 2022 Professional/Enterprise")
-$tooltip.SetToolTip($O16, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021. Office потом автоматически конвертируется в 2016.")
-$tooltip.SetToolTip($O19, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021. Office потом автоматически конвертируется в 2019.")
+$tooltip.SetToolTip($O16, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021, 2024. Office потом автоматически конвертируется в 2016.")
+$tooltip.SetToolTip($O19, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021, 2024. Office потом автоматически конвертируется в 2019.")
 $toolTip.SetToolTip($DlWin10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
 $toolTip.SetToolTip($DlWin11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
 $toolTip.SetToolTip($DlWinLtsc, "ISO образ Windows 10 LTSC 2021")
@@ -880,9 +903,6 @@ $tooltip.SetToolTip($button17, "Удалить папку %temp%\MalwActivator")
 $tooltip.SetToolTip($V, "Через KMS, будет активирован как Visio 2021 (более старые версии обновятся)")
 $tooltip.SetToolTip($P, "Через KMS, будет активирован как Project 2021 (более старые версии обновятся)")
 $tooltip.SetToolTip($button19, "Даже если проблема не связана с MalwActivator, всё равно напишите")
-
-# Добавляем элементы на вкладку
-
 
 $form.Controls.Add($tabs)
 $form.ShowDialog()
