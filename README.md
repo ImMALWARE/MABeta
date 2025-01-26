@@ -1,4 +1,4 @@
-[README in english](https://github.com/ImMALWARE/MalwActivator/blob/main/ENGLISH_README.md)
+[README in english](https://github.com/ImMALWARE/MalwTool/blob/main/ENGLISH_README.md)
 # Универсальный активатор для Windows и Office
 Этот активатор позволяет активировать Windows и Office разных версий без необходимости загружать дополнительное программное обеспечение. Все, что нужно, это запустить команду в командной строке и выбрать приложение для активации из удобного интерфейса.
 
@@ -22,12 +22,12 @@
 # Использование
 Для запуска не нужно ничего скачивать. Нужно выполнить всего одну команду:
 ```pwsh
-powershell -command "iwr -useb https://raw.githubusercontent.com/ImMALWARE/MalwActivator/main/MalwActivator.ps1 | iex"
+powershell -command "iwr -useb https://raw.githubusercontent.com/ImMALWARE/MalwTool/main/MalwTool.ps1 | iex"
 ```
 Второй, сокращенный вариант команды (просто редирект на тот же GitHub с моего сайта)
 ```pwsh
-powershell -command "iwr -useb https://malw.ru/dl/malwactivator | iex"
+powershell -command "iwr -useb https://malw.ru/dl/malwtool | iex"
 ```
 Далее выберите приложение, которое вам нужно активировать из удобного интерфейса. И все!
-![Скриншот активатора](https://github.com/ImMALWARE/MalwActivator/raw/main/files/screenshot.png?raw=true)
-![Скриншот результата](https://github.com/ImMALWARE/MalwActivator/raw/main/files/result_screenshot.png?raw=true)
+![Скриншот активатора](https://github.com/ImMALWARE/MalwTool/raw/main/files/screenshot.png?raw=true)
+![Скриншот результата](https://github.com/ImMALWARE/MalwTool/raw/main/files/result_screenshot.png?raw=true)

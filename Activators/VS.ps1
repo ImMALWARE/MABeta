@@ -18,7 +18,7 @@ elseIf (test-path "$env:ProgramFiles\Microsoft Visual Studio\2022\Professional\C
     $key = "TD244-P4NB7-YQ6XK-Y8MMM-YWV2J"
 }
 else { 
-    [System.Windows.Forms.MessageBox]::Show("Visual Studio 2022 Professional/Enterprise " + $strings[1], "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+    [System.Windows.Forms.MessageBox]::Show("Visual Studio 2022 Professional/Enterprise " + $strings[1], "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
     exit
 }
 

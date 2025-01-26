@@ -1,6 +1,7 @@
 param([string]$Product)
 Add-Type -AssemblyName System.Windows.Forms
 
+$Product = @{"V" = "Visio"; "P" = "Project"}[$Product]
 if ($PSUICulture -eq "ru-RU") {
     $strings = @("Активация $Product 2021/2019/2016 через KMS", "не найден!")
 } else {
@@ -14,7 +15,7 @@ elseIf (test-path "$(env:ProgramFiles(x86))\Microsoft Office\Office16\ospp.vbs")
     $path = "$(env:ProgramFiles(x86))\Microsoft Office\Office16\"
 }
 else { 
-    [System.Windows.Forms.MessageBox]::Show("Visio 2021/2019/2016 " + $strings[1], "MalwActivator", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+    [System.Windows.Forms.MessageBox]::Show("$Product 2021/2019/2016 " + $strings[1], "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
     exit
 }
 

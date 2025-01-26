@@ -1,4 +1,4 @@
-[README на русском](https://github.com/ImMALWARE/MalwActivator/blob/main/README.md)
+[README на русском](https://github.com/ImMALWARE/MalwTool/blob/main/README.md)
 # Universal Activator for Windows and Office
 This activator allows you to activate different versions of Windows and Office without the need to download additional software. All you need to do is run a command in the command prompt and select the application to activate from a convenient interface.
 
@@ -22,12 +22,12 @@ This activator allows you to activate different versions of Windows and Office w
 # Usage
 No need to download anything to run the activator. Just execute this single command:
 ```pwsh
-powershell -command "iwr -useb https://raw.githubusercontent.com/ImMALWARE/MalwActivator/main/MalwActivator.ps1 | iex"
+powershell -command "iwr -useb https://raw.githubusercontent.com/ImMALWARE/MalwTool/main/MalwTool.ps1 | iex"
 ```
 Or the shorter version that redirects to the same GitHub repository from my website:
 ```pwsh
-powershell -command "iwr -useb https://malw.ru/dl/malwactivator | iex"
+powershell -command "iwr -useb https://malw.ru/dl/malwtool | iex"
 ```
 Then select the application you want to activate from the convenient interface. And that's it!
-![Activator screenshot](https://github.com/ImMALWARE/MalwActivator/raw/main/files/screenshot.png?raw=true)
-![Result screenshot](https://github.com/ImMALWARE/MalwActivator/raw/main/files/result_screenshot.png?raw=true)
+![Activator screenshot](https://github.com/ImMALWARE/MalwTool/raw/main/files/screenshot.png?raw=true)
+![Result screenshot](https://github.com/ImMALWARE/MalwTool/raw/main/files/result_screenshot.png?raw=true)

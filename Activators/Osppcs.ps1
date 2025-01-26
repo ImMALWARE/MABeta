@@ -1,5 +1,6 @@
 param([string]$Product)
 
+$Product = @{"O65"="365"; "O24"="2024"; "O21"="2021"; "O19"="2019"; "O16"="2016"}[$Product]
 Write-Output $(if ($PSUICulture -eq "ru-RU") {"Активация Office $Product через подмену файла sppcs.dll"} else {"Activating Office $Product via replacing sppcs.dll file"})
 
 $lics = @{"365" = "O365ProPlusR"; "2024" = "ProPlus2021VL_KMS"; "2021" = "ProPlus2021VL_KMS"; "2019" = "ProPlus2019VL"; "2016" = "proplusvl_kms"}

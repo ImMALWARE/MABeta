@@ -1,9 +1,9 @@
 # Конвертировать Windows Enterprise LTSC Evaluation в полную версию Windows Enterprise LTSC
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $wc = New-Object net.webclient
-New-Item -Path "$env:temp\MalwActivator" -ItemType Directory > $null
-$wc.DownloadFile('https://archive.org/download/ltscevaluation-to-full/LTSCEvaluationToFull.zip', "$env:temp\MalwActivator\LTSCEvaluationToFull.zip")
-Expand-Archive -Path "$env:temp\MalwActivator\LTSCEvaluationToFull.zip" -DestinationPath "$env:SystemRoot\System32\spp\tokens\skus"
+New-Item -Path "$env:temp\MalwTool" -ItemType Directory > $null
+$wc.DownloadFile('https://archive.org/download/ltscevaluation-to-full/LTSCEvaluationToFull.zip', "$env:temp\MalwTool\LTSCEvaluationToFull.zip")
+Expand-Archive -Path "$env:temp\MalwTool\LTSCEvaluationToFull.zip" -DestinationPath "$env:SystemRoot\System32\spp\tokens\skus"
 Set-Location $env:SystemRoot\System32
 cscript.exe //nologo slmgr.vbs /rilc
 cscript.exe //nologo slmgr.vbs /upk
