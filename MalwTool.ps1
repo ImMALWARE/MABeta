@@ -74,7 +74,7 @@ $infoTab = New-Object System.Windows.Forms.TabPage -Property @{
     UseVisualStyleBackColor = $true
 }
 
-@($ActT, $DlTab, $functionsTab, $problemsTab, $infoTab) | % { $tabs.TabPages.Add($_) }
+@($ActT, $DlTab, $functionsTab, $problemsTab, $infoTab) | ForEach-Object { $tabs.TabPages.Add($_) }
 
 $tooltip = New-Object System.Windows.Forms.ToolTip -Property @{
     AutoPopDelay = 5000
@@ -307,7 +307,7 @@ $Act.Add_Click({
     }
 })
 
-@($W10, $W8, $WS, $V, $P, $O65, $O24, $O21, $O19, $O16, $O13, $PL, $TL, $MX, $C, $VS, $Act) | % { $ActT.Controls.Add($_) }
+@($W10, $W8, $WS, $V, $P, $O65, $O24, $O21, $O19, $O16, $O13, $PL, $TL, $MX, $C, $VS, $Act) | ForEach-Object { $ActT.Controls.Add($_) }
 
 # Downloads tab
 
@@ -521,7 +521,7 @@ $rufus = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-@($Dl10, $Dl11, $Dl10Ltsc, $Dl11Ltsc, $Dl2025, $Dl2022, $Dl2019, $Dl2016, $Dl2012, $Dl81, $D24, $I24, $D21, $I21, $D19, $I19, $D16, $I16, $D13, $I13, $l24, $l21, $l19, $l16, $l13, $rufus) | % { $DlTab.Controls.Add($_) }
+@($Dl10, $Dl11, $Dl10Ltsc, $Dl11Ltsc, $Dl2025, $Dl2022, $Dl2019, $Dl2016, $Dl2012, $Dl81, $D24, $I24, $D21, $I21, $D19, $I19, $D16, $I16, $D13, $I13, $l24, $l21, $l19, $l16, $l13, $rufus) | ForEach-Object { $DlTab.Controls.Add($_) }
 
 $Dl10.Add_Click({
     try {
@@ -720,88 +720,195 @@ $delspyfiles = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-@($winwifipassman, $explorerext, $winget, $store, $driversbackup, $driversrestore, $edgeuninstall, $delspyfiles) | % { $FunctionsTab.Controls.Add($_) }
+@($winwifipassman, $winget, $store, $driversbackup, $driversrestore, $edgeuninstall) | ForEach-Object { $FunctionsTab.Controls.Add($_) }
+
+$val = Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -ErrorAction SilentlyContinue
+if (!$val -or $val.HideFileExt -ne 0) {
+    $FunctionsTab.Controls.Add($explorerext)
+}
+
+if ((Test-Path "$env:SystemRoot\System32\CompatTelRunner.exe") -or (Test-Path "$env:SystemRoot\System32\wsqmcons.exe")) {
+    $FunctionsTab.Controls.Add($delspyfiles)
+}
 
 $winwifipassman.Add_Click({
-    # TODO
+    Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/WinWiFiPassMan/main/WinWiFiPassMan.ps1 | Invoke-Expression" -Verb RunAs
 })
 
+$explorerext.Add_Click({
+    Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Value 0
+})
 
+$winget.Add_Click({
+    Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/winget-installer/main/WingetInstaller.ps1 | Invoke-Expression" -Verb RunAs
+})
 
+$store.Add_Click({
+    Start-Process wsreset -ArgumentList "-i" -Verb RunAs
+})
 
+$driversbackup.Add_Click({
+    $dialog = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
+        Description = "Выберите директорию, куда будет сохранена резервная копия драйверов"
+        RootFolder = [System.Environment+SpecialFolder]::MyComputer
+    }
+    if ($dialog.ShowDialog() -eq 'OK') {
+        Start-Process pnputil -ArgumentList "/export-driver * `"$($dialog.SelectedPath)`"" -Verb RunAs
+    }
+})
+
+$driversrestore.Add_Click({
+    $dialog = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
+        Description = "Выберите директорию с резервной копией драйверов"
+        RootFolder = [System.Environment+SpecialFolder]::MyComputer
+    }
+    if ($dialog.ShowDialog() -eq 'OK') {
+        Start-Process pnputil -ArgumentList "/add-driver `"${$dialog.SelectedPath}`" /subdirs /install" -Verb RunAs
+    }
+})
+
+$edgeuninstall.Add_Click({
+    New-Item -Path "$env:temp\MalwTool" -ItemType Directory > $null
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $wc = New-Object net.webclient
+    $wc.DownloadFile('https://raw.githubusercontent.com/AveYo/fox/eab2269a598ad9e8120cf1d598d48384071ff476/Edge_Removal.bat', "$env:temp\MalwTool\Edge_Removal.bat")
+    Set-Location $env:SystemRoot\System32
+    ./cmd.exe /c start "$env:temp\MalwTool\Edge_Removal.bat"
+})
+
+$delspyfiles.Add_Click({
+    Start-Process powershell -ArgumentList @'
+    cd $env:SystemRoot\System32;
+    .\takeown.exe /f CompatTelRunner.exe /a;
+    .\takeown.exe /f wsqmcons.exe /a;
+    .\icacls.exe CompatTelRunner.exe /grant Administrators:F;
+    .\icacls.exe wsqmcons.exe /grant Administrators:F;
+    Stop-Process -Name compattelrunner -Force -ErrorAction SilentlyContinue;
+    Stop-Process -Name wsqmcons -Force -ErrorAction SilentlyContinue;
+    Remove-Item CompatTelRunner.exe -Force;
+    Remove-Item wsqmcons.exe -Force;
+    pause
+'@ -Verb RunAs
+})
 
 #######
 
-$button14 = New-Object System.Windows.Forms.Button -Property @{
+$images = @{
+    oimg   = @{url = 'https://i.imgur.com/8L2KS9a.png'; y = 8}
+    winimg = @{url = 'https://i.imgur.com/sYPcWTh.png'; y = 71}
+}
+
+$images.Keys | ForEach-Object {
+    $name = $_
+    Set-Variable -Name $name -Value (New-Object System.Windows.Forms.PictureBox -Property @{
+        Location = [System.Drawing.Point]::new(8, $images[$name].y)
+        Size = [System.Drawing.Size]::new(34, 39)
+        Image = [System.Drawing.Image]::FromStream(
+            ([System.Net.WebRequest]::Create($images[$name].url)).GetResponse().GetResponseStream()
+        )
+    })
+}
+
+$clear_office16 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(48, 8)
+    Name = "clear_office16"
+    Size = [System.Drawing.Size]::new(170, 23)
+    TabIndex = 3
+    Text = "Очистить лицензии Office16"
+    UseVisualStyleBackColor = $true
+}
+
+$office_uninstall = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(221, 8)
-    Name = "button14"
+    Name = "office_uninstall"
     Size = [System.Drawing.Size]::new(176, 23)
     TabIndex = 1
     Text = "Инструмент удаления Office"
     UseVisualStyleBackColor = $true
 }
 
-$button15 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(247, 71)
-    Name = "button15"
-    Size = [System.Drawing.Size]::new(260, 23)
-    TabIndex = 2
-    Text = "Проверить системные файлы на целостность"
-    UseVisualStyleBackColor = $true
-}
-
-$button16 = New-Object System.Windows.Forms.Button -Property @{
+$clear_winkms = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(48, 71)
-    Name = "button16"
+    Name = "clear_winkms"
     Size = [System.Drawing.Size]::new(192, 23)
     TabIndex = 3
     Text = "Сброс KMS-активации Windows"
     UseVisualStyleBackColor = $true
 }
 
-
-$button19 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(8, 165)
-    Name = "button19"
-    Size = [System.Drawing.Size]::new(154, 23)
-    TabIndex = 8
-    Text = "У меня другая проблема!"
+$sfc_scannow = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(247, 71)
+    Name = "sfc_scannow"
+    Size = [System.Drawing.Size]::new(260, 23)
+    TabIndex = 2
+    Text = "Проверить системные файлы на целостность"
     UseVisualStyleBackColor = $true
 }
 
-$button28 = New-Object System.Windows.Forms.Button -Property @{
+$telegram_fix = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 136)
-    Name = "button28"
+    Name = "telegram_fix"
     Size = [System.Drawing.Size]::new(268, 23)
     TabIndex = 9
     Text = "Исправить открытие ссылок Telegram Desktop"
     UseVisualStyleBackColor = $true
 }
 
-# Загрузка и установка изображений в PictureBox
-$pictureBox1 = New-Object System.Windows.Forms.PictureBox -Property @{
-    Location = [System.Drawing.Point]::new(8, 8)
-    Name = "pictureBox1"
-    Size = [System.Drawing.Size]::new(34, 39)
-    TabIndex = 6
-    TabStop = $false
+$otherproblem = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 165)
+    Name = "otherproblem"
+    Size = [System.Drawing.Size]::new(154, 23)
+    TabIndex = 8
+    Text = "У меня другая проблема!"
+    UseVisualStyleBackColor = $true
 }
 
-$request1 = [System.Net.WebRequest]::Create('https://i.imgur.com/8L2KS9a.png')
-$image1 = [System.Drawing.Image]::FromStream($request1.GetResponse().GetResponseStream())
-$pictureBox1.Image = $image1
+@($winimg, $oimg, $clear_office16, $office_uninstall, $clear_winkms, $sfc_scannow, $telegram_fix, $otherproblem) | ForEach-Object { $ProblemsTab.Controls.Add($_) }
 
-$pictureBox2 = New-Object System.Windows.Forms.PictureBox -Property @{
-    Location = [System.Drawing.Point]::new(8, 71)
-    Name = "pictureBox2"
-    Size = [System.Drawing.Size]::new(34, 39)
-    TabIndex = 7
-    TabStop = $false
-}
+$clear_office16.Add_Click({
+    if (test-path "$env:ProgramFiles\Microsoft Office\Office16\ospp.vbs"){ 
+        $path = "$env:ProgramFiles\Microsoft Office\Office16\"
+    }
+    elseIf (test-path "$(env:ProgramFiles(x86))\Microsoft Office\Office16\ospp.vbs") {
+        $path = "$(env:ProgramFiles(x86))\Microsoft Office\Office16\"
+    }
+    else {
+        [System.Windows.Forms.MessageBox]::Show("Папка Office16 не найдена!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Error)
+        exit
+    }
+    Start-Process powershell -ArgumentList @"
+    $host.ui.RawUI.WindowTitle = 'MaltTool: убираю лицензии Office16'
+    cd '$path'
+    while($true){
+        $license = (cscript ospp.vbs /dstatus) | Out-String
+        $match = $license | Select-String -Pattern 'Last 5 characters of installed product key: (\w{5})'
+        if ($match) {
+            $productKey = $match.Matches.Groups[1].Value
+            cscript ospp.vbs /unpkey:$productKey
+        } else {
+            exit
+        }
+    }
+"@ -Verb RunAs -Wait
+    [System.Windows.Forms.MessageBox]::Show("All Office16 licenses have been removed.","MalwActivator",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Information)
+    exit
+})
 
-$request2 = [System.Net.WebRequest]::Create('https://i.imgur.com/sYPcWTh.png')
-$image2 = [System.Drawing.Image]::FromStream($request2.GetResponse().GetResponseStream())
-$pictureBox2.Image = $image2
+$office_uninstall.Add_Click({
+    New-Item -Path "$env:temp\MalwTool" -ItemType Directory > $null
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $wc = New-Object net.webclient
+    $wc.DownloadFile('https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe', "$env:temp\MalwTool\SetupProd_OffScrub.exe")
+    Set-Location $env:SystemRoot\System32
+    ./cmd.exe /c start "" "$env:temp\MalwTool\SetupProd_OffScrub.exe"
+    [System.Windows.Forms.MessageBox]::Show("тут гайд типа будет", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Information)
+})
+
+$clear_winkms.Add_Click({
+    Start-Process powershell
+})
+######
+
 
 $label6 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
@@ -894,13 +1001,7 @@ $Infotab.Controls.Add($label6)
 
 
 # Добавление элементов на вкладку ProblemsTab
-$ProblemsTab.Controls.Add($button28)
-$ProblemsTab.Controls.Add($button19)
-$ProblemsTab.Controls.Add($pictureBox2)
-$ProblemsTab.Controls.Add($pictureBox1)
-$ProblemsTab.Controls.Add($button16)
-$ProblemsTab.Controls.Add($button15)
-$ProblemsTab.Controls.Add($button14)
+
 
 $tooltip.SetToolTip($W10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
 $tooltip.SetToolTip($W8, "Активация Windows 8 или Windows 8.1 через KMS")
@@ -942,11 +1043,11 @@ $tooltip.SetToolTip($driversrestore, 'Перед переустановкой Wi
 $tooltip.SetToolTip($driversbackup, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
 $tooltip.SetToolTip($store, "Только для LTSC-версий Windows без установленного Microsoft Store!")
 $tooltip.SetToolTip($winwifipassman, "Перед запуском убедитесь, что Wi-Fi сейчас включен")
-$tooltip.SetToolTip($button15, "sfc /scannow и DISM /Online /Cleanup-Image /RestoreHealth")
-$tooltip.SetToolTip($button28, "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe")
+$tooltip.SetToolTip($sfc_scannow, "sfc /scannow и DISM /Online /Cleanup-Image /RestoreHealth")
+$tooltip.SetToolTip($telegram_fix, "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe")
 $tooltip.SetToolTip($V, "Через KMS, будет активирован как Visio 2021 (более старые версии обновятся)")
 $tooltip.SetToolTip($P, "Через KMS, будет активирован как Project 2021 (более старые версии обновятся)")
-$tooltip.SetToolTip($button19, "Даже если проблема не связана с MalwTool, всё равно напишите")
+$tooltip.SetToolTip($otherproblem, "Даже если проблема не связана с MalwTool, всё равно напишите")
 
 $form.Controls.Add($tabs)
 $form.ShowDialog()
