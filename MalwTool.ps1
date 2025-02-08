@@ -905,103 +905,130 @@ $office_uninstall.Add_Click({
 })
 
 $clear_winkms.Add_Click({
-    Start-Process powershell
+    Start-Process powershell -ArgumentList "Set-Location $env:SystemRoot\System32; .\slmgr /upk; .\slmgr /cpky; pause" -Verb RunAs
 })
+
+$sfc_scannow.Add_Click({
+    Start-Process powershell -ArgumentList "Set-Location $env:SystemRoot\System32; .\sfc /scannow; .\Dism /Online /Cleanup-Image /RestoreHealth; .\chkdsk ${(Get-WmiObject Win32_OperatingSystem).SystemDrive} /b /x; .\shutdown /r /t pause" -Verb RunAs
+})
+
+$telegram_fix.Add_Click({
+    $dialog = New-Object System.Windows.Forms.OpenFileDialog
+    $dialog.Filter = "Telegram|Telegram.exe"
+    $dialog.Title = "Выберите путь к Telegram.exe"
+    $dialog.InitialDirectory = "$env:AppData\Telegram Desktop"
+
+    if ($dialog.ShowDialog() -eq 'OK') {
+        $regPath = "HKCR:\tg\shell\open\command"
+        New-Item -Path $regPath -Force | Out-Null
+        Set-ItemProperty -Path $regPath -Name "(Default)" -Value "`"$($dialog.FileName.Replace('\', '\\'))`" -- `"%1`""
+        [System.Windows.Forms.MessageBox]::Show("Применено!", "MalwTool", "OK", "Information")
+    }
+})
+
+$otherproblem.Add_Click({
+    $tabs.SelectedTab = $infoTab
+})
+
 ######
 
-
-$label6 = New-Object System.Windows.Forms.Label -Property @{
+$malwtool = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(8, 5)
-    Name = "label6"
+    Name = "malwtool"
     Size = [System.Drawing.Size]::new(102, 15)
     TabIndex = 1
     Text = "MalwTool 2.0"
 }
 
-# Создание кнопок
-$button30 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(123, 23)
-    Name = "button30"
-    Size = [System.Drawing.Size]::new(109, 23)
-    TabIndex = 2
-    Text = "Тема на Lolzteam"
-    UseVisualStyleBackColor = $true
-}
-
-$button31 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(238, 23)
-    Name = "button31"
-    Size = [System.Drawing.Size]::new(56, 23)
-    TabIndex = 3
-    Text = "GitHub"
-    UseVisualStyleBackColor = $true
-}
-
-# Создание метки label7
-$label7 = New-Object System.Windows.Forms.Label -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(8, 91)
-    Name = "label7"
-    Size = [System.Drawing.Size]::new(86, 15)
-    TabIndex = 4
-    Text = "Есть вопросы?"
-}
-
-# Создание остальных кнопок
-$button32 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(8, 109)
-    Name = "button32"
-    Size = [System.Drawing.Size]::new(124, 23)
-    TabIndex = 5
-    Text = "Написать в Telegram"
-    UseVisualStyleBackColor = $true
-}
-
-$button33 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(138, 109)
-    Name = "button33"
-    Size = [System.Drawing.Size]::new(156, 23)
-    TabIndex = 6
-    Text = "Написать в теме Lolzteam"
-    UseVisualStyleBackColor = $true
-}
-
-$button34 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(300, 109)
-    Name = "button34"
-    Size = [System.Drawing.Size]::new(156, 23)
-    TabIndex = 7
-    Text = "Написать в Issues GitHub"
-    UseVisualStyleBackColor = $true
-}
-
-$button29 = New-Object System.Windows.Forms.Button -Property @{
+$malwru = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 23)
-    Name = "button29"
+    Name = "malwru"
     Size = [System.Drawing.Size]::new(109, 23)
     TabIndex = 0
     Text = "Статья на Malw.ru"
     UseVisualStyleBackColor = $true
 }
 
-# Добавление новых радиокнопок на вкладку AT
+$lolzteam = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(123, 23)
+    Name = "lolzteam"
+    Size = [System.Drawing.Size]::new(109, 23)
+    TabIndex = 2
+    Text = "Тема на Lolzteam"
+    UseVisualStyleBackColor = $true
+}
 
+$github = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(238, 23)
+    Name = "github"
+    Size = [System.Drawing.Size]::new(56, 23)
+    TabIndex = 3
+    Text = "GitHub"
+    UseVisualStyleBackColor = $true
+}
 
-# Добавление всех элементов на вкладку Info
-$Infotab.Controls.Add($button34)
-$Infotab.Controls.Add($button33)
-$Infotab.Controls.Add($button32)
-$Infotab.Controls.Add($button29)
-$Infotab.Controls.Add($label7)
-$Infotab.Controls.Add($button31)
-$Infotab.Controls.Add($button30)
-$Infotab.Controls.Add($label6)
+$questions = New-Object System.Windows.Forms.Label -Property @{
+    AutoSize = $true
+    Location = [System.Drawing.Point]::new(8, 91)
+    Name = "questions"
+    Size = [System.Drawing.Size]::new(86, 15)
+    TabIndex = 4
+    Text = "Есть вопросы? Даже если они не связаны с MalwTool, буду рад помочь!"
+}
 
+$telegram = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 109)
+    Name = "telegram"
+    Size = [System.Drawing.Size]::new(124, 23)
+    TabIndex = 5
+    Text = "Написать в Telegram"
+    UseVisualStyleBackColor = $true
+}
 
+$lolzteam2 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(138, 109)
+    Name = "lolzteam2"
+    Size = [System.Drawing.Size]::new(156, 23)
+    TabIndex = 6
+    Text = "Написать в теме Lolzteam"
+    UseVisualStyleBackColor = $true
+}
 
-# Добавление элементов на вкладку ProblemsTab
+$github2 = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(300, 109)
+    Name = "github2"
+    Size = [System.Drawing.Size]::new(156, 23)
+    TabIndex = 7
+    Text = "Написать в Issues GitHub"
+    UseVisualStyleBackColor = $true
+}
 
+@($malwtool, $malwru, $lolzteam, $github, $questions, $telegram, $lolzteam2, $github2) | ForEach-Object { $InfoTab.Controls.Add($_) }
+
+$malwru.Add_Click({
+    Start-Process "https://malw.ru/pages/office"
+})
+
+$lolzteam.Add_Click({
+    Start-Process "https://lolz.live/threads/4997821"
+})
+
+$github.Add_Click({
+    Start-Process "https://github.com/ImMALWARE/MalwTool"
+})
+
+$telegram.Add_Click({
+    Start-Process "https://t.me/immalware_chat"
+})
+
+$lolzteam2.Add_Click({
+    $lolzteam.PerformClick()
+})
+
+$github2.Add_Click({
+    $github2.PerformClick()
+})
 
 $tooltip.SetToolTip($W10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
 $tooltip.SetToolTip($W8, "Активация Windows 8 или Windows 8.1 через KMS")
@@ -1037,7 +1064,6 @@ $toolTip.SetToolTip($D16, "Онлайн-установщик Office с офиц�
 $toolTip.SetToolTip($I16, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 $toolTip.SetToolTip($D13, "Не рекомендуется, устаревшая версия. Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
 $toolTip.SetToolTip($I13, "Не рекомендуется, устаревшая версия. ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-
 $tooltip.SetToolTip($delspyfiles, "Удалить CompatTelRunner.exe и wsqmcons.exe")
 $tooltip.SetToolTip($driversrestore, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
 $tooltip.SetToolTip($driversbackup, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
