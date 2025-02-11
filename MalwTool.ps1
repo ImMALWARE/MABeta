@@ -7,6 +7,12 @@ Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32
 [void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
+# TODO: обойти ограничения chatgpt, spotify итд
+# нормально назвать переменные
+# английский язык
+# глобальное тестирование
+
+
 $form = New-Object System.Windows.Forms.Form -Property @{
     StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen
     FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedSingle
@@ -720,7 +726,25 @@ $delspyfiles = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-@($winwifipassman, $winget, $store, $driversbackup, $driversrestore, $edgeuninstall) | ForEach-Object { $FunctionsTab.Controls.Add($_) }
+$spicetify = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(8, 122)
+    Name = "spicetify"
+    Size = [System.Drawing.Size]::new(208, 23)
+    TabIndex = 8
+    Text = "Установить Spicetify"
+    UseVisualStyleBackColor = $true
+}
+
+$edit_hosts = New-Object System.Windows.Forms.Button -Property @{
+    Location = [System.Drawing.Point]::new(222, 151)
+    Name = "edit_hosts"
+    Size = [System.Drawing.Size]::new(183, 23)
+    TabIndex = 11
+    Text = "Обойти ограничения сервисов"
+    UseVisualStyleBackColor = $true
+}
+
+@($winwifipassman, $winget, $store, $driversbackup, $driversrestore, $edgeuninstall, $spicetify, $edit_hosts) | ForEach-Object { $FunctionsTab.Controls.Add($_) }
 
 $val = Get-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -ErrorAction SilentlyContinue
 if (!$val -or $val.HideFileExt -ne 0) {
@@ -789,6 +813,44 @@ $delspyfiles.Add_Click({
     Remove-Item wsqmcons.exe -Force;
     pause
 '@ -Verb RunAs
+})
+
+$spicetify.Add_Click({
+    Start-Process powershell -ArgumentList "iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex; pause"
+})
+
+$edit_hosts.Add_Click({
+    try {
+        # 1. Получаем текст hosts с pastebin
+        $new_hosts = (Invoke-WebRequest -Uri "https://pastebin.com/raw/5zvfV9Lp" -UseBasicParsing).Content
+
+        # 2. Получаем текст существующего файла hosts
+        $hosts_path = "C:\Windows\System32\drivers\etc\hosts"
+        $current_hosts = Get-Content -Path $hosts_path -Raw
+
+        # Определяем маркеры начала и конца
+        $start_marker = "### t.me/immalware: hosts file"
+        $end_marker = "### t.me/immalware: end hosts file"
+
+        # 5-6. Проверяем наличие маркеров и обновляем содержимое
+        if ($current_hosts -match [regex]::Escape($start_marker) -and $current_hosts -match [regex]::Escape($end_marker)) {
+            # Используем регулярное выражение для замены текста между маркерами
+            $pattern = "$([regex]::Escape($start_marker))(.*?)$([regex]::Escape($end_marker))"
+            $replacement = "$start_marker`r`n$new_hosts`r`n$end_marker"
+            $updated_hosts = $current_hosts -replace $pattern, $replacement
+        }
+        else {
+            # 7. Если маркеров нет, добавляем новый контент в конец файла
+            $updated_hosts = "$current_hosts`r`n$start_marker`r`n$new_hosts`r`n$end_marker"
+        }
+
+        # Сохраняем обновленный файл hosts
+        $updated_hosts | Set-Content -Path $hosts_path -Force
+        [System.Windows.MessageBox]::Show("Файл hosts успешно обновлен", "Успех")
+    }
+    catch {
+        [System.Windows.MessageBox]::Show("Ошибка при обновлении файла hosts: $_", "Ошибка")
+    }
 })
 
 #######
