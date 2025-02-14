@@ -1,17 +1,12 @@
 ﻿# https://github.com/ImMALWARE/MalwTool/
-# Made by MALWARE (https://malw.ru/pages/contacts)
-# The variables are named this way because I tried to save every byte so that the program doesn't take a long time to open (download).
-# Yes, this is a terrible way, but what else can be cut here?
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32.dll")]public static extern IntPtr GetConsoleWindow();[DllImport("user32.dll")]public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);'
 [void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
-# TODO: обойти ограничения chatgpt, spotify итд
 # нормально назвать переменные
 # английский язык
 # глобальное тестирование
-
 
 $form = New-Object System.Windows.Forms.Form -Property @{
     StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen
@@ -25,16 +20,14 @@ $form = New-Object System.Windows.Forms.Form -Property @{
 $tabs = New-Object System.Windows.Forms.TabControl -Property @{
     Dock = [System.Windows.Forms.DockStyle]::Fill
     Location = [System.Drawing.Point]::new(0, 0)
-    Name = "Tabs"
     SelectedIndex = 0
     Size = [System.Drawing.Size]::new(627, 234)
     SizeMode = [System.Windows.Forms.TabSizeMode]::FillToRight
     TabIndex = 0
 }
 
-$ActT = New-Object System.Windows.Forms.TabPage -Property @{
+$ActTab = New-Object System.Windows.Forms.TabPage -Property @{
     Location = [System.Drawing.Point]::new(4, 24)
-    Name = "ActT"
     Padding = [System.Windows.Forms.Padding]::new(3)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 0
@@ -44,7 +37,6 @@ $ActT = New-Object System.Windows.Forms.TabPage -Property @{
 
 $DlTab = New-Object System.Windows.Forms.TabPage -Property @{
     Location = [System.Drawing.Point]::new(4, 24)
-    Name = "DownloadsTab"
     Padding = [System.Windows.Forms.Padding]::new(3)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 4
@@ -52,18 +44,16 @@ $DlTab = New-Object System.Windows.Forms.TabPage -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$functionsTab = New-Object System.Windows.Forms.TabPage -Property @{
+$FunctionsTab = New-Object System.Windows.Forms.TabPage -Property @{
     Location = [System.Drawing.Point]::new(4, 24)
-    Name = "FunctionsTab"
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 2
     Text = "Другие функции"
     UseVisualStyleBackColor = $true
 }
 
-$problemsTab = New-Object System.Windows.Forms.TabPage -Property @{
+$ProblemsTab = New-Object System.Windows.Forms.TabPage -Property @{
     Location = [System.Drawing.Point]::new(4, 24)
-    Name = "ProblemsTab"
     Padding = [System.Windows.Forms.Padding]::new(3)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 1
@@ -71,16 +61,15 @@ $problemsTab = New-Object System.Windows.Forms.TabPage -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$infoTab = New-Object System.Windows.Forms.TabPage -Property @{
+$InfoTab = New-Object System.Windows.Forms.TabPage -Property @{
     Location = [System.Drawing.Point]::new(4, 24)
-    Name = "InfoTab"
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 3
     Text = "Информация"
     UseVisualStyleBackColor = $true
 }
 
-@($ActT, $DlTab, $functionsTab, $problemsTab, $infoTab) | ForEach-Object { $tabs.TabPages.Add($_) }
+@($ActTab, $DlTab, $FunctionsTab, $ProblemsTab, $InfoTab) | ForEach-Object { $tabs.TabPages.Add($_) }
 
 $tooltip = New-Object System.Windows.Forms.ToolTip -Property @{
     AutoPopDelay = 5000
@@ -91,11 +80,11 @@ $tooltip = New-Object System.Windows.Forms.ToolTip -Property @{
 
 # Activation tab
 
-$W10 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActWin10 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Checked = $true
     Location = [System.Drawing.Point]::new(6, 6)
-    Name = "W10"
+    Name = "ActWin10"
     Size = [System.Drawing.Size]::new(143, 19)
     TabIndex = 1
     TabStop = $true
@@ -103,147 +92,147 @@ $W10 = New-Object System.Windows.Forms.RadioButton -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$W8 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActWin8 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 31)
-    Name = "W8"
+    Name = "ActWin8"
     Size = [System.Drawing.Size]::new(130, 19)
     TabIndex = 2
     Text = "Windows 8/8.1 (KMS)"
     UseVisualStyleBackColor = $true
 }
 
-$WS = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActWinServer = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 56)
-    Name = "WS"
+    Name = "ActWinServer"
     Size = [System.Drawing.Size]::new(193, 19)
     TabIndex = 5
     Text = "Windows Server 2022/2019/2016"
     UseVisualStyleBackColor = $true
 }
 
-$V = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActVisio = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 106)
-    Name = "V"
+    Name = "ActVisio"
     Size = [System.Drawing.Size]::new(54, 19)
     TabIndex = 18
     Text = "Visio 2016/2019/2021"
     UseVisualStyleBackColor = $true
 }
 
-$P = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActProject = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 131)
-    Name = "P"
+    Name = "ActProject"
     Size = [System.Drawing.Size]::new(64, 19)
     TabIndex = 19
     Text = "Project 2016/2019/2021"
     UseVisualStyleBackColor = $true
 }
 
-$O65 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActOffice365 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 6)
-    Name = "O65"
+    Name = "ActOffice365"
     Size = [System.Drawing.Size]::new(79, 19)
     TabIndex = 15
     Text = "Office 365"
     UseVisualStyleBackColor = $true
 }
 
-$O24 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActOffice2024 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 31)
-    Name = "O21"
+    Name = "ActOffice2024"
     Size = [System.Drawing.Size]::new(83, 19)
     TabIndex = 4
     Text = "Office 2024"
     UseVisualStyleBackColor = $true
 }
 
-$O21 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActOffice2021 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 56)
-    Name = "O21"
+    Name = "ActOffice2021"
     Size = [System.Drawing.Size]::new(83, 19)
     TabIndex = 4
     Text = "Office 2021"
     UseVisualStyleBackColor = $true
 }
 
-$O19 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActOffice2019 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 81)
-    Name = "O19"
+    Name = "ActOffice2019"
     Size = [System.Drawing.Size]::new(84, 19)
     TabIndex = 17
     Text = "Office 2019"
     UseVisualStyleBackColor = $true
 }
 
-$O16 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActOffice2016 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 106)
-    Name = "O16"
+    Name = "ActOffice2016"
     Size = [System.Drawing.Size]::new(84, 19)
     TabIndex = 16
     Text = "Office 2016"
     UseVisualStyleBackColor = $true
 }
 
-$O13 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActOffice2013 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 131)
-    Name = "O13"
+    Name = "ActOffice2013"
     Size = [System.Drawing.Size]::new(83, 19)
     TabIndex = 6
     Text = "Office 2013"
     UseVisualStyleBackColor = $true
 }
 
-$PL = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActPrismLauncher = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 6)
-    Name = "PL"
+    Name = "ActPrismLauncher"
     Size = [System.Drawing.Size]::new(201, 19)
     TabIndex = 8
     Text = "Prism Launcher"
     UseVisualStyleBackColor = $true
 }
 
-$TL = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActTL = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 31)
-    Name = "TL"
+    Name = "ActTL"
     Size = [System.Drawing.Size]::new(81, 19)
     TabIndex = 9
     Text = "TL"
     UseVisualStyleBackColor = $true
 }
 
-$MX = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActMXT = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 56)
-    Name = "MX"
+    Name = "ActMXT"
     Size = [System.Drawing.Size]::new(88, 19)
     TabIndex = 11
     Text = "MobaXterm"
     UseVisualStyleBackColor = $true
 }
 
-$C = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActCharles = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 81)
-    Name = "C"
+    Name = "ActCharles"
     Size = [System.Drawing.Size]::new(64, 19)
     TabIndex = 12
     Text = "Charles"
     UseVisualStyleBackColor = $true
 }
 
-$VS = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActVS = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 106)
     Name = "VS"
@@ -255,7 +244,6 @@ $VS = New-Object System.Windows.Forms.RadioButton -Property @{
 
 $Act = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(515, 169)
-    Name = "Act"
     Size = [System.Drawing.Size]::new(96, 23)
     TabIndex = 14
     Text = "Активировать!"
@@ -264,11 +252,11 @@ $Act = New-Object System.Windows.Forms.Button -Property @{
 
 $com = @("Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators", " | Invoke-Expression", "$env:ProgramFiles\Microsoft Office\root\vfs\System", "$env:ProgramFiles\Microsoft Office 15\root\vfs\System")
 $Act.Add_Click({
-    $prod = ($ActT.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked })[0].Name
+    $prod = ($ActTab.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked })[0].Name
     Write-Host $prod
-    $activators = @{"W10" = "HWID.ps1"; "W8" = "KMS.ps1"; "WS" = "ServerKMS.ps1"; "V" = "VisioProject.ps1"; "P" = "VisioProject.ps1"; "VS" = "VS.ps1"}
+    $activators = @{"ActWin10" = "HWID.ps1"; "ActWin8" = "KMS.ps1"; "ActWinServer" = "ServerKMS.ps1"; "ActVisio" = "VisioProject.ps1"; "ActProject" = "VisioProject.ps1"; "ActVS" = "VS.ps1"}
     switch ($prod) {
-        "PL" {
+        "ActPrismLauncher" {
             if (Test-Path "$env:APPDATA\PrismLauncher") {
                 '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "MSA"}],"formatVersion": 3}' | Out-File "$env:APPDATA\PrismLauncher\accounts.json" -Encoding ASCII
                 [System.Windows.Forms.MessageBox]::Show("Автономный аккаунт в Prism Launcher разблокирован!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
@@ -276,7 +264,7 @@ $Act.Add_Click({
                 [System.Windows.Forms.MessageBox]::Show("Prism Launcher не найден!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
             }
         }
-        "TL" {
+        "ActTL" {
             if (Test-Path "$env:appdata\.minecraft\TlauncherProfiles.json") {
                 $file = Get-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json" -Raw
                 if ($file -match '"premiumAccount": false') {
@@ -291,14 +279,14 @@ $Act.Add_Click({
                 [System.Windows.Forms.MessageBox]::Show("TL не найден!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
             }
         }
-        "MX" {
+        "ActMXT" {
             if (Test-Path "$(env:ProgramFiles(x86))\Mobatek\MobaXterm\version.dat") {
                 Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/MXT.ps1 | Invoke-Expression" -Verb RunAs
             } else {
                 [System.Windows.Forms.MessageBox]::Show("MobaXterm не найден!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
             }
         }
-        "C" {
+        "ActCharles" {
             Start-Process "https://gist.github.com/yutao8/e8c685ebadc9c4b2c84c76f9bff1f7a8"
         }
         default {
@@ -313,11 +301,11 @@ $Act.Add_Click({
     }
 })
 
-@($W10, $W8, $WS, $V, $P, $O65, $O24, $O21, $O19, $O16, $O13, $PL, $TL, $MX, $C, $VS, $Act) | ForEach-Object { $ActT.Controls.Add($_) }
+@($ActWin10, $ActWin8, $ActWinServer, $ActVisio, $ActProject, $ActOffice365, $ActOffice2024, $ActOffice2021, $ActOffice2019, $ActOffice2016, $ActOffice2013, $ActPrismLauncher, $ActTL, $ActMXT, $ActCharles, $ActVS, $Act) | ForEach-Object { $ActTab.Controls.Add($_) }
 
 # Downloads tab
 
-$Dl10 = New-Object System.Windows.Forms.Button -Property @{
+$DlWin10 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 6)
     Name = "W10"
     Size = [System.Drawing.Size]::new(83, 23)
@@ -333,7 +321,7 @@ $Dl11 = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$Dl10Ltsc = New-Object System.Windows.Forms.Button -Property @{
+$DlWin10Ltsc = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 35)
     Name = "DlWinLtsc"
     Size = [System.Drawing.Size]::new(197, 23)
@@ -527,16 +515,16 @@ $rufus = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-@($Dl10, $Dl11, $Dl10Ltsc, $Dl11Ltsc, $Dl2025, $Dl2022, $Dl2019, $Dl2016, $Dl2012, $Dl81, $D24, $I24, $D21, $I21, $D19, $I19, $D16, $I16, $D13, $I13, $l24, $l21, $l19, $l16, $l13, $rufus) | ForEach-Object { $DlTab.Controls.Add($_) }
+@($DlWin10, $Dl11, $DlWin10Ltsc, $Dl11Ltsc, $Dl2025, $Dl2022, $Dl2019, $Dl2016, $Dl2012, $Dl81, $D24, $I24, $D21, $I21, $D19, $I19, $D16, $I16, $D13, $I13, $l24, $l21, $l19, $l16, $l13, $rufus) | ForEach-Object { $DlTab.Controls.Add($_) }
 
-$Dl10.Add_Click({
+$DlWin10.Add_Click({
     try {
         $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
         Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."10"[0])&sku_id=$($products."10"[1])" -Method Get).ProductDownloadOptions[0].Uri
     } catch {
         $result = [System.Windows.Forms.MessageBox]::Show("Не удалось получить ссылку для загрузки! Попробовать снова?", "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Warning)
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
-            $Dl10.PerformClick()
+            $DlWin10.PerformClick()
         }
     }
 })
@@ -553,7 +541,7 @@ $Dl11.Add_Click({
     }
 })
 
-$Dl10Ltsc.Add_Click({
+$DlWin10Ltsc.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru-ru_windows_10_enterprise_ltsc_2021_x64_dvd_5044a1e7.iso"
 })
 
@@ -736,7 +724,7 @@ $spicetify = New-Object System.Windows.Forms.Button -Property @{
 }
 
 $edit_hosts = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(222, 151)
+    Location = [System.Drawing.Point]::new(222, 122)
     Name = "edit_hosts"
     Size = [System.Drawing.Size]::new(183, 23)
     TabIndex = 11
@@ -820,38 +808,30 @@ $spicetify.Add_Click({
 })
 
 $edit_hosts.Add_Click({
-    try {
-        # 1. Получаем текст hosts с pastebin
-        $new_hosts = (Invoke-WebRequest -Uri "https://pastebin.com/raw/5zvfV9Lp" -UseBasicParsing).Content
+    Start-Process powershell -ArgumentList @'
+    -command
+        $current_hosts = Get-Content -Path 'C:\Windows\System32\drivers\etc\hosts' -Raw
+        $new_hosts = (Invoke-WebRequest -Uri 'https://pastebin.com/raw/5zvfV9Lp' -UseBasicParsing).Content
+        $start_marker = '### t.me/immalware: hosts file'
+        $end_marker = '### t.me/immalware: end hosts file'
 
-        # 2. Получаем текст существующего файла hosts
-        $hosts_path = "C:\Windows\System32\drivers\etc\hosts"
-        $current_hosts = Get-Content -Path $hosts_path -Raw
+        $pattern = '(?s)' + [regex]::Escape($start_marker) + '.*?' + [regex]::Escape($end_marker)
 
-        # Определяем маркеры начала и конца
-        $start_marker = "### t.me/immalware: hosts file"
-        $end_marker = "### t.me/immalware: end hosts file"
-
-        # 5-6. Проверяем наличие маркеров и обновляем содержимое
-        if ($current_hosts -match [regex]::Escape($start_marker) -and $current_hosts -match [regex]::Escape($end_marker)) {
-            # Используем регулярное выражение для замены текста между маркерами
-            $pattern = "$([regex]::Escape($start_marker))(.*?)$([regex]::Escape($end_marker))"
-            $replacement = "$start_marker`r`n$new_hosts`r`n$end_marker"
-            $updated_hosts = $current_hosts -replace $pattern, $replacement
-        }
-        else {
-            # 7. Если маркеров нет, добавляем новый контент в конец файла
-            $updated_hosts = "$current_hosts`r`n$start_marker`r`n$new_hosts`r`n$end_marker"
+        if ($current_hosts -match $pattern) {
+            $updated_hosts = [regex]::Replace($current_hosts, $pattern, $new_hosts)
+        } else {
+            $updated_hosts = $current_hosts + [Environment]::NewLine + $new_hosts
         }
 
-        # Сохраняем обновленный файл hosts
-        $updated_hosts | Set-Content -Path $hosts_path -Force
-        [System.Windows.MessageBox]::Show("Файл hosts успешно обновлен", "Успех")
-    }
-    catch {
-        [System.Windows.MessageBox]::Show("Ошибка при обновлении файла hosts: $_", "Ошибка")
-    }
+        echo $updated_hosts
+        $updated_hosts | Out-File -Encoding utf8 -FilePath 'C:\Windows\System32\drivers\etc\hosts' -Force
+        pause
+'@ -Verb RunAs
 })
+
+
+
+
 
 #######
 
@@ -989,7 +969,7 @@ $telegram_fix.Add_Click({
 })
 
 $otherproblem.Add_Click({
-    $tabs.SelectedTab = $infoTab
+    $tabs.SelectedTab = $InfoTab
 })
 
 ######
@@ -1092,23 +1072,23 @@ $github2.Add_Click({
     $github2.PerformClick()
 })
 
-$tooltip.SetToolTip($W10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
-$tooltip.SetToolTip($W8, "Активация Windows 8 или Windows 8.1 через KMS")
-$tooltip.SetToolTip($O24, "Активация Office 2024 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2021. Office потом автоматически конвертируется в 2024.")
-$tooltip.SetToolTip($O21, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2024. Office потом автоматически конвертируется в 2021.")
+$tooltip.SetToolTip($ActWin10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
+$tooltip.SetToolTip($ActWin8, "Активация Windows 8 или Windows 8.1 через KMS")
+$tooltip.SetToolTip($ActOffice2024, "Активация Office 2024 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2021. Office потом автоматически конвертируется в 2024.")
+$tooltip.SetToolTip($ActOffice2021, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2024. Office потом автоматически конвертируется в 2021.")
 $tooltip.SetToolTip($WS, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
-$tooltip.SetToolTip($O13, "Активация Office 2013 с помощью добавления файла sppc.dll")
-$tooltip.SetToolTip($O65, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
-$tooltip.SetToolTip($PL, "Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
-$tooltip.SetToolTip($TL, 'Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках')
-$tooltip.SetToolTip($MX, "Активировать MobaXterm")
-$tooltip.SetToolTip($C, "Получить ключ активации Charles Proxy")
-$tooltip.SetToolTip($VS, "Активировать Visual Studio 2022 Professional/Enterprise")
-$tooltip.SetToolTip($O16, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021, 2024. Office потом автоматически конвертируется в 2016.")
-$tooltip.SetToolTip($O19, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021, 2024. Office потом автоматически конвертируется в 2019.")
-$toolTip.SetToolTip($Dl10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
+$tooltip.SetToolTip($ActOffice2013, "Активация Office 2013 с помощью добавления файла sppc.dll")
+$tooltip.SetToolTip($ActOffice365, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
+$tooltip.SetToolTip($ActPrismLauncher, "Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
+$tooltip.SetToolTip($ActTL, 'Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках')
+$tooltip.SetToolTip($ActMXT, "Активировать MobaXterm")
+$tooltip.SetToolTip($ActCharles, "Получить ключ активации Charles Proxy")
+$tooltip.SetToolTip($ActVS, "Активировать Visual Studio 2022 Professional/Enterprise")
+$tooltip.SetToolTip($ActOffice2016, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021, 2024. Office потом автоматически конвертируется в 2016.")
+$tooltip.SetToolTip($ActOffice2019, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021, 2024. Office потом автоматически конвертируется в 2019.")
+$toolTip.SetToolTip($DlWin10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
 $toolTip.SetToolTip($Dl11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
-$toolTip.SetToolTip($Dl10Ltsc, "ISO образ Windows 10 LTSC 2021")
+$toolTip.SetToolTip($DlWin10Ltsc, "ISO образ Windows 10 LTSC 2021")
 $toolTip.SetToolTip($Dl11Ltsc, "ISO образ Windows 11 LTSC 2024")
 $toolTip.SetToolTip($Dl2022, "ISO образ Windows Server 2025")
 $toolTip.SetToolTip($Dl2022, "ISO образ Windows Server 2022")
@@ -1133,8 +1113,8 @@ $tooltip.SetToolTip($store, "Только для LTSC-версий Windows бе�
 $tooltip.SetToolTip($winwifipassman, "Перед запуском убедитесь, что Wi-Fi сейчас включен")
 $tooltip.SetToolTip($sfc_scannow, "sfc /scannow и DISM /Online /Cleanup-Image /RestoreHealth")
 $tooltip.SetToolTip($telegram_fix, "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe")
-$tooltip.SetToolTip($V, "Через KMS, будет активирован как Visio 2021 (более старые версии обновятся)")
-$tooltip.SetToolTip($P, "Через KMS, будет активирован как Project 2021 (более старые версии обновятся)")
+$tooltip.SetToolTip($ActVisio, "Через KMS, будет активирован как Visio 2021 (более старые версии обновятся)")
+$tooltip.SetToolTip($ActProject, "Через KMS, будет активирован как Project 2021 (более старые версии обновятся)")
 $tooltip.SetToolTip($otherproblem, "Даже если проблема не связана с MalwTool, всё равно напишите")
 
 $form.Controls.Add($tabs)
