@@ -307,15 +307,13 @@ $Act.Add_Click({
 
 $DlWin10 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 6)
-    Name = "W10"
     Size = [System.Drawing.Size]::new(83, 23)
     Text = "Windows 10"
     UseVisualStyleBackColor = $true
 }
 
-$Dl11 = New-Object System.Windows.Forms.Button -Property @{
+$DlWin11 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 64)
-    Name = "W11"
     Size = [System.Drawing.Size]::new(83, 23)
     Text = "Windows 11"
     UseVisualStyleBackColor = $true
@@ -323,149 +321,129 @@ $Dl11 = New-Object System.Windows.Forms.Button -Property @{
 
 $DlWin10Ltsc = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 35)
-    Name = "DlWinLtsc"
     Size = [System.Drawing.Size]::new(197, 23)
     Text = "Win 10 LTSC 2021 (рекомендуется)"
     UseVisualStyleBackColor = $true
 }
 
-$Dl11Ltsc = New-Object System.Windows.Forms.Button -Property @{
+$DlWin11Ltsc = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 93)
-    Name = "Dl11Ltsc"
     Size = [System.Drawing.Size]::new(136, 23)
     Text = "Windows 11 LTSC 2024"
     UseVisualStyleBackColor = $true
 }
 
-$Dl2025 = New-Object System.Windows.Forms.Button -Property @{
+$DlServer2025 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(215, 6)
-    Name = "Dl2025"
     Size = [System.Drawing.Size]::new(136, 23)
     Text = "Windows Server 2025"
     UseVisualStyleBackColor = $true
 }
 
-$Dl2022 = New-Object System.Windows.Forms.Button -Property @{
+$DlServer2022 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(215, 35)
-    Name = "Dl2022"
     Size = [System.Drawing.Size]::new(136, 23)
     Text = "Windows Server 2022"
     UseVisualStyleBackColor = $true
 }
 
-$Dl2019 = New-Object System.Windows.Forms.Button -Property @{
+$DlServer2019 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(215, 64)
-    Name = "Dl2019"
     Size = [System.Drawing.Size]::new(136, 23)
     Text = "Windows Server 2019"
     UseVisualStyleBackColor = $true
 }
 
-$Dl2016 = New-Object System.Windows.Forms.Button -Property @{
+$DlServer2016 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(215, 93)
-    Name = "Dl2016"
     Size = [System.Drawing.Size]::new(136, 23)
     Text = "Windows Server 2016"
     UseVisualStyleBackColor = $true
 }
 
-$Dl2012 = New-Object System.Windows.Forms.Button -Property @{
+$DlServer2012 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(215, 121)
-    Name = "Dl2012"
     Size = [System.Drawing.Size]::new(136, 23)
     Text = "Windows Server 2012"
     UseVisualStyleBackColor = $true
 }
 
-$Dl81 = New-Object System.Windows.Forms.Button -Property @{
+$DlWin81 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 122)
-    Name = "Dl81"
     Size = [System.Drawing.Size]::new(83, 23)
     Text = "Windows 8.1"
     UseVisualStyleBackColor = $true
 }
 
-$D24 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2024Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 7)
-    Name = "D24"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
 
-$I24 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2024ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 7)
-    Name = "I24"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
 
-$D21 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2021Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 36)
-    Name = "D21"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
 
-$I21 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2021ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 36)
-    Name = "I21"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
 
-$D19 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2019Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 65)
-    Name = "D19"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
 
-$I19 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2019ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 64)
-    Name = "I19"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
 
-$D16 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2016Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 93)
-    Name = "D16"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
 
-$I16 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2016ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 93)
-    Name = "I16"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
 
-$D13 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2013Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 122)
-    Name = "D13"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
 
-$I13 = New-Object System.Windows.Forms.Button -Property @{
+$DlOffice2013ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 121)
-    Name = "I13"
     Size = [System.Drawing.Size]::new(68, 23)
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
-
-
 
 $l24 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
@@ -515,7 +493,7 @@ $rufus = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-@($DlWin10, $Dl11, $DlWin10Ltsc, $Dl11Ltsc, $Dl2025, $Dl2022, $Dl2019, $Dl2016, $Dl2012, $Dl81, $D24, $I24, $D21, $I21, $D19, $I19, $D16, $I16, $D13, $I13, $l24, $l21, $l19, $l16, $l13, $rufus) | ForEach-Object { $DlTab.Controls.Add($_) }
+@($DlWin10, $DlWin11, $DlWin10Ltsc, $DlWin11Ltsc, $DlServer2025, $DlServer2022, $DlServer2019, $DlServer2016, $DlServer2012, $DlWin81, $DlOffice2024Installer, $DlOffice2024ISO, $DlOffice2021Installer, $DlOffice2021ISO, $DlOffice2019Installer, $DlOffice2019ISO, $DlOffice2016Installer, $DlOffice2016ISO, $DlOffice2013Installer, $DlOffice2013ISO, $l24, $l21, $l19, $l16, $l13, $rufus) | ForEach-Object { $DlTab.Controls.Add($_) }
 
 $DlWin10.Add_Click({
     try {
@@ -529,14 +507,14 @@ $DlWin10.Add_Click({
     }
 })
 
-$Dl11.Add_Click({
+$DlWin11.Add_Click({
     try {
         $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
         Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."11"[0])&sku_id=$($products."11"[1])" -Method Get).ProductDownloadOptions[0].Uri
     } catch {
         $result = [System.Windows.Forms.MessageBox]::Show("Не удалось получить ссылку для загрузки! Попробовать снова?", "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Warning)
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
-            $Dl11.PerformClick()
+            $DlWin11.PerformClick()
         }
     }
 })
@@ -545,32 +523,32 @@ $DlWin10Ltsc.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru-ru_windows_10_enterprise_ltsc_2021_x64_dvd_5044a1e7.iso"
 })
 
-$Dl11Ltsc.Add_Click({
+$DlWin11Ltsc.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru-ru_windows_11_enterprise_ltsc_2024_x64_dvd_f9af5773.iso"
 })
 
-$Dl2025.Add_Click({
+$DlServer2025.Add_Click({
     Start-Process "https://oemsoc.download.prss.microsoft.com/dbazure/X23-81967_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_ru-ru.iso_0400d135-3d94-49a2-8627-8f1a8cb316bf?t=27afd6c5-3c63-4984-8139-b9c239276cb4&P1=102817441539&P2=601&P3=2&P4=K6P6PaBziMqVvDg7AgCqTBprjEMuo%2bmjluaix%2b9TaUldONUCc3PtGs30Rvmn3IKMuSZ7kcmGydK%2bmz38quTSTCyGmjPdKm6bLG%2f2m13pTKsdD1zp%2flccTbTkwvIN%2fdhU8qzwet9V56is8W7o7IykKbczeFlJ1yQV7xq6OCpOzudqomW5fUsUO0%2fRx%2b78zkGgyrHlxIQlX9bAC5Fr069%2byhr5OiXWk9R%2fzEj93%2bEfBrZMTFz1M%2fzf6UKw6tYjOjdSJkNKk%2bhjnAyC%2bcqCj2OKrw6yhEJ6vtXbNJomDZzfUBqMM%2f1uoRabPzPv5Adp3XEJ5DIzdBU%2foyhPbj0qcCzfPg%3d%3d"
     [System.Windows.Forms.MessageBox]::Show("Скачанному файлу нужно будет дописать формат .iso!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
-$Dl2022.Add_Click({
+$DlServer2022.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru-ru_windows_server_2022_updated_nov_2024_x64_dvd_4e34897c.iso"
 })
 
-$Dl2019.Add_Click({
+$DlServer2019.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru-ru_windows_server_2019_x64_dvd_e02b76ba.iso"
 })
 
-$Dl2016.Add_Click({
+$DlServer2016.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru_windows_server_2016_vl_x64_dvd_11636694.iso"
 })
 
-$Dl2012.Add_Click({
+$DlServer2012.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru_windows_server_2012_r2_vl_with_update_x64_dvd_6052827.iso"
 })
 
-$D24.Add_Click({
+$DlOffice2024Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2024Retail&platform=x64&language=ru-ru&version=O16GA"
     $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
@@ -579,11 +557,11 @@ $D24.Add_Click({
     [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
-$I24.Add_Click({
+$DlOffice2024ISO.Add_Click({
     Start-Process "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2024Retail.img"
 })
 
-$D21.Add_Click({
+$DlOffice2021Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=ru-ru&version=O16GA"
     $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
@@ -592,11 +570,11 @@ $D21.Add_Click({
     [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
-$I21.Add_Click({
+$DlOffice2021ISO.Add_Click({
     Start-Process "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2021Retail.img"
 })
 
-$D19.Add_Click({
+$DlOffice2019Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2019Retail&platform=x64&language=ru-ru&version=O16GA"
     $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
@@ -605,11 +583,11 @@ $D19.Add_Click({
     [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
-$I19.Add_Click({
+$DlOffice2019ISO.Add_Click({
     Start-Process "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2019Retail.img"
 })
 
-$D16.Add_Click({
+$DlOffice2016Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProfessionalRetail&platform=x64&language=ru-ru&version=O16GA"
     $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
@@ -618,16 +596,15 @@ $D16.Add_Click({
     [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
-$I16.Add_Click({
+$DlOffice2016ISO.Add_Click({
     Start-Process "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProfessionalRetail.img"
 })
 
-$D13.Add_Click({
+$DlOffice2013Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlusRetail&platform=x64&language=ru-ru&version=O15GA"
-    # не надо обходить блокировку
 })
 
-$I13.Add_Click({
+$DlOffice2013ISO.Add_Click({
     Start-Process "https://officecdn.microsoft.com.edgesuite.net/db/39168D7E-077B-48E7-872C-B232C3E72675/media/ru-ru/ProfessionalRetail.img"
 })
 
@@ -828,10 +805,6 @@ $edit_hosts.Add_Click({
         pause
 '@ -Verb RunAs
 })
-
-
-
-
 
 #######
 
@@ -1087,25 +1060,25 @@ $tooltip.SetToolTip($ActVS, "Активировать Visual Studio 2022 Profess
 $tooltip.SetToolTip($ActOffice2016, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021, 2024. Office потом автоматически конвертируется в 2016.")
 $tooltip.SetToolTip($ActOffice2019, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021, 2024. Office потом автоматически конвертируется в 2019.")
 $toolTip.SetToolTip($DlWin10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
-$toolTip.SetToolTip($Dl11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
+$toolTip.SetToolTip($DlWin11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
 $toolTip.SetToolTip($DlWin10Ltsc, "ISO образ Windows 10 LTSC 2021")
-$toolTip.SetToolTip($Dl11Ltsc, "ISO образ Windows 11 LTSC 2024")
-$toolTip.SetToolTip($Dl2022, "ISO образ Windows Server 2025")
-$toolTip.SetToolTip($Dl2022, "ISO образ Windows Server 2022")
-$toolTip.SetToolTip($Dl2019, "ISO образ Windows Server 2019")
-$toolTip.SetToolTip($Dl2016, "ISO образ Windows Server 2016")
-$toolTip.SetToolTip($Dl2012, "ISO образ Windows Server 2012")
-$toolTip.SetToolTip($Dl81, "ISO образ Windows 8.1 с официального сайта Microsoft")
-$toolTip.SetToolTip($D24, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($I24, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$toolTip.SetToolTip($D21, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($I21, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$toolTip.SetToolTip($D19, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($I19, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$toolTip.SetToolTip($D16, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($I16, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$toolTip.SetToolTip($D13, "Не рекомендуется, устаревшая версия. Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($I13, "Не рекомендуется, устаревшая версия. ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlWin11Ltsc, "ISO образ Windows 11 LTSC 2024")
+$toolTip.SetToolTip($DlServer2025, "ISO образ Windows Server 2025")
+$toolTip.SetToolTip($DlServer2022, "ISO образ Windows Server 2022")
+$toolTip.SetToolTip($DlServer2019, "ISO образ Windows Server 2019")
+$toolTip.SetToolTip($DlServer2016, "ISO образ Windows Server 2016")
+$toolTip.SetToolTip($DlServer2012, "ISO образ Windows Server 2012")
+$toolTip.SetToolTip($DlWin81, "ISO образ Windows 8.1 с официального сайта Microsoft")
+$toolTip.SetToolTip($DlOffice2024Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2024ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2021Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2021ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2019Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2019ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2016Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2016ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2013Installer, "Не рекомендуется, устаревшая версия. Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2013ISO, "Не рекомендуется, устаревшая версия. ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 $tooltip.SetToolTip($delspyfiles, "Удалить CompatTelRunner.exe и wsqmcons.exe")
 $tooltip.SetToolTip($driversrestore, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
 $tooltip.SetToolTip($driversbackup, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
