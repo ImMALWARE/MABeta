@@ -3,22 +3,23 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32.dll")]public static extern IntPtr GetConsoleWindow();[DllImport("user32.dll")]public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);'
 [void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
+$app = "MalwTool"
+$n = [Environment]::NewLine
 
 if ($PSUICulture -eq "ru-RU") {
-    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация")
-}
-
-else {
-    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info")
+    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!")
+} else {
+    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!")
 }
 # английский язык
+# проглядеть всё
 # глобальное тестирование
 
 $form = New-Object System.Windows.Forms.Form -Property @{
     StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen
     FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedSingle
     MaximizeBox = $false
-    Text = "MalwTool"
+    Text = $app
     ClientSize = [System.Drawing.Size]::new(627, 234)
     Font = [System.Drawing.Font]::new("Segoe UI", 8.5)
 }
@@ -97,7 +98,7 @@ $ActWin10 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Windows 10/11 (HWID)"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActWin10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
+$tooltip.SetToolTip($ActWin10, $strings[5])
 
 $ActWin8 = New-Object System.Windows.Forms.RadioButton -Property @{ 
     AutoSize = $true
@@ -108,7 +109,7 @@ $ActWin8 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Windows 8/8.1 (KMS)"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActWin8, "Активация Windows 8 или Windows 8.1 через KMS")
+$tooltip.SetToolTip($ActWin8, $strings[6])
 
 $ActWinServer = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -119,7 +120,7 @@ $ActWinServer = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Windows Server 2022/2019/2016"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActWinServer, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
+$tooltip.SetToolTip($ActWinServer, $strings[7])
 
 $ActVisio = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -127,10 +128,10 @@ $ActVisio = New-Object System.Windows.Forms.RadioButton -Property @{
     Name = "ActVisio"
     Size = [System.Drawing.Size]::new(54, 19)
     TabIndex = 18
-    Text = "Visio 2016/2019/2021"
+    Text = "Visio 2016/2019/2021/2024"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActVisio, "Через KMS, будет активирован как Visio 2021 (более старые версии обновятся)")
+$tooltip.SetToolTip($ActVisio, $strings[8].Replace("%p%", "Visio"))
 
 $ActProject = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -141,7 +142,7 @@ $ActProject = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Project 2016/2019/2021"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActProject, "Через KMS, будет активирован как Project 2021 (более старые версии обновятся)")
+$tooltip.SetToolTip($ActProject, $strings[8].Replace("%p%", "Project"))
 
 $ActOffice365 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -152,7 +153,7 @@ $ActOffice365 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 365"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActOffice365, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
+$tooltip.SetToolTip($ActOffice365, $strings[9].Replace("%v%", "365").Replace("%info%", $strings[10]).Replace("%otherv%", "2016, 2019, 2021, 2024"))
 
 $ActOffice2024 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -163,7 +164,7 @@ $ActOffice2024 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2024"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActOffice2024, "Активация Office 2024 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2021. Office потом автоматически конвертируется в 2024.")
+$tooltip.SetToolTip($ActOffice2024, $strings[9].Replace("%v%", "2024").Replace("%info%", $strings[11]).Replace("%otherv%", "2016, 2019, 2021"))
 
 $ActOffice2021 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -174,7 +175,7 @@ $ActOffice2021 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2021"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActOffice2021, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2024. Office потом автоматически конвертируется в 2021.")
+$tooltip.SetToolTip($ActOffice2021, $strings[9].Replace("%v%", "2021").Replace("%info%", "").Replace("%otherv%", "2016, 2019, 2024"))
 
 $ActOffice2019 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -185,7 +186,7 @@ $ActOffice2019 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2019"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActOffice2019, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021, 2024. Office потом автоматически конвертируется в 2019.")
+$tooltip.SetToolTip($ActOffice2019, $strings[9].Replace("%v%", "2019").Replace("%info%", "").Replace("%otherv%", "2016, 2021, 2024"))
 
 $ActOffice2016 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -196,7 +197,7 @@ $ActOffice2016 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2016"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActOffice2016, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021, 2024. Office потом автоматически конвертируется в 2016.")
+$tooltip.SetToolTip($ActOffice2016, $strings[9].Replace("%v%", "2016").Replace("%info%", "").Replace("%otherv%", "2019, 2021, 2024"))
 
 $ActOffice2013 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -207,7 +208,7 @@ $ActOffice2013 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2013"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActOffice2013, "Активация Office 2013 с помощью добавления файла sppc.dll")
+$tooltip.SetToolTip($ActOffice2013, $strings[13])
 
 $ActPrismLauncher = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -218,7 +219,7 @@ $ActPrismLauncher = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Prism Launcher"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActPrismLauncher, "Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
+$tooltip.SetToolTip($ActPrismLauncher, $strings[14])
 
 $ActTL = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -229,7 +230,7 @@ $ActTL = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "TL"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActTL, 'Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках')
+$tooltip.SetToolTip($ActTL, $strings[15])
 
 $ActMXT = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -240,18 +241,6 @@ $ActMXT = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "MobaXterm"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActMXT, "Активировать MobaXterm")
-
-$ActCharles = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 81)
-    Name = "ActCharles"
-    Size = [System.Drawing.Size]::new(64, 19)
-    TabIndex = 12
-    Text = "Charles"
-    UseVisualStyleBackColor = $true
-}
-$tooltip.SetToolTip($ActCharles, "Получить ключ активации Charles Proxy")
 
 $ActVS = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -262,7 +251,6 @@ $ActVS = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Visual Studio 2022 Professional/Enterprise"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($ActVS, "Активировать Visual Studio 2022 Professional/Enterprise")
 
 $Act = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(515, 169)
@@ -275,15 +263,14 @@ $Act = New-Object System.Windows.Forms.Button -Property @{
 $com = @("Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators", " | Invoke-Expression", "$env:ProgramFiles\Microsoft Office\root\vfs\System", "$env:ProgramFiles\Microsoft Office 15\root\vfs\System")
 $Act.Add_Click({
     $prod = ($ActTab.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked })[0].Name
-    Write-Host $prod
     $activators = @{"ActWin10" = "HWID.ps1"; "ActWin8" = "KMS.ps1"; "ActWinServer" = "ServerKMS.ps1"; "ActVisio" = "VisioProject.ps1"; "ActProject" = "VisioProject.ps1"; "ActVS" = "VS.ps1"}
     switch ($prod) {
         "ActPrismLauncher" {
-            if (Test-Path "$env:APPDATA\PrismLauncher") {
-                '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "MSA"}],"formatVersion": 3}' | Out-File "$env:APPDATA\PrismLauncher\accounts.json" -Encoding ASCII
-                [System.Windows.Forms.MessageBox]::Show("Автономный аккаунт в Prism Launcher разблокирован!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+            if (Test-Path "$env:appdata\PrismLauncher") {
+                '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "MSA"}],"formatVersion": 3}' | Out-File "$env:appdata\PrismLauncher\accounts.json" -Encoding ASCII
+                [System.Windows.Forms.MessageBox]::Show($strings[16], $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
             } else {
-                [System.Windows.Forms.MessageBox]::Show("Prism Launcher не найден!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                [System.Windows.Forms.MessageBox]::Show($strings[17].Replace("%p%", "Prism Launcher"), $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
             }
         }
         "ActTL" {
@@ -291,30 +278,27 @@ $Act.Add_Click({
                 $file = Get-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json" -Raw
                 if ($file -match '"premiumAccount": false') {
                     $file -replace '"premiumAccount": false', '"premiumAccount": true' | Set-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json"
-                    [System.Windows.Forms.MessageBox]::Show("Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                    [System.Windows.Forms.MessageBox]::Show($strings[18], $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
                 }
                 else {
-                    [System.Windows.Forms.MessageBox]::Show("Ни один аккаунт не доблавен в TL", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error) 
+                    [System.Windows.Forms.MessageBox]::Show($strings[19], $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error) 
                 }
             }
             else {
-                [System.Windows.Forms.MessageBox]::Show("TL не найден!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                [System.Windows.Forms.MessageBox]::Show($strings[17].Replace("%p%", "TL"), $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
             }
         }
         "ActMXT" {
             if (Test-Path "$(env:ProgramFiles(x86))\Mobatek\MobaXterm\version.dat") {
                 Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/MXT.ps1 | Invoke-Expression" -Verb RunAs
             } else {
-                [System.Windows.Forms.MessageBox]::Show("MobaXterm не найден!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                [System.Windows.Forms.MessageBox]::Show($strings[17].Replace("%p%", "MobaXterm"), $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
             }
-        }
-        "ActCharles" {
-            Start-Process "https://gist.github.com/yutao8/e8c685ebadc9c4b2c84c76f9bff1f7a8"
         }
         default {
             if ($prod.StartsWith("O")) {
                 if (-not (test-path $com[2 + ($prod -eq "O13")])) {
-                    [System.Windows.Forms.MessageBox]::Show("Office не найден!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                    [System.Windows.Forms.MessageBox]::Show($strings[17].Replace("%p%", "Office"), $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
                     break
                 }
             }
@@ -323,7 +307,7 @@ $Act.Add_Click({
     }
 })
 
-@($ActWin10, $ActWin8, $ActWinServer, $ActVisio, $ActProject, $ActOffice365, $ActOffice2024, $ActOffice2021, $ActOffice2019, $ActOffice2016, $ActOffice2013, $ActPrismLauncher, $ActTL, $ActMXT, $ActCharles, $ActVS, $Act) | ForEach-Object { $ActTab.Controls.Add($_) }
+@($ActWin10, $ActWin8, $ActWinServer, $ActVisio, $ActProject, $ActOffice365, $ActOffice2024, $ActOffice2021, $ActOffice2019, $ActOffice2016, $ActOffice2013, $ActPrismLauncher, $ActTL, $ActMXT, $ActVS, $Act) | ForEach-Object { $ActTab.Controls.Add($_) }
 
 # Downloads tab
 
@@ -333,7 +317,7 @@ $DlWin10 = New-Object System.Windows.Forms.Button -Property @{
     Text = "Windows 10"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlWin10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
+$toolTip.SetToolTip($DlWin10, $strings[19].Replace("%v%", "10"))
 
 $DlWin11 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 64)
@@ -341,7 +325,7 @@ $DlWin11 = New-Object System.Windows.Forms.Button -Property @{
     Text = "Windows 11"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlWin11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
+$toolTip.SetToolTip($DlWin11, $strings[19].Replace("%v%", "11"))
 
 $DlWin10Ltsc = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 35)
@@ -405,7 +389,7 @@ $DlOffice2024Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2024Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2024Installer, $strings[20] + $strings[22])
 
 $DlOffice2024ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 7)
@@ -413,7 +397,7 @@ $DlOffice2024ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2024ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2024ISO, $strings[21])
 
 $DlOffice2021Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 36)
@@ -421,7 +405,7 @@ $DlOffice2021Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2021Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2021Installer, $strings[20] + $strings[22])
 
 $DlOffice2021ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 36)
@@ -429,7 +413,7 @@ $DlOffice2021ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2021ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2021ISO, $strings[21])
 
 $DlOffice2019Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 65)
@@ -437,7 +421,7 @@ $DlOffice2019Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2019Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2019Installer, $strings[20] + $strings[22])
 
 $DlOffice2019ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 64)
@@ -445,7 +429,7 @@ $DlOffice2019ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2019ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2019ISO, $strings[21])
 
 $DlOffice2016Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 93)
@@ -453,7 +437,7 @@ $DlOffice2016Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2016Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2016Installer, $strings[20] + $strings[22])
 
 $DlOffice2016ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 93)
@@ -461,7 +445,7 @@ $DlOffice2016ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2016ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2016ISO, $strings[21])
 
 $DlOffice2013Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 122)
@@ -469,7 +453,7 @@ $DlOffice2013Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2013Installer, "Не рекомендуется, устаревшая версия. Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
+$toolTip.SetToolTip($DlOffice2013Installer, $strings[23] + $strings[20])
 
 $DlOffice2013ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 121)
@@ -477,12 +461,11 @@ $DlOffice2013ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
-$toolTip.SetToolTip($DlOffice2013ISO, "Не рекомендуется, устаревшая версия. ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
+$toolTip.SetToolTip($DlOffice2013ISO, $strings[23] + $strings[21])
 
 $l24 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(362, 11)
-    Name = "l24"
     Size = [System.Drawing.Size]::new(70, 15)
     Text = "Office 2024:"
 }
@@ -490,7 +473,6 @@ $l24 = New-Object System.Windows.Forms.Label -Property @{
 $l21 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(362, 39)
-    Name = "l21"
     Size = [System.Drawing.Size]::new(70, 15)
     Text = "Office 2021:"
 }
@@ -498,7 +480,6 @@ $l21 = New-Object System.Windows.Forms.Label -Property @{
 $l19 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(362, 68)
-    Name = "l19"
     Size = [System.Drawing.Size]::new(70, 15)
     Text = "Office 2019:"
 }
@@ -506,7 +487,6 @@ $l19 = New-Object System.Windows.Forms.Label -Property @{
 $l16 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(362, 97)
-    Name = "l16"
     Size = [System.Drawing.Size]::new(70, 15)
     Text = "Office 2016:"
 }
@@ -514,16 +494,14 @@ $l16 = New-Object System.Windows.Forms.Label -Property @{
 $l13 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(362, 126)
-    Name = "l13"
     Size = [System.Drawing.Size]::new(70, 15)
     Text = "Office 2013:"
 }
 
 $rufus = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 151)
-    Name = "rufus"
     Size = [System.Drawing.Size]::new(312, 23)
-    Text = "Rufus — инструмент для записи ISO образов на флешку"
+    Text = "Rufus — " + $strings[24]
     UseVisualStyleBackColor = $true
 }
 
@@ -534,7 +512,7 @@ $DlWin10.Add_Click({
         $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
         Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."10"[0])&sku_id=$($products."10"[1])" -Method Get).ProductDownloadOptions[0].Uri
     } catch {
-        $result = [System.Windows.Forms.MessageBox]::Show("Не удалось получить ссылку для загрузки! Попробовать снова?", "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Warning)
+        $result = [System.Windows.Forms.MessageBox]::Show($strings[25], $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Warning)
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
             $DlWin10.PerformClick()
         }
@@ -546,7 +524,7 @@ $DlWin11.Add_Click({
         $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
         Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."11"[0])&sku_id=$($products."11"[1])" -Method Get).ProductDownloadOptions[0].Uri
     } catch {
-        $result = [System.Windows.Forms.MessageBox]::Show("Не удалось получить ссылку для загрузки! Попробовать снова?", "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Warning)
+        $result = [System.Windows.Forms.MessageBox]::Show($strings[25], $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Warning)
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
             $DlWin11.PerformClick()
         }
@@ -563,7 +541,7 @@ $DlWin11Ltsc.Add_Click({
 
 $DlServer2025.Add_Click({
     Start-Process "https://oemsoc.download.prss.microsoft.com/dbazure/X23-81967_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_ru-ru.iso_0400d135-3d94-49a2-8627-8f1a8cb316bf?t=27afd6c5-3c63-4984-8139-b9c239276cb4&P1=102817441539&P2=601&P3=2&P4=K6P6PaBziMqVvDg7AgCqTBprjEMuo%2bmjluaix%2b9TaUldONUCc3PtGs30Rvmn3IKMuSZ7kcmGydK%2bmz38quTSTCyGmjPdKm6bLG%2f2m13pTKsdD1zp%2flccTbTkwvIN%2fdhU8qzwet9V56is8W7o7IykKbczeFlJ1yQV7xq6OCpOzudqomW5fUsUO0%2fRx%2b78zkGgyrHlxIQlX9bAC5Fr069%2byhr5OiXWk9R%2fzEj93%2bEfBrZMTFz1M%2fzf6UKw6tYjOjdSJkNKk%2bhjnAyC%2bcqCj2OKrw6yhEJ6vtXbNJomDZzfUBqMM%2f1uoRabPzPv5Adp3XEJ5DIzdBU%2foyhPbj0qcCzfPg%3d%3d"
-    [System.Windows.Forms.MessageBox]::Show("Скачанному файлу нужно будет дописать формат .iso!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    [System.Windows.Forms.MessageBox]::Show($strings[26], $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
 $DlServer2022.Add_Click({
@@ -582,13 +560,15 @@ $DlServer2012.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru_windows_server_2012_r2_vl_with_update_x64_dvd_6052827.iso"
 })
 
+# TODO
+
 $DlOffice2024Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2024Retail&platform=x64&language=ru-ru&version=O16GA"
-    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
+    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
         Start-Process # TODO: обход!!!
     }
-    [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
 $DlOffice2024ISO.Add_Click({
@@ -597,11 +577,11 @@ $DlOffice2024ISO.Add_Click({
 
 $DlOffice2021Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=ru-ru&version=O16GA"
-    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
+    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
         Start-Process 
     }
-    [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
 $DlOffice2021ISO.Add_Click({
@@ -610,7 +590,7 @@ $DlOffice2021ISO.Add_Click({
 
 $DlOffice2019Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2019Retail&platform=x64&language=ru-ru&version=O16GA"
-    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
+    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
         Start-Process 
     }
@@ -643,19 +623,18 @@ $DlOffice2013ISO.Add_Click({
 })
 
 $rufus.Add_Click({
-    New-Item -Path "$env:temp\MalwTool" -ItemType Directory > $null
+    New-Item -Path "$env:temp\$app" -ItemType Directory > $null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $wc = New-Object net.webclient
-    $wc.DownloadFile('https://github.com/pbatard/rufus/releases/download/v4.6/rufus-4.6.exe', "$env:temp\MalwTool\rufus.exe")
+    $wc.DownloadFile('https://github.com/pbatard/rufus/releases/download/v4.6/rufus-4.6.exe', "$env:temp\$app\rufus.exe")
     Set-Location $env:SystemRoot\System32
-    ./cmd.exe /c start "" "$env:temp\MalwTool\rufus.exe"
+    ./cmd.exe /c start "" "$env:temp\$app\rufus.exe"
 })
 
 #########
 
 $winwifipassman = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(6, 6)
-    Name = "winwifipassman"
     Size = [System.Drawing.Size]::new(251, 23)
     TabIndex = 0
     Text = "Узнать пароли от сохранённых Wi-Fi сетей"
@@ -665,7 +644,6 @@ $tooltip.SetToolTip($winwifipassman, "Перед запуском убедите
 
 $explorerext = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(263, 6)
-    Name = "explorerext"
     Size = [System.Drawing.Size]::new(274, 23)
     TabIndex = 3
     Text = "Отображать расширения файлов в проводнике"
@@ -674,7 +652,6 @@ $explorerext = New-Object System.Windows.Forms.Button -Property @{
 
 $winget = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 35)
-    Name = "winget"
     Size = [System.Drawing.Size]::new(113, 23)
     TabIndex = 1
     Text = "Установить winget"
@@ -683,7 +660,6 @@ $winget = New-Object System.Windows.Forms.Button -Property @{
 
 $store = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(127, 35)
-    Name = "store"
     Size = [System.Drawing.Size]::new(160, 23)
     TabIndex = 2
     Text = "Установить Microsoft Store"
@@ -693,7 +669,6 @@ $tooltip.SetToolTip($store, "Только для LTSC-версий Windows бе�
 
 $driversbackup = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 64)
-    Name = "driversbackup"
     Size = [System.Drawing.Size]::new(208, 23)
     TabIndex = 4
     Text = "Резервное копирование драйверов"
@@ -703,7 +678,6 @@ $tooltip.SetToolTip($driversbackup, 'Перед переустановкой Win
 
 $driversrestore = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(222, 64)
-    Name = "driversrestore"
     Size = [System.Drawing.Size]::new(165, 23)
     TabIndex = 5
     Text = "Восстановление драйверов"
@@ -713,7 +687,6 @@ $tooltip.SetToolTip($driversrestore, 'Перед переустановкой Wi
 
 $edgeuninstall = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 93)
-    Name = "edgeuninstall"
     Size = [System.Drawing.Size]::new(208, 23)
     TabIndex = 6
     Text = "Полностью удалить Microsoft Edge"
@@ -722,7 +695,6 @@ $edgeuninstall = New-Object System.Windows.Forms.Button -Property @{
 
 $delspyfiles = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(222, 93)
-    Name = "delspyfiles"
     Size = [System.Drawing.Size]::new(183, 23)
     TabIndex = 7
     Text = "Удалить шпионские exe-файлы"
@@ -732,7 +704,6 @@ $tooltip.SetToolTip($delspyfiles, "Удалить CompatTelRunner.exe и wsqmcon
 
 $spicetify = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 122)
-    Name = "spicetify"
     Size = [System.Drawing.Size]::new(208, 23)
     TabIndex = 8
     Text = "Установить Spicetify"
@@ -741,7 +712,6 @@ $spicetify = New-Object System.Windows.Forms.Button -Property @{
 
 $edit_hosts = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(222, 122)
-    Name = "edit_hosts"
     Size = [System.Drawing.Size]::new(183, 23)
     TabIndex = 11
     Text = "Обойти ограничения сервисов"
@@ -796,12 +766,12 @@ $driversrestore.Add_Click({
 })
 
 $edgeuninstall.Add_Click({
-    New-Item -Path "$env:temp\MalwTool" -ItemType Directory > $null
+    New-Item -Path "$env:temp\$app" -ItemType Directory > $null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $wc = New-Object net.webclient
-    $wc.DownloadFile('https://raw.githubusercontent.com/AveYo/fox/eab2269a598ad9e8120cf1d598d48384071ff476/Edge_Removal.bat', "$env:temp\MalwTool\Edge_Removal.bat")
+    $wc.DownloadFile('https://raw.githubusercontent.com/AveYo/fox/eab2269a598ad9e8120cf1d598d48384071ff476/Edge_Removal.bat', "$env:temp\$app\Edge_Removal.bat")
     Set-Location $env:SystemRoot\System32
-    ./cmd.exe /c start "$env:temp\MalwTool\Edge_Removal.bat"
+    ./cmd.exe /c start "$env:temp\$app\Edge_Removal.bat"
 })
 
 $delspyfiles.Add_Click({
@@ -865,7 +835,6 @@ $images.Keys | ForEach-Object {
 
 $clear_office16 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(48, 8)
-    Name = "clear_office16"
     Size = [System.Drawing.Size]::new(170, 23)
     TabIndex = 3
     Text = "Очистить лицензии Office16"
@@ -874,7 +843,6 @@ $clear_office16 = New-Object System.Windows.Forms.Button -Property @{
 
 $office_uninstall = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(221, 8)
-    Name = "office_uninstall"
     Size = [System.Drawing.Size]::new(176, 23)
     TabIndex = 1
     Text = "Инструмент удаления Office"
@@ -883,7 +851,6 @@ $office_uninstall = New-Object System.Windows.Forms.Button -Property @{
 
 $clear_winkms = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(48, 71)
-    Name = "clear_winkms"
     Size = [System.Drawing.Size]::new(192, 23)
     TabIndex = 3
     Text = "Сброс KMS-активации Windows"
@@ -892,7 +859,6 @@ $clear_winkms = New-Object System.Windows.Forms.Button -Property @{
 
 $sfc_scannow = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(247, 71)
-    Name = "sfc_scannow"
     Size = [System.Drawing.Size]::new(260, 23)
     TabIndex = 2
     Text = "Проверить системные файлы на целостность"
@@ -902,7 +868,6 @@ $tooltip.SetToolTip($sfc_scannow, "sfc /scannow и DISM /Online /Cleanup-Image /
 
 $telegram_fix = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 136)
-    Name = "telegram_fix"
     Size = [System.Drawing.Size]::new(268, 23)
     TabIndex = 9
     Text = "Исправить открытие ссылок Telegram Desktop"
@@ -912,13 +877,12 @@ $tooltip.SetToolTip($telegram_fix, "Если у вас не открываютс
 
 $otherproblem = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 165)
-    Name = "otherproblem"
     Size = [System.Drawing.Size]::new(154, 23)
     TabIndex = 8
     Text = "У меня другая проблема!"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($otherproblem, "Даже если проблема не связана с MalwTool, всё равно напишите")
+$tooltip.SetToolTip($otherproblem, "Даже если проблема не связана с $app, всё равно напишите")
 
 @($winimg, $oimg, $clear_office16, $office_uninstall, $clear_winkms, $sfc_scannow, $telegram_fix, $otherproblem) | ForEach-Object { $ProblemsTab.Controls.Add($_) }
 
@@ -930,7 +894,7 @@ $clear_office16.Add_Click({
         $path = "$(env:ProgramFiles(x86))\Microsoft Office\Office16\"
     }
     else {
-        [System.Windows.Forms.MessageBox]::Show("Папка Office16 не найдена!", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Error)
+        [System.Windows.Forms.MessageBox]::Show("Папка Office16 не найдена!", $app, [System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Error)
         exit
     }
     Start-Process powershell -ArgumentList @"
@@ -947,18 +911,18 @@ $clear_office16.Add_Click({
         }
     }
 "@ -Verb RunAs -Wait
-    [System.Windows.Forms.MessageBox]::Show("All Office16 licenses have been removed.","MalwActivator",[System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Information)
+    [System.Windows.Forms.MessageBox]::Show("All Office16 licenses have been removed.", $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
     exit
 })
 
 $office_uninstall.Add_Click({
-    New-Item -Path "$env:temp\MalwTool" -ItemType Directory > $null
+    New-Item -Path "$env:temp\$app" -ItemType Directory > $null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $wc = New-Object net.webclient
-    $wc.DownloadFile('https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe', "$env:temp\MalwTool\SetupProd_OffScrub.exe")
+    $wc.DownloadFile('https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe', "$env:temp\$app\SetupProd_OffScrub.exe")
     Set-Location $env:SystemRoot\System32
-    ./cmd.exe /c start "" "$env:temp\MalwTool\SetupProd_OffScrub.exe"
-    [System.Windows.Forms.MessageBox]::Show("тут гайд типа будет", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Information)
+    ./cmd.exe /c start "" "$env:temp\$app\SetupProd_OffScrub.exe"
+    [System.Windows.Forms.MessageBox]::Show("тут гайд типа будет", $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
 })
 
 $clear_winkms.Add_Click({
@@ -979,7 +943,7 @@ $telegram_fix.Add_Click({
         $regPath = "HKCR:\tg\shell\open\command"
         New-Item -Path $regPath -Force | Out-Null
         Set-ItemProperty -Path $regPath -Name "(Default)" -Value "`"$($dialog.FileName.Replace('\', '\\'))`" -- `"%1`""
-        [System.Windows.Forms.MessageBox]::Show("Применено!", "MalwTool", "OK", "Information")
+        [System.Windows.Forms.MessageBox]::Show("Применено!", $app, "OK", "Information")
     }
 })
 
@@ -992,15 +956,13 @@ $otherproblem.Add_Click({
 $malwtool = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(8, 5)
-    Name = "malwtool"
     Size = [System.Drawing.Size]::new(102, 15)
     TabIndex = 1
-    Text = "MalwTool 2.0"
+    Text = "$app 2.0"
 }
 
 $malwru = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 23)
-    Name = "malwru"
     Size = [System.Drawing.Size]::new(109, 23)
     TabIndex = 0
     Text = "Статья на Malw.ru"
@@ -1009,7 +971,6 @@ $malwru = New-Object System.Windows.Forms.Button -Property @{
 
 $lolzteam = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(123, 23)
-    Name = "lolzteam"
     Size = [System.Drawing.Size]::new(109, 23)
     TabIndex = 2
     Text = "Тема на Lolzteam"
@@ -1018,7 +979,6 @@ $lolzteam = New-Object System.Windows.Forms.Button -Property @{
 
 $github = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(238, 23)
-    Name = "github"
     Size = [System.Drawing.Size]::new(56, 23)
     TabIndex = 3
     Text = "GitHub"
@@ -1028,15 +988,13 @@ $github = New-Object System.Windows.Forms.Button -Property @{
 $questions = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(8, 91)
-    Name = "questions"
     Size = [System.Drawing.Size]::new(86, 15)
     TabIndex = 4
-    Text = "Есть вопросы? Даже если они не связаны с MalwTool, буду рад помочь!"
+    Text = "Есть вопросы? Даже если они не связаны с $app, буду рад помочь!"
 }
 
 $telegram = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 109)
-    Name = "telegram"
     Size = [System.Drawing.Size]::new(124, 23)
     TabIndex = 5
     Text = "Написать в Telegram"
@@ -1045,7 +1003,6 @@ $telegram = New-Object System.Windows.Forms.Button -Property @{
 
 $lolzteam2 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(138, 109)
-    Name = "lolzteam2"
     Size = [System.Drawing.Size]::new(156, 23)
     TabIndex = 6
     Text = "Написать в теме Lolzteam"
@@ -1054,7 +1011,6 @@ $lolzteam2 = New-Object System.Windows.Forms.Button -Property @{
 
 $github2 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(300, 109)
-    Name = "github2"
     Size = [System.Drawing.Size]::new(156, 23)
     TabIndex = 7
     Text = "Написать в Issues GitHub"
@@ -1072,7 +1028,7 @@ $lolzteam.Add_Click({
 })
 
 $github.Add_Click({
-    Start-Process "https://github.com/ImMALWARE/MalwTool"
+    Start-Process "https://github.com/ImMALWARE/$app"
 })
 
 $telegram.Add_Click({
