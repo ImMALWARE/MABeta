@@ -4,7 +4,13 @@ Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32
 [void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
-# нормально назвать переменные
+if ($PSUICulture -eq "ru-RU") {
+    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация")
+}
+
+else {
+    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info")
+}
 # английский язык
 # глобальное тестирование
 
@@ -31,7 +37,7 @@ $ActTab = New-Object System.Windows.Forms.TabPage -Property @{
     Padding = [System.Windows.Forms.Padding]::new(3)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 0
-    Text = "Активация"
+    Text = $strings[0]
     UseVisualStyleBackColor = $true
 }
 
@@ -40,7 +46,7 @@ $DlTab = New-Object System.Windows.Forms.TabPage -Property @{
     Padding = [System.Windows.Forms.Padding]::new(3)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 4
-    Text = "Скачивание"
+    Text = $strings[1]
     UseVisualStyleBackColor = $true
 }
 
@@ -48,7 +54,7 @@ $FunctionsTab = New-Object System.Windows.Forms.TabPage -Property @{
     Location = [System.Drawing.Point]::new(4, 24)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 2
-    Text = "Другие функции"
+    Text = $strings[2]
     UseVisualStyleBackColor = $true
 }
 
@@ -57,7 +63,7 @@ $ProblemsTab = New-Object System.Windows.Forms.TabPage -Property @{
     Padding = [System.Windows.Forms.Padding]::new(3)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 1
-    Text = "Решение проблем"
+    Text = $strings[3]
     UseVisualStyleBackColor = $true
 }
 
@@ -65,7 +71,7 @@ $InfoTab = New-Object System.Windows.Forms.TabPage -Property @{
     Location = [System.Drawing.Point]::new(4, 24)
     Size = [System.Drawing.Size]::new(619, 206)
     TabIndex = 3
-    Text = "Информация"
+    Text = $strings[4]
     UseVisualStyleBackColor = $true
 }
 
@@ -91,8 +97,9 @@ $ActWin10 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Windows 10/11 (HWID)"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActWin10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
 
-$ActWin8 = New-Object System.Windows.Forms.RadioButton -Property @{
+$ActWin8 = New-Object System.Windows.Forms.RadioButton -Property @{ 
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 31)
     Name = "ActWin8"
@@ -101,6 +108,7 @@ $ActWin8 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Windows 8/8.1 (KMS)"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActWin8, "Активация Windows 8 или Windows 8.1 через KMS")
 
 $ActWinServer = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -111,6 +119,7 @@ $ActWinServer = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Windows Server 2022/2019/2016"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActWinServer, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
 
 $ActVisio = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -121,6 +130,7 @@ $ActVisio = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Visio 2016/2019/2021"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActVisio, "Через KMS, будет активирован как Visio 2021 (более старые версии обновятся)")
 
 $ActProject = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -131,6 +141,7 @@ $ActProject = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Project 2016/2019/2021"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActProject, "Через KMS, будет активирован как Project 2021 (более старые версии обновятся)")
 
 $ActOffice365 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -141,6 +152,7 @@ $ActOffice365 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 365"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActOffice365, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
 
 $ActOffice2024 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -151,6 +163,7 @@ $ActOffice2024 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2024"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActOffice2024, "Активация Office 2024 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2021. Office потом автоматически конвертируется в 2024.")
 
 $ActOffice2021 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -161,6 +174,7 @@ $ActOffice2021 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2021"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActOffice2021, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2024. Office потом автоматически конвертируется в 2021.")
 
 $ActOffice2019 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -171,6 +185,7 @@ $ActOffice2019 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2019"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActOffice2019, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021, 2024. Office потом автоматически конвертируется в 2019.")
 
 $ActOffice2016 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -181,6 +196,7 @@ $ActOffice2016 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2016"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActOffice2016, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021, 2024. Office потом автоматически конвертируется в 2016.")
 
 $ActOffice2013 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -191,6 +207,7 @@ $ActOffice2013 = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Office 2013"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActOffice2013, "Активация Office 2013 с помощью добавления файла sppc.dll")
 
 $ActPrismLauncher = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -201,6 +218,7 @@ $ActPrismLauncher = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Prism Launcher"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActPrismLauncher, "Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
 
 $ActTL = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -211,6 +229,7 @@ $ActTL = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "TL"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActTL, 'Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках')
 
 $ActMXT = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -221,6 +240,7 @@ $ActMXT = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "MobaXterm"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActMXT, "Активировать MobaXterm")
 
 $ActCharles = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -231,6 +251,7 @@ $ActCharles = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Charles"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActCharles, "Получить ключ активации Charles Proxy")
 
 $ActVS = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
@@ -241,6 +262,7 @@ $ActVS = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "Visual Studio 2022 Professional/Enterprise"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($ActVS, "Активировать Visual Studio 2022 Professional/Enterprise")
 
 $Act = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(515, 169)
@@ -311,6 +333,7 @@ $DlWin10 = New-Object System.Windows.Forms.Button -Property @{
     Text = "Windows 10"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlWin10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
 
 $DlWin11 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 64)
@@ -318,6 +341,7 @@ $DlWin11 = New-Object System.Windows.Forms.Button -Property @{
     Text = "Windows 11"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlWin11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
 
 $DlWin10Ltsc = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 35)
@@ -381,6 +405,7 @@ $DlOffice2024Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2024Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
 
 $DlOffice2024ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 7)
@@ -388,6 +413,7 @@ $DlOffice2024ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2024ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 
 $DlOffice2021Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 36)
@@ -395,6 +421,7 @@ $DlOffice2021Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2021Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
 
 $DlOffice2021ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 36)
@@ -402,6 +429,7 @@ $DlOffice2021ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2021ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 
 $DlOffice2019Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 65)
@@ -409,6 +437,7 @@ $DlOffice2019Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2019Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
 
 $DlOffice2019ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 64)
@@ -416,6 +445,7 @@ $DlOffice2019ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2019ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 
 $DlOffice2016Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 93)
@@ -423,6 +453,7 @@ $DlOffice2016Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2016Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
 
 $DlOffice2016ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 93)
@@ -430,6 +461,7 @@ $DlOffice2016ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2016ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 
 $DlOffice2013Installer = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(437, 122)
@@ -437,6 +469,7 @@ $DlOffice2013Installer = New-Object System.Windows.Forms.Button -Property @{
     Text = "Online"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2013Installer, "Не рекомендуется, устаревшая версия. Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
 
 $DlOffice2013ISO = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(522, 121)
@@ -444,6 +477,7 @@ $DlOffice2013ISO = New-Object System.Windows.Forms.Button -Property @{
     Text = "ISO"
     UseVisualStyleBackColor = $true
 }
+$toolTip.SetToolTip($DlOffice2013ISO, "Не рекомендуется, устаревшая версия. ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
 
 $l24 = New-Object System.Windows.Forms.Label -Property @{
     AutoSize = $true
@@ -627,6 +661,7 @@ $winwifipassman = New-Object System.Windows.Forms.Button -Property @{
     Text = "Узнать пароли от сохранённых Wi-Fi сетей"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($winwifipassman, "Перед запуском убедитесь, что Wi-Fi сейчас включен")
 
 $explorerext = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(263, 6)
@@ -654,6 +689,7 @@ $store = New-Object System.Windows.Forms.Button -Property @{
     Text = "Установить Microsoft Store"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($store, "Только для LTSC-версий Windows без установленного Microsoft Store!")
 
 $driversbackup = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 64)
@@ -663,6 +699,7 @@ $driversbackup = New-Object System.Windows.Forms.Button -Property @{
     Text = "Резервное копирование драйверов"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($driversbackup, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
 
 $driversrestore = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(222, 64)
@@ -672,6 +709,7 @@ $driversrestore = New-Object System.Windows.Forms.Button -Property @{
     Text = "Восстановление драйверов"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($driversrestore, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
 
 $edgeuninstall = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 93)
@@ -690,6 +728,7 @@ $delspyfiles = New-Object System.Windows.Forms.Button -Property @{
     Text = "Удалить шпионские exe-файлы"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($delspyfiles, "Удалить CompatTelRunner.exe и wsqmcons.exe")
 
 $spicetify = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 122)
@@ -859,6 +898,7 @@ $sfc_scannow = New-Object System.Windows.Forms.Button -Property @{
     Text = "Проверить системные файлы на целостность"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($sfc_scannow, "sfc /scannow и DISM /Online /Cleanup-Image /RestoreHealth")
 
 $telegram_fix = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 136)
@@ -868,6 +908,7 @@ $telegram_fix = New-Object System.Windows.Forms.Button -Property @{
     Text = "Исправить открытие ссылок Telegram Desktop"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($telegram_fix, "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe")
 
 $otherproblem = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 165)
@@ -877,6 +918,7 @@ $otherproblem = New-Object System.Windows.Forms.Button -Property @{
     Text = "У меня другая проблема!"
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($otherproblem, "Даже если проблема не связана с MalwTool, всё равно напишите")
 
 @($winimg, $oimg, $clear_office16, $office_uninstall, $clear_winkms, $sfc_scannow, $telegram_fix, $otherproblem) | ForEach-Object { $ProblemsTab.Controls.Add($_) }
 
@@ -1044,51 +1086,6 @@ $lolzteam2.Add_Click({
 $github2.Add_Click({
     $github2.PerformClick()
 })
-
-$tooltip.SetToolTip($ActWin10, "Активация Windows 10 или 11 всех изданий (в том числе LTSC) по HWID")
-$tooltip.SetToolTip($ActWin8, "Активация Windows 8 или Windows 8.1 через KMS")
-$tooltip.SetToolTip($ActOffice2024, "Активация Office 2024 путём добавления файла sppc.dll" + [Environment]::NewLine + "И всё-таки, я бы порекомендовал выбрать Office 365." + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2021. Office потом автоматически конвертируется в 2024.")
-$tooltip.SetToolTip($ActOffice2021, "Активация Office 2021 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2019, 2024. Office потом автоматически конвертируется в 2021.")
-$tooltip.SetToolTip($WS, "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709")
-$tooltip.SetToolTip($ActOffice2013, "Активация Office 2013 с помощью добавления файла sppc.dll")
-$tooltip.SetToolTip($ActOffice365, "Активация Office 365 путём добавления файла sppc.dll" + [Environment]::NewLine + "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант." + [Environment]::NewLine + "Активация сработает и для Office 2016, 2019, 2021. Office потом автоматически конвертируется в 365.")
-$tooltip.SetToolTip($ActPrismLauncher, "Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft" + [Environment]::NewLine + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!")
-$tooltip.SetToolTip($ActTL, 'Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках')
-$tooltip.SetToolTip($ActMXT, "Активировать MobaXterm")
-$tooltip.SetToolTip($ActCharles, "Получить ключ активации Charles Proxy")
-$tooltip.SetToolTip($ActVS, "Активировать Visual Studio 2022 Professional/Enterprise")
-$tooltip.SetToolTip($ActOffice2016, "Активация Office 2016 путём добавления файла sppc.dll" + [Environment]::NewLine + "2016 — уже давно устаревшая версия." + [Environment]::NewLine + "Активация сработает и для Office 365, 2019, 2021, 2024. Office потом автоматически конвертируется в 2016.")
-$tooltip.SetToolTip($ActOffice2019, "Активация Office 2019 путём добавления файла sppc.dll" + [Environment]::NewLine + "Активация сработает и для Office 365, 2016, 2021, 2024. Office потом автоматически конвертируется в 2019.")
-$toolTip.SetToolTip($DlWin10, "ISO образ Windows 10 22H2 с официального сайта Microsoft")
-$toolTip.SetToolTip($DlWin11, "ISO образ Windows 11 23H2 с официального сайта Microsoft")
-$toolTip.SetToolTip($DlWin10Ltsc, "ISO образ Windows 10 LTSC 2021")
-$toolTip.SetToolTip($DlWin11Ltsc, "ISO образ Windows 11 LTSC 2024")
-$toolTip.SetToolTip($DlServer2025, "ISO образ Windows Server 2025")
-$toolTip.SetToolTip($DlServer2022, "ISO образ Windows Server 2022")
-$toolTip.SetToolTip($DlServer2019, "ISO образ Windows Server 2019")
-$toolTip.SetToolTip($DlServer2016, "ISO образ Windows Server 2016")
-$toolTip.SetToolTip($DlServer2012, "ISO образ Windows Server 2012")
-$toolTip.SetToolTip($DlWin81, "ISO образ Windows 8.1 с официального сайта Microsoft")
-$toolTip.SetToolTip($DlOffice2024Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($DlOffice2024ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$toolTip.SetToolTip($DlOffice2021Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($DlOffice2021ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$toolTip.SetToolTip($DlOffice2019Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($DlOffice2019ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$toolTip.SetToolTip($DlOffice2016Installer, "Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($DlOffice2016ISO, "ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$toolTip.SetToolTip($DlOffice2013Installer, "Не рекомендуется, устаревшая версия. Онлайн-установщик Office с официального сайта Microsoft. Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова")
-$toolTip.SetToolTip($DlOffice2013ISO, "Не рекомендуется, устаревшая версия. ISO-образ Office с официального сайта Microsoft. Для установки:" + [Environment]::NewLine + "1. Откройте ISO-образ, он должен подключиться как отдельный диск (или распакуйте его куда-нибудь через 7-Zip)" + [Environment]::NewLine + "2. Запустите setup.exe и дождитесь установки" + [Environment]::NewLine + '3. Чтобы убрать этот "отдельный диск", нужно нажать на него правой кнопкой -> Извлечь.')
-$tooltip.SetToolTip($delspyfiles, "Удалить CompatTelRunner.exe и wsqmcons.exe")
-$tooltip.SetToolTip($driversrestore, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
-$tooltip.SetToolTip($driversbackup, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
-$tooltip.SetToolTip($store, "Только для LTSC-версий Windows без установленного Microsoft Store!")
-$tooltip.SetToolTip($winwifipassman, "Перед запуском убедитесь, что Wi-Fi сейчас включен")
-$tooltip.SetToolTip($sfc_scannow, "sfc /scannow и DISM /Online /Cleanup-Image /RestoreHealth")
-$tooltip.SetToolTip($telegram_fix, "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe")
-$tooltip.SetToolTip($ActVisio, "Через KMS, будет активирован как Visio 2021 (более старые версии обновятся)")
-$tooltip.SetToolTip($ActProject, "Через KMS, будет активирован как Project 2021 (более старые версии обновятся)")
-$tooltip.SetToolTip($otherproblem, "Даже если проблема не связана с MalwTool, всё равно напишите")
 
 $form.Controls.Add($tabs)
 $form.ShowDialog()
