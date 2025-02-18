@@ -3,13 +3,14 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32.dll")]public static extern IntPtr GetConsoleWindow();[DllImport("user32.dll")]public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);'
 [void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
+$wc = New-Object net.webclient
 $app = "MalwTool"
 $n = [Environment]::NewLine
 
 if ($PSUICulture -eq "ru-RU") {
-    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!")
+    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!", "рекомендуется")
 } else {
-    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!")
+    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!", "recommended")
 }
 # английский язык
 # проглядеть всё
@@ -330,7 +331,7 @@ $toolTip.SetToolTip($DlWin11, $strings[19].Replace("%v%", "11"))
 $DlWin10Ltsc = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 35)
     Size = [System.Drawing.Size]::new(197, 23)
-    Text = "Win 10 LTSC 2021 (рекомендуется)"
+    Text = "Win 10 LTSC 2021 ($($strings[27]))"
     UseVisualStyleBackColor = $true
 }
 
@@ -507,6 +508,13 @@ $rufus = New-Object System.Windows.Forms.Button -Property @{
 
 @($DlWin10, $DlWin11, $DlWin10Ltsc, $DlWin11Ltsc, $DlServer2025, $DlServer2022, $DlServer2019, $DlServer2016, $DlServer2012, $DlWin81, $DlOffice2024Installer, $DlOffice2024ISO, $DlOffice2021Installer, $DlOffice2021ISO, $DlOffice2019Installer, $DlOffice2019ISO, $DlOffice2016Installer, $DlOffice2016ISO, $DlOffice2013Installer, $DlOffice2013ISO, $l24, $l21, $l19, $l16, $l13, $rufus) | ForEach-Object { $DlTab.Controls.Add($_) }
 
+function bypass_office_geoblock {
+    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
+    if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
+        New-ItemProperty -Path "HKCU:\Software\Microsoft\Office\16.0\Common\ExperimentConfigs\Ecs" -Name "CountryCode" -PropertyType String -Value "std::wstring|US" -Force
+    }
+}
+
 $DlWin10.Add_Click({
     try {
         $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
@@ -560,15 +568,9 @@ $DlServer2012.Add_Click({
     Start-Process "https://drive.massgrave.dev/ru_windows_server_2012_r2_vl_with_update_x64_dvd_6052827.iso"
 })
 
-# TODO
-
 $DlOffice2024Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2024Retail&platform=x64&language=ru-ru&version=O16GA"
-    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
-    if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
-        Start-Process # TODO: обход!!!
-    }
-    [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    bypass_office_geoblock
 })
 
 $DlOffice2024ISO.Add_Click({
@@ -577,11 +579,7 @@ $DlOffice2024ISO.Add_Click({
 
 $DlOffice2021Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=ru-ru&version=O16GA"
-    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
-    if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
-        Start-Process 
-    }
-    [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    bypass_office_geoblock
 })
 
 $DlOffice2021ISO.Add_Click({
@@ -590,11 +588,7 @@ $DlOffice2021ISO.Add_Click({
 
 $DlOffice2019Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2019Retail&platform=x64&language=ru-ru&version=O16GA"
-    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
-    if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
-        Start-Process 
-    }
-    [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    bypass_office_geoblock
 })
 
 $DlOffice2019ISO.Add_Click({
@@ -603,11 +597,7 @@ $DlOffice2019ISO.Add_Click({
 
 $DlOffice2016Installer.Add_Click({
     Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProfessionalRetail&platform=x64&language=ru-ru&version=O16GA"
-    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', "MalwTool;", [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
-    if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
-        Start-Process 
-    }
-    [System.Windows.Forms.MessageBox]::Show("Для установки нужно:" + [Environment]::NewLine + "1. Запустить exe-файл" + [Environment]::NewLine + '2. Дождаться ошибки "Сбой установки" и закрыть установщик' + [Environment]::NewLine + '3. Зайти на вкладку "Решение проблем" в активаторе и выбрать "Обойти гео-ограничения на Online-установку Office"' + [Environment]::NewLine + "4. Запустить установщик снова", "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    bypass_office_geoblock
 })
 
 $DlOffice2016ISO.Add_Click({
@@ -625,7 +615,6 @@ $DlOffice2013ISO.Add_Click({
 $rufus.Add_Click({
     New-Item -Path "$env:temp\$app" -ItemType Directory > $null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $wc = New-Object net.webclient
     $wc.DownloadFile('https://github.com/pbatard/rufus/releases/download/v4.6/rufus-4.6.exe', "$env:temp\$app\rufus.exe")
     Set-Location $env:SystemRoot\System32
     ./cmd.exe /c start "" "$env:temp\$app\rufus.exe"
@@ -768,7 +757,6 @@ $driversrestore.Add_Click({
 $edgeuninstall.Add_Click({
     New-Item -Path "$env:temp\$app" -ItemType Directory > $null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $wc = New-Object net.webclient
     $wc.DownloadFile('https://raw.githubusercontent.com/AveYo/fox/eab2269a598ad9e8120cf1d598d48384071ff476/Edge_Removal.bat', "$env:temp\$app\Edge_Removal.bat")
     Set-Location $env:SystemRoot\System32
     ./cmd.exe /c start "$env:temp\$app\Edge_Removal.bat"
@@ -918,7 +906,6 @@ $clear_office16.Add_Click({
 $office_uninstall.Add_Click({
     New-Item -Path "$env:temp\$app" -ItemType Directory > $null
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $wc = New-Object net.webclient
     $wc.DownloadFile('https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe', "$env:temp\$app\SetupProd_OffScrub.exe")
     Set-Location $env:SystemRoot\System32
     ./cmd.exe /c start "" "$env:temp\$app\SetupProd_OffScrub.exe"
