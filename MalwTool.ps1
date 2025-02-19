@@ -8,9 +8,9 @@ $app = "MalwTool"
 $n = [Environment]::NewLine
 
 if ($PSUICulture -eq "ru-RU") {
-    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!", "рекомендуется")
+    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!", "рекомендуется", 'Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите файл установщика!', "Узнать пароли от сохранённых Wi-Fi сетей", "Перед запуском убедитесь, что Wi-Fi сейчас включен", "Отображать расширения файлов в проводнике", "Установить ", "Для LTSC-версий Windows без установленного Microsoft Store", "Резервное копирование драйверов", 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь', "Восстановление драйверов")
 } else {
-    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!", "recommended")
+    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!", "recommended", 'To install online, you need to bypass geo-restrictions. To do this: run the exe-file, wait for the "Installation failure" error, click "Yes" in this window. After this, restart the installer file!', "Get passwords from saved Wi-Fi networks", "Before starting, make sure that Wi-Fi is currently enabled", "Show file extensions in the explorer", "Install ", "For LTSC versions of Windows without installed Microsoft Store!", "Backup drivers", ("Before reinstalling Windows, it's best to back up all drivers so you don't have to struggle with them afterward—just select " + '"restore" here.'), "Restore drivers")
 }
 # английский язык
 # проглядеть всё
@@ -509,7 +509,7 @@ $rufus = New-Object System.Windows.Forms.Button -Property @{
 @($DlWin10, $DlWin11, $DlWin10Ltsc, $DlWin11Ltsc, $DlServer2025, $DlServer2022, $DlServer2019, $DlServer2016, $DlServer2012, $DlWin81, $DlOffice2024Installer, $DlOffice2024ISO, $DlOffice2021Installer, $DlOffice2021ISO, $DlOffice2019Installer, $DlOffice2019ISO, $DlOffice2016Installer, $DlOffice2016ISO, $DlOffice2013Installer, $DlOffice2013ISO, $l24, $l21, $l19, $l16, $l13, $rufus) | ForEach-Object { $DlTab.Controls.Add($_) }
 
 function bypass_office_geoblock {
-    $result = [System.Windows.Forms.MessageBox]::Show('Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите exe файл установщика!', $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
+    $result = [System.Windows.Forms.MessageBox]::Show($strings[28], $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
         New-ItemProperty -Path "HKCU:\Software\Microsoft\Office\16.0\Common\ExperimentConfigs\Ecs" -Name "CountryCode" -PropertyType String -Value "std::wstring|US" -Force
     }
@@ -626,16 +626,16 @@ $winwifipassman = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(6, 6)
     Size = [System.Drawing.Size]::new(251, 23)
     TabIndex = 0
-    Text = "Узнать пароли от сохранённых Wi-Fi сетей"
+    Text = $strings[29]
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($winwifipassman, "Перед запуском убедитесь, что Wi-Fi сейчас включен")
+$tooltip.SetToolTip($winwifipassman, $strings[30])
 
 $explorerext = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(263, 6)
     Size = [System.Drawing.Size]::new(274, 23)
     TabIndex = 3
-    Text = "Отображать расширения файлов в проводнике"
+    Text = $strings[31]
     UseVisualStyleBackColor = $true
 }
 
@@ -643,7 +643,7 @@ $winget = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 35)
     Size = [System.Drawing.Size]::new(113, 23)
     TabIndex = 1
-    Text = "Установить winget"
+    Text = $strings[32] + "winget"
     UseVisualStyleBackColor = $true
 }
 
@@ -651,28 +651,28 @@ $store = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(127, 35)
     Size = [System.Drawing.Size]::new(160, 23)
     TabIndex = 2
-    Text = "Установить Microsoft Store"
+    Text = $strings[32] + "Microsoft Store"
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($store, "Только для LTSC-версий Windows без установленного Microsoft Store!")
+$tooltip.SetToolTip($store, $strings[33])
 
 $driversbackup = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 64)
     Size = [System.Drawing.Size]::new(208, 23)
     TabIndex = 4
-    Text = "Резервное копирование драйверов"
+    Text = $strings[34]
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($driversbackup, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
+$tooltip.SetToolTip($driversbackup, $strings[35])
 
 $driversrestore = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(222, 64)
     Size = [System.Drawing.Size]::new(165, 23)
     TabIndex = 5
-    Text = "Восстановление драйверов"
+    Text = $strings[36]
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($driversrestore, 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь')
+$tooltip.SetToolTip($driversrestore, $strings[35])
 
 $edgeuninstall = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 93)
