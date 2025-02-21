@@ -8,9 +8,9 @@ $app = "MalwTool"
 $n = [Environment]::NewLine
 
 if ($PSUICulture -eq "ru-RU") {
-    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!", "рекомендуется", 'Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите файл установщика!', "Узнать пароли от сохранённых Wi-Fi сетей", "Перед запуском убедитесь, что Wi-Fi сейчас включен", "Отображать расширения файлов в проводнике", "Установить ", "Для LTSC-версий Windows без установленного Microsoft Store", "Резервное копирование драйверов", 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь', "Восстановление драйверов")
+    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!", "рекомендуется", 'Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите файл установщика!', "Узнать пароли от сохранённых Wi-Fi сетей", "Перед запуском убедитесь, что Wi-Fi сейчас включен", "Отображать расширения файлов в проводнике", "Установить ", "Для LTSC-версий Windows без установленного Microsoft Store", "Резервное копирование драйверов", 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь', "Восстановление драйверов", "Полностью удалить Microsoft Edge", "Удалить системные шпионские программы", "Удалить CompatTelRunner.exe и wsqmcons.exe", "Установить Spicetify", "Модификация приложения Spotify", "Обойти гео-ограничения веб-сервисов", ("Обойти гео-ограничения через редактирование файла hosts$n" + "Будут работать ChatGPT, Gemini, NotebookLM, Copilot, Spotify, Codeium, GitHub Copilot, Claude, Notion, Canva, TikTok$n" + "Без VPN и других сторонних приложений"), "Выберите директорию, куда будет сохранена резервная копия драйверов", "Выберите директорию с резервной копией драйверов", "Очистить лицензии Office16", "Только для KMS активации. Не очистит активацию от MalwTool.", "Инструмент удаления Office от Microsoft", "Сброс KMS-активации Windows", "Проверить системные файлы на целостность", "Через 60 секунд будет перезагрузка для проверки системного диска!", "Исправить открытие ссылок Telegram Desktop", "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe", "У меня другая проблема!")
 } else {
-    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!", "recommended", 'To install online, you need to bypass geo-restrictions. To do this: run the exe-file, wait for the "Installation failure" error, click "Yes" in this window. After this, restart the installer file!', "Get passwords from saved Wi-Fi networks", "Before starting, make sure that Wi-Fi is currently enabled", "Show file extensions in the explorer", "Install ", "For LTSC versions of Windows without installed Microsoft Store!", "Backup drivers", ("Before reinstalling Windows, it's best to back up all drivers so you don't have to struggle with them afterward—just select " + '"restore" here.'), "Restore drivers")
+    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!", "recommended", 'To install online, you need to bypass geo-restrictions. To do this: run the exe-file, wait for the "Installation failure" error, click "Yes" in this window. After this, restart the installer file!', "Get passwords from saved Wi-Fi networks", "Before starting, make sure that Wi-Fi is currently enabled", "Show file extensions in the explorer", "Install ", "For LTSC versions of Windows without installed Microsoft Store!", "Backup drivers", ("Before reinstalling Windows, it's best to back up all drivers so you don't have to struggle with them afterward—just select " + '"restore" here.'), "Restore drivers", "Completely uninstall Microsoft Edge", "Delete system spy programs", "Delete CompatTelRunner.exe and wsqmcons.exe", "Install Spicetify", "Spotify mod", "Bypass web-apps geo-blocking", ("Bypass geo-restrictions via editing hosts file$n" + "The following services will work: ChatGPT, Gemini, NotebookLM, Copilot, Spotify, Codeium, GitHub Copilot, Claude, Notion, Canva, TikTok$n" + "Without VPN and other apps"), "Select directory for drivers backup", "Select directory with drivers backup", "Clear Office16 licenses", "Only for KMS activation, won't clear activation from MalwTool", "Office uninstall tool by Microsoft", "Clear Windows KMS-activation", "Check system files for integrity", "In 60 seconds there will be a reboot to check the system disk!", "Fix Telegram Desktop links", "If you can't open tg:// links in Telegram Desktop, click this button, then select the path to Telegram.exe", "I have another problem!")
 }
 # английский язык
 # проглядеть всё
@@ -678,7 +678,7 @@ $edgeuninstall = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 93)
     Size = [System.Drawing.Size]::new(208, 23)
     TabIndex = 6
-    Text = "Полностью удалить Microsoft Edge"
+    Text = $strings[37]
     UseVisualStyleBackColor = $true
 }
 
@@ -686,26 +686,28 @@ $delspyfiles = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(222, 93)
     Size = [System.Drawing.Size]::new(183, 23)
     TabIndex = 7
-    Text = "Удалить шпионские exe-файлы"
+    Text = $strings[38]
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($delspyfiles, "Удалить CompatTelRunner.exe и wsqmcons.exe")
+$tooltip.SetToolTip($delspyfiles, $strings[39])
 
 $spicetify = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 122)
     Size = [System.Drawing.Size]::new(208, 23)
     TabIndex = 8
-    Text = "Установить Spicetify"
+    Text = $strings[40]
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($spicetify, $strings[41])
 
 $edit_hosts = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(222, 122)
     Size = [System.Drawing.Size]::new(183, 23)
     TabIndex = 11
-    Text = "Обойти ограничения сервисов"
+    Text = $strings[42]
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($edit_hosts, $strings[43])
 
 @($winwifipassman, $winget, $store, $driversbackup, $driversrestore, $edgeuninstall, $spicetify, $edit_hosts) | ForEach-Object { $FunctionsTab.Controls.Add($_) }
 
@@ -736,7 +738,7 @@ $store.Add_Click({
 
 $driversbackup.Add_Click({
     $dialog = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
-        Description = "Выберите директорию, куда будет сохранена резервная копия драйверов"
+        Description = $strings[44]
         RootFolder = [System.Environment+SpecialFolder]::MyComputer
     }
     if ($dialog.ShowDialog() -eq 'OK') {
@@ -746,7 +748,7 @@ $driversbackup.Add_Click({
 
 $driversrestore.Add_Click({
     $dialog = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
-        Description = "Выберите директорию с резервной копией драйверов"
+        Description = $strings[45]
         RootFolder = [System.Environment+SpecialFolder]::MyComputer
     }
     if ($dialog.ShowDialog() -eq 'OK') {
@@ -825,15 +827,16 @@ $clear_office16 = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(48, 8)
     Size = [System.Drawing.Size]::new(170, 23)
     TabIndex = 3
-    Text = "Очистить лицензии Office16"
+    Text = $strings[46]
     UseVisualStyleBackColor = $true
 }
+$tooltip.SetToolTip($clear_office16, $strings[47])
 
 $office_uninstall = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(221, 8)
     Size = [System.Drawing.Size]::new(176, 23)
     TabIndex = 1
-    Text = "Инструмент удаления Office"
+    Text = $strings[48]
     UseVisualStyleBackColor = $true
 }
 
@@ -841,7 +844,7 @@ $clear_winkms = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(48, 71)
     Size = [System.Drawing.Size]::new(192, 23)
     TabIndex = 3
-    Text = "Сброс KMS-активации Windows"
+    Text = $strings[49]
     UseVisualStyleBackColor = $true
 }
 
@@ -849,25 +852,25 @@ $sfc_scannow = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(247, 71)
     Size = [System.Drawing.Size]::new(260, 23)
     TabIndex = 2
-    Text = "Проверить системные файлы на целостность"
+    Text = $strings[50]
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($sfc_scannow, "sfc /scannow и DISM /Online /Cleanup-Image /RestoreHealth")
+$tooltip.SetToolTip($sfc_scannow, "sfc /scannow, DISM /Online /Cleanup-Image /RestoreHealth, chkdsk /b /x")
 
 $telegram_fix = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 136)
     Size = [System.Drawing.Size]::new(268, 23)
     TabIndex = 9
-    Text = "Исправить открытие ссылок Telegram Desktop"
+    Text = $strings[52]
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($telegram_fix, "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe")
+$tooltip.SetToolTip($telegram_fix, $strings[53])
 
 $otherproblem = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(8, 165)
     Size = [System.Drawing.Size]::new(154, 23)
     TabIndex = 8
-    Text = "У меня другая проблема!"
+    Text = $strings[54]
     UseVisualStyleBackColor = $true
 }
 $tooltip.SetToolTip($otherproblem, "Даже если проблема не связана с $app, всё равно напишите")
@@ -917,7 +920,7 @@ $clear_winkms.Add_Click({
 })
 
 $sfc_scannow.Add_Click({
-    Start-Process powershell -ArgumentList "Set-Location $env:SystemRoot\System32; .\sfc /scannow; .\Dism /Online /Cleanup-Image /RestoreHealth; .\chkdsk ${(Get-WmiObject Win32_OperatingSystem).SystemDrive} /b /x; .\shutdown /r /t pause" -Verb RunAs
+    Start-Process powershell -ArgumentList "Set-Location $env:SystemRoot\System32; .\sfc /scannow; .\Dism /Online /Cleanup-Image /RestoreHealth; .\chkdsk ${(Get-WmiObject Win32_OperatingSystem).SystemDrive} /b /x; .\shutdown /r /t 60 /c '$($strings[51])'; pause" -Verb RunAs
 })
 
 $telegram_fix.Add_Click({
