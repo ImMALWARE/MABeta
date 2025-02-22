@@ -514,8 +514,9 @@ function bypass_office_geoblock {
     $result = $mb.Invoke($hidden, $strings[28], $app, "YesNo", "Information")
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
         New-ItemProperty -Path "HKCU:\Software\Microsoft\Office\16.0\Common\ExperimentConfigs\Ecs" -Name "CountryCode" -PropertyType String -Value "std::wstring|US" -Force
+        $mb.Invoke($strings[86], $app, "OK", "Information")
     }
-    $mb.Invoke($strings[86], $app, "OK", "Information")
+
 }
 
 $DlWin10.Add_Click({
