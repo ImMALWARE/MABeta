@@ -259,7 +259,7 @@ $Act = New-Object System.Windows.Forms.Button -Property @{
     UseVisualStyleBackColor = $true
 }
 
-$com = @("Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators", " | Invoke-Expression", "$env:ProgramFiles\Microsoft Office\root\vfs\System", "$env:ProgramFiles\Microsoft Office 15\root\vfs\System")
+$com = @("irm https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators", " | Invoke-Expression", "$env:ProgramFiles\Microsoft Office\root\vfs\System", "$env:ProgramFiles\Microsoft Office 15\root\vfs\System")
 $Act.Add_Click({
     $prod = ($ActTab.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked })[0].Name
     $activators = @{"ActWin10" = "HWID.ps1"; "ActWin8" = "KMS.ps1"; "ActWinServer" = "ServerKMS.ps1"; "ActVisio" = "VisioProject.ps1"; "ActProject" = "VisioProject.ps1"; "ActVS" = "VS.ps1"}
@@ -289,7 +289,7 @@ $Act.Add_Click({
         }
         "ActMXT" {
             if (Test-Path "$(env:ProgramFiles(x86))\Mobatek\MobaXterm\version.dat") {
-                Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/MXT.ps1 | Invoke-Expression" -Verb RunAs
+                Start-Process powershell -ArgumentList "irm https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/MXT.ps1 | Invoke-Expression" -Verb RunAs
             } else {
                 $mb.Invoke($strings[17].Replace("%p%", "MobaXterm"), $app, "OK", "Error")
             }
@@ -515,8 +515,8 @@ function bypass_office_geoblock {
 
 $DlWin10.Add_Click({
     try {
-        $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
-        Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."10"[0])&sku_id=$($products."10"[1 + (0 if ($PSUICulture -eq "ru-RU") else 1)])" -Method Get).ProductDownloadOptions[0].Uri
+        $products = irm -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
+        Start-Process (irm -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."10"[0])&sku_id=$($products."10"[1 + (0 if ($PSUICulture -eq "ru-RU") else 1)])" -Method Get).ProductDownloadOptions[0].Uri
     } catch {
         $result = $mb.Invoke($strings[25], $app, "YesNo", "Warning")
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
@@ -527,8 +527,8 @@ $DlWin10.Add_Click({
 
 $DlWin11.Add_Click({
     try {
-        $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
-        Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."11"[0])&sku_id=$($products."11"[1 + (0 if ($PSUICulture -eq "ru-RU") else 1)])" -Method Get).ProductDownloadOptions[0].Uri
+        $products = irm -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
+        Start-Process (irm -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."11"[0])&sku_id=$($products."11"[1 + (0 if ($PSUICulture -eq "ru-RU") else 1)])" -Method Get).ProductDownloadOptions[0].Uri
     } catch {
         $result = $mb.Invoke($strings[25], $app, "YesNo", "Warning")
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
@@ -719,7 +719,7 @@ if ((Test-Path "$env:SystemRoot\System32\CompatTelRunner.exe") -or (Test-Path "$
 }
 
 $winwifipassman.Add_Click({
-    Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/WinWiFiPassMan/main/WinWiFiPassMan.ps1 | Invoke-Expression" -Verb RunAs
+    Start-Process powershell -ArgumentList "irm https://raw.githubusercontent.com/ImMALWARE/WinWiFiPassMan/main/WinWiFiPassMan.ps1 | Invoke-Expression" -Verb RunAs
 })
 
 $explorerext.Add_Click({
@@ -727,7 +727,7 @@ $explorerext.Add_Click({
 })
 
 $winget.Add_Click({
-    Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/winget-installer/main/WingetInstaller.ps1 | Invoke-Expression" -Verb RunAs
+    Start-Process powershell -ArgumentList "irm https://raw.githubusercontent.com/ImMALWARE/winget-installer/main/WingetInstaller.ps1 | Invoke-Expression" -Verb RunAs
 })
 
 $store.Add_Click({
@@ -778,14 +778,14 @@ $delspyfiles.Add_Click({
 })
 
 $spicetify.Add_Click({
-    Start-Process powershell -ArgumentList "iwr -useb https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex; pause"
+    Start-Process powershell -ArgumentList "irm https://raw.githubusercontent.com/spicetify/cli/main/install.ps1 | iex; pause"
 })
 
 $edit_hosts.Add_Click({
     Start-Process powershell -ArgumentList @'
     -command
         $current_hosts = Get-Content -Path 'C:\Windows\System32\drivers\etc\hosts' -Raw
-        $new_hosts = (Invoke-WebRequest -Uri 'https://pastebin.com/raw/5zvfV9Lp' -UseBasicParsing).Content
+        $new_hosts = irm https://pastebin.com/raw/5zvfV9Lp
         $start_marker = '### t.me/immalware: hosts file'
         $end_marker = '### t.me/immalware: end hosts file'
 
