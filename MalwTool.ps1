@@ -761,7 +761,7 @@ $driversrestore.Add_Click({
         RootFolder = [System.Environment+SpecialFolder]::MyComputer
     }
     if ($dialog.ShowDialog() -eq 'OK') {
-        Start-Process pnputil -ArgumentList "/add-driver `"${$dialog.SelectedPath}`" /subdirs /install" -Verb RunAs
+        Start-Process pnputil -ArgumentList "/add-driver `"$($dialog.SelectedPath)`" /subdirs /install" -Verb RunAs
     }
 })
 
