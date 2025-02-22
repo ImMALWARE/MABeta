@@ -515,8 +515,8 @@ function bypass_office_geoblock {
 
 $DlWin10.Add_Click({
     try {
-        $products = irm -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json
-        Start-Process (irm -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."10"[0])&sku_id=$($products."10"[1 + ($PSUICulture -ne "ru-RU")])").ProductDownloadOptions[0].Uri
+        $products = irm https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json
+        Start-Process (irm "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."10"[0])&sku_id=$($products."10"[1 + ($PSUICulture -ne "ru-RU")])").ProductDownloadOptions[0].Uri
     } catch {
         $result = $mb.Invoke($strings[25], $app, "YesNo", "Warning")
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
@@ -527,8 +527,8 @@ $DlWin10.Add_Click({
 
 $DlWin11.Add_Click({
     try {
-        $products = irm -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json
-        Start-Process (irm -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."11"[0])&sku_id=$($products."11"[1 + ($PSUICulture -ne "ru-RU")])").ProductDownloadOptions[0].Uri
+        $products = irm https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json
+        Start-Process (irm "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."11"[0])&sku_id=$($products."11"[1 + ($PSUICulture -ne "ru-RU")])").ProductDownloadOptions[0].Uri
     } catch {
         $result = $mb.Invoke($strings[25], $app, "YesNo", "Warning")
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
