@@ -751,7 +751,7 @@ $driversbackup.Add_Click({
         RootFolder = [System.Environment+SpecialFolder]::MyComputer
     }
     if ($dialog.ShowDialog() -eq 'OK') {
-        Start-Process pnputil -ArgumentList "/export-driver * `"$($dialog.SelectedPath)`"" -Verb RunAs
+        Start-Process powershell -ArgumentList "pnputil /export-driver * `"$($dialog.SelectedPath)`"; pause" -Verb RunAs
     }
 })
 
@@ -761,7 +761,7 @@ $driversrestore.Add_Click({
         RootFolder = [System.Environment+SpecialFolder]::MyComputer
     }
     if ($dialog.ShowDialog() -eq 'OK') {
-        Start-Process pnputil -ArgumentList "/add-driver `"$($dialog.SelectedPath)`" /subdirs /install" -Verb RunAs
+        Start-Process powershell -ArgumentList "pnputil /add-driver `"$($dialog.SelectedPath)`" /subdirs /install; pause" -Verb RunAs
     }
 })
 
