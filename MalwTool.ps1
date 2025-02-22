@@ -4,17 +4,15 @@ Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32
 [void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
 $wc = New-Object net.webclient
+$mb = [System.Windows.Forms.MessageBox]::Show
 $app = "MalwTool"
 $n = [Environment]::NewLine
 
 if ($PSUICulture -eq "ru-RU") {
-    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!", "рекомендуется", 'Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите файл установщика!', "Узнать пароли от сохранённых Wi-Fi сетей", "Перед запуском убедитесь, что Wi-Fi сейчас включен", "Отображать расширения файлов в проводнике", "Установить ", "Для LTSC-версий Windows без установленного Microsoft Store", "Резервное копирование драйверов", 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь', "Восстановление драйверов", "Полностью удалить Microsoft Edge", "Удалить системные шпионские программы", "Удалить CompatTelRunner.exe и wsqmcons.exe", "Установить Spicetify", "Модификация приложения Spotify", "Обойти гео-ограничения веб-сервисов", ("Обойти гео-ограничения через редактирование файла hosts$n" + "Будут работать ChatGPT, Gemini, NotebookLM, Copilot, Spotify, Codeium, GitHub Copilot, Claude, Notion, Canva, TikTok$n" + "Без VPN и других сторонних приложений"), "Выберите директорию, куда будет сохранена резервная копия драйверов", "Выберите директорию с резервной копией драйверов", "Очистить лицензии Office16", "Только для KMS активации. Не очистит активацию от MalwTool.", "Инструмент удаления Office от Microsoft", "Сброс KMS-активации Windows", "Проверить системные файлы на целостность", "Через 60 секунд будет перезагрузка для проверки системного диска!", "Исправить открытие ссылок Telegram Desktop", "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe", "У меня другая проблема!")
+    $strings = @("Активация", "Скачивание", "Другие функции", "Решение проблем", "Информация", "Активация Windows 10 или 11 (в том числе LTSC) по HWID", "Активация Windows 8 или Windows 8.1 через KMS", "Активация Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Через KMS, будет активирован как %p% 2024 (более старые версии обновятся)", ("Активация Office %v% путём добавления файла sppc.dll$n" + "%info%" + "Активация сработает и для Office %otherv%. Office потом автоматически конвертируется в %v%."), "Office 365 — всегда самая актуальная версия Office, лучше выбрать этот вариант.$n", "И всё-таки, я бы порекомендовал выбрать Office 365.$n", "Активация Office 2013 с помощью добавления файла sppc.dll", ("Разрешить создание автономного аккаунта Minecraft в Prism Launcher без добавления аккаунта Microsoft.$n" + "Не запускайте, если вы уже добавили аккаунт! Это действие удалит все аккаунты в лаунчере!"), "Премиум-аккаунт в TL, вы сможете отключить добавление рекламных серверов в его настройках", "Автономный аккаунт в Prism Launcher разблокирован!", "%p% не найден!", "Premium аккаунт в TL активирован! Теперь зайдите в настройки TL для отключения рекламных серверов!", "Ни один аккаунт не доблавен в TL!", "ISO образ последней версии Windows %v% с официального сайта Microsoft", "Онлайн-установщик Office с официального сайта Microsoft.", "ISO архив Office с официального сайта Microsoft. Запустите в нём setup.exe", " Следуйте инструкциям $app после запуска установщика.", "Не рекомендуется, устаревшая версия. ", "инструмент для записи ISO образов на флешку", "Не удалось получить ссылку для загрузки! Попробовать снова?", "Скачанному файлу нужно будет дописать формат .iso!", "рекомендуется", 'Для онлайн-установки нужно обойти гео-ограничения. Для этого: запустите exe-файл, дождитесь ошибки "Сбой установки", нажмите "Да" в этом окне. После этого перезапустите файл установщика!', "Узнать пароли от сохранённых Wi-Fi сетей", "Перед запуском убедитесь, что Wi-Fi сейчас включен", "Отображать расширения файлов в проводнике", "Установить ", "Для LTSC-версий Windows без установленного Microsoft Store", "Резервное копирование драйверов", 'Перед переустановкой Windows лучше сделать резервную копию всех драйверов, чтобы потом не мучаться с ними после переустановки, а просто выбрать "Восстановление" здесь', "Восстановление драйверов", "Полностью удалить Microsoft Edge", "Удалить системные шпионские программы", "Удалить CompatTelRunner.exe и wsqmcons.exe", "Установить Spicetify", "Модификация приложения Spotify", "Обойти гео-ограничения веб-сервисов", ("Обойти гео-ограничения через редактирование файла hosts$n" + "Будут работать ChatGPT, Gemini, NotebookLM, Copilot, Spotify, Codeium, GitHub Copilot, Claude, Notion, Canva, TikTok$n" + "Без VPN и других сторонних приложений"), "Выберите директорию, куда будет сохранена резервная копия драйверов", "Выберите директорию с резервной копией драйверов", "Очистить лицензии Office16", "Только для KMS активации. Не очистит активацию от MalwTool.", "Инструмент удаления Office", "Сброс KMS-активации Windows", "Проверить системные файлы на целостность", "Через 60 секунд будет перезагрузка для проверки системного диска!", "Исправить открытие ссылок Telegram Desktop", "Если у вас не открываются ссылки вида tg:// в Telegram Desktop, нажмите эту кнопку, затем выберите путь до Telegram.exe", "У меня другая проблема!", "Даже если проблема не связана с $app, всё равно напишите", "Папка Office16 не найдена!", "убираю лицензии Office16", "Все лицензии Office16 очищены.", "Выберите путь к Telegram.exe", "Статья на Malw.ru", "Тема на Lolzteam", "Есть вопросы? ", "Написать в Telegram", "Написать в теме Lolzteam", "Написать в GitHub Issues", "Активировать!", "https://drive.massgrave.dev/ru-ru_windows_10_enterprise_ltsc_2021_x64_dvd_5044a1e7.iso", "https://drive.massgrave.dev/ru-ru_windows_11_enterprise_ltsc_2024_x64_dvd_f9af5773.iso", "https://oemsoc.download.prss.microsoft.com/dbazure/X23-81967_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_ru-ru.iso_0400d135-3d94-49a2-8627-8f1a8cb316bf?t=27afd6c5-3c63-4984-8139-b9c239276cb4&P1=102817441539&P2=601&P3=2&P4=K6P6PaBziMqVvDg7AgCqTBprjEMuo%2bmjluaix%2b9TaUldONUCc3PtGs30Rvmn3IKMuSZ7kcmGydK%2bmz38quTSTCyGmjPdKm6bLG%2f2m13pTKsdD1zp%2flccTbTkwvIN%2fdhU8qzwet9V56is8W7o7IykKbczeFlJ1yQV7xq6OCpOzudqomW5fUsUO0%2fRx%2b78zkGgyrHlxIQlX9bAC5Fr069%2byhr5OiXWk9R%2fzEj93%2bEfBrZMTFz1M%2fzf6UKw6tYjOjdSJkNKk%2bhjnAyC%2bcqCj2OKrw6yhEJ6vtXbNJomDZzfUBqMM%2f1uoRabPzPv5Adp3XEJ5DIzdBU%2foyhPbj0qcCzfPg%3d%3d", "https://drive.massgrave.dev/ru-ru_windows_server_2022_updated_nov_2024_x64_dvd_4e34897c.iso", "https://drive.massgrave.dev/ru-ru_windows_server_2019_x64_dvd_e02b76ba.iso", "https://drive.massgrave.dev/ru_windows_server_2016_vl_x64_dvd_11636694.iso", "https://drive.massgrave.dev/ru_windows_server_2012_r2_vl_with_update_x64_dvd_6052827.iso", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2024Retail&platform=x64&language=ru-ru&version=O16GA", "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2024Retail.img", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=ru-ru&version=O16GA", "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2021Retail.img", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2019Retail&platform=x64&language=ru-ru&version=O16GA", "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2019Retail.img", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlusRetail&platform=x64&language=ru-ru&version=O16GA", "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlusRetail.img", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlusRetail&platform=x64&language=ru-ru&version=O15GA", "https://officecdn.microsoft.com/db/39168d7e-077b-48e7-872c-b232c3e72675/media/ru-ru/ProfessionalRetail.img")
 } else {
-    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!", "recommended", 'To install online, you need to bypass geo-restrictions. To do this: run the exe-file, wait for the "Installation failure" error, click "Yes" in this window. After this, restart the installer file!', "Get passwords from saved Wi-Fi networks", "Before starting, make sure that Wi-Fi is currently enabled", "Show file extensions in the explorer", "Install ", "For LTSC versions of Windows without installed Microsoft Store!", "Backup drivers", ("Before reinstalling Windows, it's best to back up all drivers so you don't have to struggle with them afterward—just select " + '"restore" here.'), "Restore drivers", "Completely uninstall Microsoft Edge", "Delete system spy programs", "Delete CompatTelRunner.exe and wsqmcons.exe", "Install Spicetify", "Spotify mod", "Bypass web-apps geo-blocking", ("Bypass geo-restrictions via editing hosts file$n" + "The following services will work: ChatGPT, Gemini, NotebookLM, Copilot, Spotify, Codeium, GitHub Copilot, Claude, Notion, Canva, TikTok$n" + "Without VPN and other apps"), "Select directory for drivers backup", "Select directory with drivers backup", "Clear Office16 licenses", "Only for KMS activation, won't clear activation from MalwTool", "Office uninstall tool by Microsoft", "Clear Windows KMS-activation", "Check system files for integrity", "In 60 seconds there will be a reboot to check the system disk!", "Fix Telegram Desktop links", "If you can't open tg:// links in Telegram Desktop, click this button, then select the path to Telegram.exe", "I have another problem!")
+    $strings = @("Activation", "Download", "Other functions", "Solving problems", "Info", "Windows 10 or 11 (including LTSC) activation by HWID", "Windows 8 or 8.1 activation via KMS", "Activation of Windows Server 2022, Windows Server Standard, Windows Server Datacenter, 2019, 2016, 2012, 2012 R2, 1803, 1709", "Via KMS, will be activated as %p% 2024 (older versions will be updated)", ("Office %v% activation via sppc.dll file$n" + "%info%" + "The activation will also work for Office %otherv%. Office will then be automatically converted to %v%."), "Office 365 is always the latest version of Office, it is better to choose this option.$n", "Anyway, I would recommend selecting Office 365.$n", "Office 2013 activation via sppc.dll file.", ("Allow creation of an offline Minecraft account in Prism Launcher without Microsoft account.$n", "Do not start if you have already added an account! This action will delete all accounts in the launcher!"), "Premium account in TL, you will be able to disable adding advertised servers in its settings", "Offline account in Prism Launcher unlocked!", "%p% not found!", "Premium account in TL is activated! Now open its settings to disable advertised servers!", "No account has been added to TL!", "ISO image of the latest version of Windows %v% from the official Microsoft website", "Office online installer from the official Microsoft website.", "ISO archive of Office from the official Microsoft website. Run setup.exe in it.", " Follow the instructions of $app after starting the installer.", "Not recommended, outdated version. ", "tool for writing ISO images to a flash drive", "Failed to get a download link! Try again?", "Downloaded file needs to be appended with .iso!", "recommended", 'To install online, you need to bypass geo-restrictions. To do this: run the exe-file, wait for the "Installation failure" error, click "Yes" in this window. After this, restart the installer file!', "Get passwords from saved Wi-Fi networks", "Before starting, make sure that Wi-Fi is currently enabled", "Show file extensions in the explorer", "Install ", "For LTSC versions of Windows without installed Microsoft Store!", "Backup drivers", ("Before reinstalling Windows, it's best to back up all drivers so you don't have to struggle with them afterward—just select " + '"restore" here.'), "Restore drivers", "Completely uninstall Microsoft Edge", "Delete system spy programs", "Delete CompatTelRunner.exe and wsqmcons.exe", "Install Spicetify", "Spotify mod", "Bypass web-apps geo-blocking", ("Bypass geo-restrictions via editing hosts file$n" + "The following services will work: ChatGPT, Gemini, NotebookLM, Copilot, Spotify, Codeium, GitHub Copilot, Claude, Notion, Canva, TikTok$n" + "Without VPN and other apps"), "Select directory for drivers backup", "Select directory with drivers backup", "Clear Office16 licenses", "Only for KMS activation, won't clear activation from MalwTool", "Office uninstall tool by Microsoft", "Clear Windows KMS-activation", "Check system files for integrity", "In 60 seconds there will be a reboot to check the system disk!", "Fix Telegram Desktop links", "If you can't open tg:// links in Telegram Desktop, click this button, then select the path to Telegram.exe", "I have another problem!", "Contact me, even if the problem is unrelated to $app", "Office16 folder not found!", "removing Office16 licenses", "All Office16 licenses have been removed.", "Select path to Telegram.exe", "Post on Malw.ru", "Lolzteam thread", "Questions? ", "Message in Telegram", "Write in Lolzteam thread", "Write in GitHub Issues", "Activate!", "https://drive.massgrave.dev/en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f.iso", "https://drive.massgrave.dev/en-us_windows_11_iot_enterprise_ltsc_2024_x64_dvd_f6b14814.iso", "https://oemsoc.download.prss.microsoft.com/dbazure/X23-81958_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_en-us.iso_909fa35d-ba98-407d-9fef-8df76f75e133?t=34b8db0f-439b-497c-86ce-ec7ceb898bb7&P1=102816956391&P2=601&P3=2&P4=pG1WoVpBKlyWcmfj%2bt1gYgkTsP4At28ch8mG7vIQm%2fT4elz5v2ZQ3eKAN8%2fFjb1yaa4npBaABURtnI8YmrDv8p0VJmYpLCIUQ0FHEFR4IFiPgtvzwAAI8oNdiEl%2b2uM7MN8Gaju8BvIVgHRl%2fRxq0HFgrFoEGmvHZU4jY0RFsYAaHliUinDUzdVfT0IPwyWqNUJXZTSfguyphv8XZx8OQsBy3zwBp7tNHsKl36ZO2JdZK%2fyPY7QTpAr5ccazUPEa40ALhYRBJXxlQb1F0OeO7kHhW7DKK5D4Wpt5WbpjFn8MqcZBX3%2fQI6WAwzDSKIck7jYL7bYdl2ufoMRrFZrxxw%3d%3d", "https://drive.massgrave.dev/en-us_windows_server_2022_updated_nov_2024_x64_dvd_4e34897c.iso", "https://drive.massgrave.dev/en-us_windows_server_2019_x64_dvd_f9475476.iso", "https://drive.massgrave.dev/en_windows_server_2016_vl_x64_dvd_11636701.iso", "https://drive.massgrave.dev/en_windows_server_2012_r2_vl_with_update_x64_dvd_6052766.iso", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2024Retail&platform=x64&language=en-us&version=O16GA", "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/en-us/ProPlus2024Retail.img", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=en-us&version=O16GA", "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/en-us/ProPlus2021Retail.img", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2019Retail&platform=x64&language=en-us&version=O16GA", "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/en-us/ProPlus2019Retail.img", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlusRetail&platform=x64&language=en-us&version=O16GA", "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/en-us/ProPlusRetail.img", "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlusRetail&platform=x64&language=en-us&version=O15GA", "https://officecdn.microsoft.com/db/39168d7e-077b-48e7-872c-b232c3e72675/media/en-us/ProfessionalRetail.img")
 }
-# английский язык
-# проглядеть всё
-# глобальное тестирование
 
 $form = New-Object System.Windows.Forms.Form -Property @{
     StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen
@@ -257,7 +255,7 @@ $Act = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(515, 169)
     Size = [System.Drawing.Size]::new(96, 23)
     TabIndex = 14
-    Text = "Активировать!"
+    Text = $strings[66]
     UseVisualStyleBackColor = $true
 }
 
@@ -268,10 +266,10 @@ $Act.Add_Click({
     switch ($prod) {
         "ActPrismLauncher" {
             if (Test-Path "$env:appdata\PrismLauncher") {
-                '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "MSA"}],"formatVersion": 3}' | Out-File "$env:appdata\PrismLauncher\accounts.json" -Encoding ASCII
-                [System.Windows.Forms.MessageBox]::Show($strings[16], $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                '{"accounts": [{"entitlement": {"canPlayMinecraft": true, "ownsMinecraft": true},"type": "MSA"}], "formatVersion": 3}' | Out-File "$env:appdata\PrismLauncher\accounts.json" -Encoding ASCII
+                $mb.Invoke($strings[16], $app, "OK", "Information")
             } else {
-                [System.Windows.Forms.MessageBox]::Show($strings[17].Replace("%p%", "Prism Launcher"), $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                $mb.Invoke($strings[17].Replace("%p%", "Prism Launcher"), $app, "OK", "Error")
             }
         }
         "ActTL" {
@@ -279,27 +277,27 @@ $Act.Add_Click({
                 $file = Get-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json" -Raw
                 if ($file -match '"premiumAccount": false') {
                     $file -replace '"premiumAccount": false', '"premiumAccount": true' | Set-Content -Path "$env:appdata\.minecraft\TlauncherProfiles.json"
-                    [System.Windows.Forms.MessageBox]::Show($strings[18], $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+                    $mb.Invoke($strings[18], $app, "OK", "Information")
                 }
                 else {
-                    [System.Windows.Forms.MessageBox]::Show($strings[19], $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error) 
+                    $mb.Invoke($strings[19], $app, "OK", "Error") 
                 }
             }
             else {
-                [System.Windows.Forms.MessageBox]::Show($strings[17].Replace("%p%", "TL"), $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                $mb.Invoke($strings[17].Replace("%p%", "TL"), $app, "OK", "Error")
             }
         }
         "ActMXT" {
             if (Test-Path "$(env:ProgramFiles(x86))\Mobatek\MobaXterm\version.dat") {
                 Start-Process powershell -ArgumentList "Invoke-RestMethod https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators/MXT.ps1 | Invoke-Expression" -Verb RunAs
             } else {
-                [System.Windows.Forms.MessageBox]::Show($strings[17].Replace("%p%", "MobaXterm"), $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                $mb.Invoke($strings[17].Replace("%p%", "MobaXterm"), $app, "OK", "Error")
             }
         }
         default {
             if ($prod.StartsWith("O")) {
                 if (-not (test-path $com[2 + ($prod -eq "O13")])) {
-                    [System.Windows.Forms.MessageBox]::Show($strings[17].Replace("%p%", "Office"), $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+                    $mb.Invoke($strings[17].Replace("%p%", "Office"), $app, "OK", "Error")
                     break
                 }
             }
@@ -509,7 +507,7 @@ $rufus = New-Object System.Windows.Forms.Button -Property @{
 @($DlWin10, $DlWin11, $DlWin10Ltsc, $DlWin11Ltsc, $DlServer2025, $DlServer2022, $DlServer2019, $DlServer2016, $DlServer2012, $DlWin81, $DlOffice2024Installer, $DlOffice2024ISO, $DlOffice2021Installer, $DlOffice2021ISO, $DlOffice2019Installer, $DlOffice2019ISO, $DlOffice2016Installer, $DlOffice2016ISO, $DlOffice2013Installer, $DlOffice2013ISO, $l24, $l21, $l19, $l16, $l13, $rufus) | ForEach-Object { $DlTab.Controls.Add($_) }
 
 function bypass_office_geoblock {
-    $result = [System.Windows.Forms.MessageBox]::Show($strings[28], $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Information)
+    $result = $mb.Invoke($strings[28], $app, "YesNo", "Information")
     if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
         New-ItemProperty -Path "HKCU:\Software\Microsoft\Office\16.0\Common\ExperimentConfigs\Ecs" -Name "CountryCode" -PropertyType String -Value "std::wstring|US" -Force
     }
@@ -518,9 +516,9 @@ function bypass_office_geoblock {
 $DlWin10.Add_Click({
     try {
         $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
-        Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."10"[0])&sku_id=$($products."10"[1])" -Method Get).ProductDownloadOptions[0].Uri
+        Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."10"[0])&sku_id=$($products."10"[1 + (0 if ($PSUICulture -eq "ru-RU") else 1)])" -Method Get).ProductDownloadOptions[0].Uri
     } catch {
-        $result = [System.Windows.Forms.MessageBox]::Show($strings[25], $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Warning)
+        $result = $mb.Invoke($strings[25], $app, "YesNo", "Warning")
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
             $DlWin10.PerformClick()
         }
@@ -530,9 +528,9 @@ $DlWin10.Add_Click({
 $DlWin11.Add_Click({
     try {
         $products = Invoke-RestMethod -Uri https://raw.githubusercontent.com/ImMALWARE/MABeta/main/windl.json -Method Get
-        Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."11"[0])&sku_id=$($products."11"[1])" -Method Get).ProductDownloadOptions[0].Uri
+        Start-Process (Invoke-RestMethod -Uri "https://api.gravesoft.dev/msdl/proxy?product_id=$($products."11"[0])&sku_id=$($products."11"[1 + (0 if ($PSUICulture -eq "ru-RU") else 1)])" -Method Get).ProductDownloadOptions[0].Uri
     } catch {
-        $result = [System.Windows.Forms.MessageBox]::Show($strings[25], $app, [System.Windows.Forms.MessageBoxButtons]::YesNo, [System.Windows.Forms.MessageBoxIcon]::Warning)
+        $result = $mb.Invoke($strings[25], $app, "YesNo", "Warning")
         if ($result -eq [System.Windows.Forms.DialogResult]::Yes) {
             $DlWin11.PerformClick()
         }
@@ -540,76 +538,76 @@ $DlWin11.Add_Click({
 })
 
 $DlWin10Ltsc.Add_Click({
-    Start-Process "https://drive.massgrave.dev/ru-ru_windows_10_enterprise_ltsc_2021_x64_dvd_5044a1e7.iso"
+    Start-Process $strings[67]
 })
 
 $DlWin11Ltsc.Add_Click({
-    Start-Process "https://drive.massgrave.dev/ru-ru_windows_11_enterprise_ltsc_2024_x64_dvd_f9af5773.iso"
+    Start-Process $strings[68]
 })
 
 $DlServer2025.Add_Click({
-    Start-Process "https://oemsoc.download.prss.microsoft.com/dbazure/X23-81967_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_ru-ru.iso_0400d135-3d94-49a2-8627-8f1a8cb316bf?t=27afd6c5-3c63-4984-8139-b9c239276cb4&P1=102817441539&P2=601&P3=2&P4=K6P6PaBziMqVvDg7AgCqTBprjEMuo%2bmjluaix%2b9TaUldONUCc3PtGs30Rvmn3IKMuSZ7kcmGydK%2bmz38quTSTCyGmjPdKm6bLG%2f2m13pTKsdD1zp%2flccTbTkwvIN%2fdhU8qzwet9V56is8W7o7IykKbczeFlJ1yQV7xq6OCpOzudqomW5fUsUO0%2fRx%2b78zkGgyrHlxIQlX9bAC5Fr069%2byhr5OiXWk9R%2fzEj93%2bEfBrZMTFz1M%2fzf6UKw6tYjOjdSJkNKk%2bhjnAyC%2bcqCj2OKrw6yhEJ6vtXbNJomDZzfUBqMM%2f1uoRabPzPv5Adp3XEJ5DIzdBU%2foyhPbj0qcCzfPg%3d%3d"
-    [System.Windows.Forms.MessageBox]::Show($strings[26], $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    Start-Process $strings[69]
+    $mb.Invoke($strings[26], $app, "OK", "Information")
 })
 
 $DlServer2022.Add_Click({
-    Start-Process "https://drive.massgrave.dev/ru-ru_windows_server_2022_updated_nov_2024_x64_dvd_4e34897c.iso"
+    Start-Process $strings[70]
 })
 
 $DlServer2019.Add_Click({
-    Start-Process "https://drive.massgrave.dev/ru-ru_windows_server_2019_x64_dvd_e02b76ba.iso"
+    Start-Process $strings[71]
 })
 
 $DlServer2016.Add_Click({
-    Start-Process "https://drive.massgrave.dev/ru_windows_server_2016_vl_x64_dvd_11636694.iso"
+    Start-Process $strings[72]
 })
 
 $DlServer2012.Add_Click({
-    Start-Process "https://drive.massgrave.dev/ru_windows_server_2012_r2_vl_with_update_x64_dvd_6052827.iso"
+    Start-Process $strings[73]
 })
 
 $DlOffice2024Installer.Add_Click({
-    Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2024Retail&platform=x64&language=ru-ru&version=O16GA"
+    Start-Process $strings[74]
     bypass_office_geoblock
 })
 
 $DlOffice2024ISO.Add_Click({
-    Start-Process "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2024Retail.img"
+    Start-Process $strings[75]
 })
 
 $DlOffice2021Installer.Add_Click({
-    Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=ru-ru&version=O16GA"
+    Start-Process $strings[76]
     bypass_office_geoblock
 })
 
 $DlOffice2021ISO.Add_Click({
-    Start-Process "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2021Retail.img"
+    Start-Process $strings[77]
 })
 
 $DlOffice2019Installer.Add_Click({
-    Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2019Retail&platform=x64&language=ru-ru&version=O16GA"
+    Start-Process $strings[78]
     bypass_office_geoblock
 })
 
 $DlOffice2019ISO.Add_Click({
-    Start-Process "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProPlus2019Retail.img"
+    Start-Process $strings[79]
 })
 
 $DlOffice2016Installer.Add_Click({
-    Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProfessionalRetail&platform=x64&language=ru-ru&version=O16GA"
+    Start-Process $strings[80]
     bypass_office_geoblock
 })
 
 $DlOffice2016ISO.Add_Click({
-    Start-Process "https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/ru-ru/ProfessionalRetail.img"
+    Start-Process $strings[81]
 })
 
 $DlOffice2013Installer.Add_Click({
-    Start-Process "https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlusRetail&platform=x64&language=ru-ru&version=O15GA"
+    Start-Process $strings[82]
 })
 
 $DlOffice2013ISO.Add_Click({
-    Start-Process "https://officecdn.microsoft.com.edgesuite.net/db/39168D7E-077B-48E7-872C-B232C3E72675/media/ru-ru/ProfessionalRetail.img"
+    Start-Process $strings[83]
 })
 
 $rufus.Add_Click({
@@ -873,7 +871,7 @@ $otherproblem = New-Object System.Windows.Forms.Button -Property @{
     Text = $strings[54]
     UseVisualStyleBackColor = $true
 }
-$tooltip.SetToolTip($otherproblem, "Даже если проблема не связана с $app, всё равно напишите")
+$tooltip.SetToolTip($otherproblem, $strings[55])
 
 @($winimg, $oimg, $clear_office16, $office_uninstall, $clear_winkms, $sfc_scannow, $telegram_fix, $otherproblem) | ForEach-Object { $ProblemsTab.Controls.Add($_) }
 
@@ -885,34 +883,29 @@ $clear_office16.Add_Click({
         $path = "$(env:ProgramFiles(x86))\Microsoft Office\Office16\"
     }
     else {
-        [System.Windows.Forms.MessageBox]::Show("Папка Office16 не найдена!", $app, [System.Windows.Forms.MessageBoxButtons]::OK,[System.Windows.Forms.MessageBoxIcon]::Error)
+        $mb.Invoke($strings[56], $app, "OK", "Error")
         exit
     }
     Start-Process powershell -ArgumentList @"
-    $host.ui.RawUI.WindowTitle = 'MaltTool: убираю лицензии Office16'
+    $host.ui.RawUI.WindowTitle = '$app — $($strings[57])'
     cd '$path'
     while($true){
-        $license = (cscript ospp.vbs /dstatus) | Out-String
-        $match = $license | Select-String -Pattern 'Last 5 characters of installed product key: (\w{5})'
-        if ($match) {
-            $productKey = $match.Matches.Groups[1].Value
-            cscript ospp.vbs /unpkey:$productKey
+        `$license = (cscript ospp.vbs /dstatus) | Out-String
+        `$match = `$license | Select-String -Pattern 'Last 5 characters of installed product key: (\w{5})'
+        if (`$match) {
+            `$productKey = `$match.Matches.Groups[1].Value
+            cscript ospp.vbs /unpkey:`$productKey
         } else {
             exit
         }
     }
 "@ -Verb RunAs -Wait
-    [System.Windows.Forms.MessageBox]::Show("All Office16 licenses have been removed.", $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
-    exit
+    $mb.Invoke($strings[58], $app, "OK", "Information")
 })
 
 $office_uninstall.Add_Click({
-    New-Item -Path "$env:temp\$app" -ItemType Directory > $null
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-    $wc.DownloadFile('https://outlookdiagnostics.azureedge.net/sarasetup/SetupProd_OffScrub.exe', "$env:temp\$app\SetupProd_OffScrub.exe")
-    Set-Location $env:SystemRoot\System32
-    ./cmd.exe /c start "" "$env:temp\$app\SetupProd_OffScrub.exe"
-    [System.Windows.Forms.MessageBox]::Show("тут гайд типа будет", $app, [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Information)
+    Start-Process "ms-contact-support://smc-to-emerald/SARA-UninstallOffice"
+    $mb.Invoke("Необходимо установленное приложение ??? (Get Help)! ", $app, "OK", "Information")
 })
 
 $clear_winkms.Add_Click({
@@ -926,14 +919,14 @@ $sfc_scannow.Add_Click({
 $telegram_fix.Add_Click({
     $dialog = New-Object System.Windows.Forms.OpenFileDialog
     $dialog.Filter = "Telegram|Telegram.exe"
-    $dialog.Title = "Выберите путь к Telegram.exe"
+    $dialog.Title = $strings[59]
     $dialog.InitialDirectory = "$env:AppData\Telegram Desktop"
 
     if ($dialog.ShowDialog() -eq 'OK') {
         $regPath = "HKCR:\tg\shell\open\command"
         New-Item -Path $regPath -Force | Out-Null
         Set-ItemProperty -Path $regPath -Name "(Default)" -Value "`"$($dialog.FileName.Replace('\', '\\'))`" -- `"%1`""
-        [System.Windows.Forms.MessageBox]::Show("Применено!", $app, "OK", "Information")
+        $mb.Invoke("OK!", $app, "OK", "Information")
     }
 })
 
@@ -952,23 +945,23 @@ $malwtool = New-Object System.Windows.Forms.Label -Property @{
 }
 
 $malwru = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(8, 23)
+    Location = [System.Drawing.Point]::new(8, 30)
     Size = [System.Drawing.Size]::new(109, 23)
     TabIndex = 0
-    Text = "Статья на Malw.ru"
+    Text = $strings[60]
     UseVisualStyleBackColor = $true
 }
 
 $lolzteam = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(123, 23)
+    Location = [System.Drawing.Point]::new(123, 30)
     Size = [System.Drawing.Size]::new(109, 23)
     TabIndex = 2
-    Text = "Тема на Lolzteam"
+    Text = $strings[61]
     UseVisualStyleBackColor = $true
 }
 
 $github = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(238, 23)
+    Location = [System.Drawing.Point]::new(238, 30)
     Size = [System.Drawing.Size]::new(56, 23)
     TabIndex = 3
     Text = "GitHub"
@@ -980,30 +973,30 @@ $questions = New-Object System.Windows.Forms.Label -Property @{
     Location = [System.Drawing.Point]::new(8, 91)
     Size = [System.Drawing.Size]::new(86, 15)
     TabIndex = 4
-    Text = "Есть вопросы? Даже если они не связаны с $app, буду рад помочь!"
+    Text = $strings[62] + $strings[55]
 }
 
 $telegram = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(8, 109)
+    Location = [System.Drawing.Point]::new(8, 115)
     Size = [System.Drawing.Size]::new(124, 23)
     TabIndex = 5
-    Text = "Написать в Telegram"
+    Text = $strings[63]
     UseVisualStyleBackColor = $true
 }
 
 $lolzteam2 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(138, 109)
+    Location = [System.Drawing.Point]::new(138, 115)
     Size = [System.Drawing.Size]::new(156, 23)
     TabIndex = 6
-    Text = "Написать в теме Lolzteam"
+    Text = $strings[64]
     UseVisualStyleBackColor = $true
 }
 
 $github2 = New-Object System.Windows.Forms.Button -Property @{
-    Location = [System.Drawing.Point]::new(300, 109)
+    Location = [System.Drawing.Point]::new(300, 115)
     Size = [System.Drawing.Size]::new(156, 23)
     TabIndex = 7
-    Text = "Написать в Issues GitHub"
+    Text = $strings[65]
     UseVisualStyleBackColor = $true
 }
 
