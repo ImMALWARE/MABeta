@@ -1,5 +1,5 @@
-if ($PSUICulture -eq "ru-RU") {Write-Output "Активация Windows 8/8.1 через KMS"}
-else {Write-Output "Activating Windows 8/8.1 via KMS"}
+if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = 'Активация Windows 8/8.1 через KMS'}
+else {Write-Output 'Activating Windows 8/8.1 via KMS'}
 
 Set-Location $env:SystemRoot\System32
 ./cscript.exe //nologo slmgr.vbs /ckms > $null

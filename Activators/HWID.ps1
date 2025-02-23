@@ -1,4 +1,3 @@
-
 if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = 'MalwTool — Активация Windows 10/11 через HWID'}
 else {$host.ui.RawUI.WindowTitle = 'Activating Windows 10/11 via HWID'}
 

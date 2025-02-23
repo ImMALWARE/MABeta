@@ -14,6 +14,7 @@ $hidden = New-Object System.Windows.Forms.Form -Property @{
 
 # Тайтлы всех окон
 # Сортировать strings
+# Конвертация LTSC Evaluation в Full
 # Протестировать: активация
 
 if ($PSUICulture -eq "ru-RU") {
@@ -230,7 +231,7 @@ $Act = New-Object System.Windows.Forms.Button -Property @{
     Text = $strings[66]
 }
 
-$com = @("irm https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators", " | Invoke-Expression", "$env:ProgramFiles\Microsoft Office\root\vfs\System", "$env:ProgramFiles\Microsoft Office 15\root\vfs\System")
+$com = @("irm https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators", " | iex", "$env:ProgramFiles\Microsoft Office\root\vfs\System", "$env:ProgramFiles\Microsoft Office 15\root\vfs\System")
 $Act.Add_Click({
     $prod = ($ActTab.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked })[0].Name
     $activators = @{"ActWin10" = "HWID.ps1"; "ActWin8" = "KMS.ps1"; "ActWinServer" = "ServerKMS.ps1"; "ActVisio" = "VisioProject.ps1"; "ActProject" = "VisioProject.ps1"; "ActVS" = "VS.ps1"}
@@ -272,9 +273,7 @@ $Act.Add_Click({
                     break
                 }
             }
-            ## // #Start-Process powershell -ArgumentList "$($com[0])/$($activators[$prod])$($com[1]) -Product $prod" -Verb RunAs
-            #Start-Process powershell -ArgumentList "$($com[0])/$($activators[$prod])$($com[1])" -Verb RunAs
-            Start-Process powershell -ArgumentList "('`$Product = `"$prod`"'" + $com[0] + "/" + $activators[$prod] + ")" + $com[1] -Verb RunAs
+            Start-Process powershell -ArgumentList ("`$Product = '$prod'; " + $com[0] + "/" + $activators[$prod] + $com[1]) -Verb RunAs
         }
     }
 })
