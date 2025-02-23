@@ -9,7 +9,7 @@ if ($PSUICulture -eq "ru-RU") {
 }
 
 while ($true) {
-    Write-Host $string
+    Write-Host $strings[0]
     $choice = Read-Host
 
     switch ($choice) {
