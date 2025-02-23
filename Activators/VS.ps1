@@ -1,9 +1,12 @@
 Add-Type -AssemblyName System.Windows.Forms
 
+if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = 'Активация Visual Studio 2022 Professional/Enterprise'}
+else {$host.ui.RawUI.WindowTitle = 'Activating Visual Studio 2022 Professional/Enterprise'}
+
 if ($PSUICulture -eq "ru-RU") {
-    $strings = @("Активация Visual Studio 2022 Professional/Enterprise", "не найден!", "Активировано!")
+    $strings = @("не найден!", "Активировано!")
 } else {
-    $strings = @("Activating Visual Studio 2022 Professional/Enterprise", "not found!", "Activated!")
+    $strings = @("not found!", "Activated!")
 }
 
 if (test-path "$env:ProgramFiles\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\VsRegEdit.exe") {
@@ -17,13 +20,11 @@ elseIf (test-path "$env:ProgramFiles\Microsoft Visual Studio\2022\Professional\C
     $key = "TD244-P4NB7-YQ6XK-Y8MMM-YWV2J"
 }
 else { 
-    [System.Windows.Forms.MessageBox]::Show("Visual Studio 2022 Professional/Enterprise " + $strings[1], "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
+    [System.Windows.Forms.MessageBox]::Show("Visual Studio 2022 Professional/Enterprise " + $strings[0], "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
     exit
 }
-
-Write-Output $strings[0]
 taskkill.exe /f /im devenv.exe
 Set-Location $path
 .\StorePID.exe "$key" "$MPC"
-Write-Host $strings[2]
+Write-Host $strings[1]
 pause

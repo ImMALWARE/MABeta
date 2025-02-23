@@ -10,7 +10,7 @@ $app = 'MalwTool'
 $n = [Environment]::NewLine
 $hidden = New-Object System.Windows.Forms.Form -Property @{
     TopMost = $true
-    WindowState = 'Minimized'
+    WindowState = "Minimized"
 }
 
 # Тайтлы всех окон
@@ -20,7 +20,7 @@ $hidden = New-Object System.Windows.Forms.Form -Property @{
 # Проверять все пути до запуска других powershell!
 # Скачивание Visio и Project (ток 2024)
 
-if ($PSUICulture -eq 'ru-RU') {
+if ($PSUICulture -eq "ru-RU") {
     $strings = @("Активация",
     "Скачивание",
     "Другие функции",
@@ -97,10 +97,10 @@ $ActWin10 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Checked = $true
     Location = [System.Drawing.Point]::new(6, 6)
-    Name = 'Win10'
+    Name = "Win10"
     Size = [System.Drawing.Size]::new(143, 19)
     TabStop = $true
-    Text = 'Windows 10/11 (HWID)'
+    Text = "Windows 10/11 (HWID)"
 }
 $tooltip.SetToolTip($ActWin10, $strings[5])
 
