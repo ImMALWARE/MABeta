@@ -1,4 +1,6 @@
-# Конвертировать Windows Enterprise LTSC Evaluation в полную версию Windows Enterprise LTSC
+if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = 'MalwTool — Конвертирование Windows 10 LTSC Evaluation в полноценную LTSC'}
+else {$host.ui.RawUI.WindowTitle = 'MalwTool — Converting Windows 10 LTSC Evaluation to full LTSC'}
+
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $wc = New-Object net.webclient
 New-Item -Path "$env:temp\MalwTool" -ItemType Directory > $null
@@ -14,3 +16,4 @@ sc.exe config LicenseManager start= auto
 net start LicenseManager
 sc.exe config wuauserv start= auto
 net start wuauserv
+pause
