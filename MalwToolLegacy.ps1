@@ -14,6 +14,8 @@ $visproj = @"
     pause
 "@
 
+
+
 while ($true) {
     Write-Host '~~~ MalwTool Legacy ~~~'
     Write-Host "Enter the number of what you need and press Enter:$n 1. Activate Windows 8/8.1$n 2. Activate Office 2016$n 3. Activate Office 2013$n 4. Activate Visio 2016$n 5. Activate Project 2016$n 6. Exit"
@@ -45,7 +47,8 @@ while ($true) {
                 Write-Host 'Visio 2016 not found!'
                 continue
             }
-            Start-Process powershell -ArgumentList $visproj.Replace('%p%', 'Visio 2016').Replace('%path%', $path).Replace('%key%', 'PD3PC-RHNGV-FXJ29-8JK7D-RJRJK')
+            Start-Process powershell -ArgumentList $visproj.Replace('%p%', 'Visio 2016').Replace('%path%', $path).Replace('%key%', 'PD3PC-RHNGV-FXJ29-8JK7D-RJRJK') -Verb RunAs
+            Write-Host $visproj.Replace('%p%', 'Visio 2016').Replace('%path%', $path).Replace('%key%', 'PD3PC-RHNGV-FXJ29-8JK7D-RJRJK')
         } '5' {
             if (test-path "$env:ProgramFiles\Microsoft Office\Office16\ospp.vbs"){
                 $path = "$env:ProgramFiles\Microsoft Office\Office16\"
