@@ -6,11 +6,11 @@ $visproj = @"
     `$host.ui.RawUI.WindowTitle = 'MalwTool — Activating %p%'
     Set-Location '%path%'
     & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'..\root\Licenses16\pkeyconfig-office.xrm-ms' > `$null
-    Get-ChildItem -Path '..\root\Licenses16\' -Filter 'client-issuance*.xrm-ms', 'VisioProVL_KMS*.xrm-ms', 'ProjectProVL_KMS*.xrm-ms' | ForEach-Object { & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'`$(`$_.FullName)' > `$null }
+    Get-ChildItem -Path '..\root\Licenses16\' -Include 'client-issuance*.xrm-ms', 'VisioProVL_KMS*.xrm-ms', 'ProjectProVL_KMS*.xrm-ms' | ForEach-Object { & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'`$(`$_.FullName)' > `$null }
     & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inpkey:%key% > `$null
     & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /sethst:kms.loli.best > `$null
     & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /setprt:1688 > `$null
-    & '~$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /act
+    & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /act
 "@
 
 while ($true) {
@@ -44,7 +44,7 @@ while ($true) {
                 Write-Host 'Visio 2016 not found!'
                 continue
             }
-            Start-Process powershell -ArgumentList $visproj.Replace('%p%', 'Visio 2016').Replace('%path%', $path).Replace('%key%', 'PD3PC-RHNGV-FXJ29-8JK7D-RJRJK') -Verb RunAs
+            Start-Process powershell -ArgumentList $visproj.Replace('%p%', 'Visio 2016').Replace('%path%', $path).Replace('%key%', 'PD3PC-RHNGV-FXJ29-8JK7D-RJRJK')
         } '5' {
             if (test-path "$env:ProgramFiles\Microsoft Office\Office16\ospp.vbs"){
                 $path = "$env:ProgramFiles\Microsoft Office\Office16\"
