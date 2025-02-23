@@ -1,7 +1,7 @@
 ﻿# https://github.com/ImMALWARE/MalwTool
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32.dll")]public static extern IntPtr GetConsoleWindow();[DllImport("user32.dll")]public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);'
-#[void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
+[void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $wc = New-Object net.webclient
@@ -220,14 +220,6 @@ $ActMXT = New-Object System.Windows.Forms.RadioButton -Property @{
     Text = "MobaXterm"
 }
 
-$ActVS = New-Object System.Windows.Forms.RadioButton -Property @{
-    AutoSize = $true
-    Location = [System.Drawing.Point]::new(373, 106)
-    Name = "VS"
-    Size = [System.Drawing.Size]::new(244, 19)
-    Text = "Visual Studio 2022 Professional/Enterprise"
-}
-
 $Act = New-Object System.Windows.Forms.Button -Property @{
     Location = [System.Drawing.Point]::new(515, 169)
     Size = [System.Drawing.Size]::new(96, 23)
@@ -281,7 +273,7 @@ $Act.Add_Click({
     }
 })
 
-@($ActWin10, $ConvertEvaluationToFull, $ActWinServer, $ActVisio, $ActProject, $ActOffice365, $ActOffice2024, $ActOffice2021, $ActOffice2019, $ActOffice2016, $ActOffice2013, $ActPrismLauncher, $ActTL, $ActMXT, $ActVS, $Act) | ForEach-Object { $ActTab.Controls.Add($_) }
+@($ActWin10, $ConvertEvaluationToFull, $ActWinServer, $ActVisio, $ActProject, $ActOffice365, $ActOffice2024, $ActOffice2021, $ActOffice2019, $ActOffice2016, $ActOffice2013, $ActPrismLauncher, $ActTL, $ActMXT, $Act) | ForEach-Object { $ActTab.Controls.Add($_) }
 
 # Downloads tab
 
