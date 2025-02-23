@@ -1,7 +1,6 @@
-param([string]$Product)
-
-$Product = @{"O65"="365"; "O24"="2024"; "O21"="2021"; "O19"="2019"; "O16"="2016"}[$Product]
-Write-Output $(if ($PSUICulture -eq "ru-RU") {"Активация Office $Product через подмену файла sppcs.dll"} else {"Activating Office $Product via replacing sppcs.dll file"})
+$Product = $Product.Replace('Office', '')
+if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = "MalwTool — Активация Office $Product через подмену sppcs.dll"}
+else {$host.ui.RawUI.WindowTitle = "MalwTool — Activating Office $Product via replacing sppcs.dll"}
 
 $lics = @{"365" = "O365ProPlusR"; "2024" = "ProPlus2021VL_KMS"; "2021" = "ProPlus2021VL_KMS"; "2019" = "ProPlus2019VL"; "2016" = "proplusvl_kms"}
 $keys = @{"365" = "2N382-D6PKK-QTX4D-2JJYK-M96P2"; "2024" = "VWCNX-7FKBD-FHJYG-XBR4B-88KC6"; "2021" = "FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH"; "2019" = "NMMKJ-6RK4F-KMJVX-8D9MJ-6MWKP"; "2016" = "XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99"}

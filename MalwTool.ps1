@@ -17,8 +17,8 @@ $hidden = New-Object System.Windows.Forms.Form -Property @{
 # Сортировать strings
 # Конвертация LTSC Evaluation в Full
 # Протестировать: активация
-# Написать в документации о том, что для windows 8 другая команда
-
+# Написать в документации о том, что для windows 8 всё отдельно
+# Проверять все пути до запуска других powershell!
 
 if ($PSUICulture -eq "ru-RU") {
     $strings = @("Активация",
@@ -97,7 +97,7 @@ $ActWin10 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Checked = $true
     Location = [System.Drawing.Point]::new(6, 6)
-    Name = "ActWin10"
+    Name = "Win10"
     Size = [System.Drawing.Size]::new(143, 19)
     TabStop = $true
     Text = "Windows 10/11 (HWID)"
@@ -107,7 +107,7 @@ $tooltip.SetToolTip($ActWin10, $strings[5])
 $ActWin8 = New-Object System.Windows.Forms.RadioButton -Property @{ 
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 31)
-    Name = "ActWin8"
+    Name = "Win8"
     Size = [System.Drawing.Size]::new(130, 19)
     Text = "Windows 8/8.1 (KMS)"
 }
@@ -116,7 +116,7 @@ $tooltip.SetToolTip($ActWin8, $strings[6])
 $ActWinServer = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 56)
-    Name = "ActWinServer"
+    Name = "WinServer"
     Size = [System.Drawing.Size]::new(193, 19)
     Text = "Windows Server 2022/2019/2016"
 }
@@ -125,7 +125,7 @@ $tooltip.SetToolTip($ActWinServer, $strings[7])
 $ActVisio = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 106)
-    Name = "ActVisio"
+    Name = "OfficeVisio"
     Size = [System.Drawing.Size]::new(54, 19)
     Text = "Visio 2016/2019/2021/2024"
 }
@@ -134,7 +134,7 @@ $tooltip.SetToolTip($ActVisio, $strings[8].Replace("%p%", "Visio"))
 $ActProject = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(6, 131)
-    Name = "ActProject"
+    Name = "OfficeProject"
     Size = [System.Drawing.Size]::new(64, 19)
     Text = "Project 2016/2019/2021/2024"
 }
@@ -143,7 +143,7 @@ $tooltip.SetToolTip($ActProject, $strings[8].Replace("%p%", "Project"))
 $ActOffice365 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 6)
-    Name = "ActOffice365"
+    Name = "Office365"
     Size = [System.Drawing.Size]::new(79, 19)
     Text = "Office 365"
 }
@@ -152,7 +152,7 @@ $tooltip.SetToolTip($ActOffice365, $strings[9].Replace("%v%", "365").Replace("%i
 $ActOffice2024 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 31)
-    Name = "ActOffice2024"
+    Name = "Office2024"
     Size = [System.Drawing.Size]::new(83, 19)
     Text = "Office 2024"
 }
@@ -161,7 +161,7 @@ $tooltip.SetToolTip($ActOffice2024, $strings[9].Replace("%v%", "2024").Replace("
 $ActOffice2021 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 56)
-    Name = "ActOffice2021"
+    Name = "Office2021"
     Size = [System.Drawing.Size]::new(83, 19)
     Text = "Office 2021"
 }
@@ -170,7 +170,7 @@ $tooltip.SetToolTip($ActOffice2021, $strings[9].Replace("%v%", "2021").Replace("
 $ActOffice2019 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 81)
-    Name = "ActOffice2019"
+    Name = "Office2019"
     Size = [System.Drawing.Size]::new(84, 19)
     Text = "Office 2019"
 }
@@ -179,7 +179,7 @@ $tooltip.SetToolTip($ActOffice2019, $strings[9].Replace("%v%", "2019").Replace("
 $ActOffice2016 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 106)
-    Name = "ActOffice2016"
+    Name = "Office2016"
     Size = [System.Drawing.Size]::new(84, 19)
     Text = "Office 2016"
 }
@@ -188,7 +188,7 @@ $tooltip.SetToolTip($ActOffice2016, $strings[9].Replace("%v%", "2016").Replace("
 $ActOffice2013 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 131)
-    Name = "ActOffice2013"
+    Name = "Office2013"
     Size = [System.Drawing.Size]::new(83, 19)
     Text = "Office 2013"
 }
@@ -197,7 +197,7 @@ $tooltip.SetToolTip($ActOffice2013, $strings[12])
 $ActPrismLauncher = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 6)
-    Name = "ActPrismLauncher"
+    Name = "PrismLauncher"
     Size = [System.Drawing.Size]::new(201, 19)
     Text = "Prism Launcher"
 }
@@ -206,7 +206,7 @@ $tooltip.SetToolTip($ActPrismLauncher, $strings[13])
 $ActTL = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 31)
-    Name = "ActTL"
+    Name = "TL"
     Size = [System.Drawing.Size]::new(81, 19)
     Text = "TL"
 }
@@ -215,7 +215,7 @@ $tooltip.SetToolTip($ActTL, $strings[14])
 $ActMXT = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 56)
-    Name = "ActMXT"
+    Name = "MXT"
     Size = [System.Drawing.Size]::new(88, 19)
     Text = "MobaXterm"
 }
@@ -237,7 +237,7 @@ $Act = New-Object System.Windows.Forms.Button -Property @{
 $com = @("irm https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators", " | iex", "$env:ProgramFiles\Microsoft Office\root\vfs\System", "$env:ProgramFiles\Microsoft Office 15\root\vfs\System")
 $Act.Add_Click({
     $prod = ($ActTab.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked })[0].Name
-    $activators = @{"ActWin10" = "HWID.ps1"; "ActWin8" = "KMS.ps1"; "ActWinServer" = "ServerKMS.ps1"; "ActVisio" = "VisioProject.ps1"; "ActProject" = "VisioProject.ps1"; "ActVS" = "VS.ps1"}
+    $activators = @{"Win10" = "HWID.ps1"; "WinServer" = "ServerKMS.ps1"; "OfficeVisio" = "VisioProject.ps1"; "OfficeProject" = "VisioProject.ps1"; "VS" = "VS.ps1"}
     switch ($prod) {
         "ActPrismLauncher" {
             if (Test-Path "$env:appdata\PrismLauncher") {
