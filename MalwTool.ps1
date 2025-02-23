@@ -1,7 +1,7 @@
 ﻿# https://github.com/ImMALWARE/MalwTool
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32.dll")]public static extern IntPtr GetConsoleWindow();[DllImport("user32.dll")]public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);'
-[void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
+#[void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $wc = New-Object net.webclient
@@ -17,7 +17,8 @@ $hidden = New-Object System.Windows.Forms.Form -Property @{
 # Сортировать strings
 # Конвертация LTSC Evaluation в Full
 # Протестировать: активация
-# Убрать windows 8
+# Написать в документации о том, что для windows 8 другая команда
+
 
 if ($PSUICulture -eq "ru-RU") {
     $strings = @("Активация",
