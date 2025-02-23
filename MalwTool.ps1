@@ -15,10 +15,10 @@ $hidden = New-Object System.Windows.Forms.Form -Property @{
 
 # Тайтлы всех окон
 # Сортировать strings
-# Конвертация LTSC Evaluation в Full
+# Конвертация LTSC Evaluation в Full вместо win 8
 # Протестировать: активация
-# Написать в документации о том, что для windows 8 всё отдельно
 # Проверять все пути до запуска других powershell!
+# Скачивание Visio и Project (ток 2024)
 
 if ($PSUICulture -eq "ru-RU") {
     $strings = @("Активация",

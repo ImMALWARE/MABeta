@@ -8,13 +8,13 @@ if ($PSUICulture -eq "ru-RU") {
     $strings = @("Activating $Product 2021/2019/2016 via KMS", "not found!")
 }
 
-if (test-path "$env:ProgramFiles\Microsoft Office\Office16\ospp.vbs"){ 
+if (test-path "$env:ProgramFiles\Microsoft Office\Office16\ospp.vbs"){
     $path = "$env:ProgramFiles\Microsoft Office\Office16\"
 }
 elseIf (test-path "$(env:ProgramFiles(x86))\Microsoft Office\Office16\ospp.vbs") {
     $path = "$(env:ProgramFiles(x86))\Microsoft Office\Office16\"
 }
-else { 
+else {
     [System.Windows.Forms.MessageBox]::Show("$Product 2021/2019/2016 " + $strings[1], "MalwTool", [System.Windows.Forms.MessageBoxButtons]::OK, [System.Windows.Forms.MessageBoxIcon]::Error)
     exit
 }

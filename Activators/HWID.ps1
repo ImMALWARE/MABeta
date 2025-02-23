@@ -24,7 +24,7 @@ New-Item -Path "$env:temp\MalwTool" -ItemType Directory > $null
 $wc = New-Object net.webclient
 $wc.DownloadFile('https://download.microsoft.com/download/9/A/E/9AE69DD5-BA93-44E0-864E-180F5E700AB4/adk/Installers/14f4df8a2a7fc82a4f415cf6a341415d.cab', "$env:temp\MalwTool\GOS.cab")
 ./expand.exe -f:filf8377e82b29deadca67bc4858ed3fba9 "$env:temp\MalwTool\GOS.cab" "$env:temp\MalwTool"
-Rename-Item -Path "$env:temp\MalwTool\filf8377e82b29deadca67bc4858ed3fba9" -NewName "GOS.exe"
+Rename-Item -Path "$env:temp\MalwTool\filf8377e82b29deadca67bc4858ed3fba9" -NewName 'GOS.exe'
 $f = [System.IO.File]::ReadAllBytes("$env:temp\MalwTool\GOS.exe")
 $f[320] = 0xf8
 $f[321] = 0xfb
@@ -93,8 +93,8 @@ $f[34346] = 0x24
 $f[34376] = 0xeb
 $f[34377] = 0x63
 [System.IO.File]::WriteAllBytes("$env:temp\MalwTool\GOS.exe", $f)
-$r = "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"
-if (-not (Test-Path $r)) {New-Item -Path $r -Force | Out-Null}; Set-ItemProperty -Path $r -Name "$env:temp\MalwTool\GOS.exe" -Value "~ WINXPSP3"
+$r = 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers'
+if (-not (Test-Path $r)) {New-Item -Path $r -Force | Out-Null}; Set-ItemProperty -Path $r -Name "$env:temp\MalwTool\GOS.exe" -Value '~ WINXPSP3'
 
 $wver = (Get-ItemProperty HKLM:\SYSTEM\CurrentControlSet\Control\ProductOptions).OSProductPfn
 Set-Location $env:temp\MalwTool

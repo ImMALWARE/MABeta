@@ -1,5 +1,4 @@
 Add-Type -AssemblyName System.Windows.Forms
-Add-Type -AssemblyName System.Windows.Forms
 
 if ($PSUICulture -eq "ru-RU") {
     $strings = @("Активация Visual Studio 2022 Professional/Enterprise", "не найден!", "Активировано!")
