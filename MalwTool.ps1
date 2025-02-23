@@ -1,4 +1,5 @@
-﻿Add-Type -AssemblyName System.Windows.Forms
+﻿# https://github.com/ImMALWARE/MalwTool
+Add-Type -AssemblyName System.Windows.Forms
 Add-Type -Name Window -Namespace Console -MemberDefinition '[DllImport("Kernel32.dll")]public static extern IntPtr GetConsoleWindow();[DllImport("user32.dll")]public static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);'
 [void][Console.Window]::ShowWindow([Console.Window]::GetConsoleWindow(), 0)
 [System.Windows.Forms.Application]::EnableVisualStyles()
@@ -16,6 +17,7 @@ $hidden = New-Object System.Windows.Forms.Form -Property @{
 # Сортировать strings
 # Конвертация LTSC Evaluation в Full
 # Протестировать: активация
+# Убрать windows 8
 
 if ($PSUICulture -eq "ru-RU") {
     $strings = @("Активация",
