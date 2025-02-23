@@ -5,12 +5,12 @@ $host.ui.RawUI.WindowTitle = 'MalwTool Legacy'
 $visproj = @"
     `$host.ui.RawUI.WindowTitle = 'MalwTool — Activating %p%'
     Set-Location '%path%'
-    & '`$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'..\root\Licenses16\pkeyconfig-office.xrm-ms' > `$null
-    Get-ChildItem -Path '..\root\Licenses16\' -Filter 'client-issuance*.xrm-ms', '`$(`$Product.ToLower())provl_kms*.xrm-ms', '`$(`$Product.ToLower())pro2021vl_kms*.xrm-ms' | ForEach-Object { & '`$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'`$(`$_.FullName)' > `$null }
-    & '`$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inpkey:%key% > `$null
-    & '`$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /sethst:kms.loli.best > `$null
-    & '`$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /setprt:1688 > `$null
-    & '`$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /act
+    & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'..\root\Licenses16\pkeyconfig-office.xrm-ms' > `$null
+    Get-ChildItem -Path '..\root\Licenses16\' -Filter 'client-issuance*.xrm-ms', '`$(`$Product.ToLower())provl_kms*.xrm-ms', '`$(`$Product.ToLower())pro2021vl_kms*.xrm-ms' | ForEach-Object { & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'`$(`$_.FullName)' > `$null }
+    & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inpkey:%key% > `$null
+    & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /sethst:kms.loli.best > `$null
+    & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /setprt:1688 > `$null
+    & '~$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /act
 "@
 
 while ($true) {
