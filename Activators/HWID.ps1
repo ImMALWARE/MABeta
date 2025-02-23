@@ -1,5 +1,6 @@
-if ($PSUICulture -eq "ru-RU") {Write-Output "Активация Windows 10/11 через HWID"}
-else {Write-Output "Activating Windows 10/11 via HWID"}
+
+if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = 'MalwTool — Активация Windows 10/11 через HWID'}
+else {$host.ui.RawUI.WindowTitle = 'Activating Windows 10/11 via HWID'}
 
 Set-Location $env:SystemRoot\System32
 ./cscript.exe //nologo slmgr.vbs /ckms > $null
