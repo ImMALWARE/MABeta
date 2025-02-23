@@ -44,7 +44,7 @@ while ($true) {
                 Write-Host 'Visio 2016 not found!'
                 continue
             }
-            Start-Process powershell -ArgumentList $visproj.Replace('%p%', 'Visio 2016').Replace('%path%', $path).Replace('%key%', 'PD3PC-RHNGV-FXJ29-8JK7D-RJRJK')
+            Start-Process powershell -ArgumentList $visproj.Replace('%p%', 'Visio 2016').Replace('%path%', $path).Replace('%key%', 'PD3PC-RHNGV-FXJ29-8JK7D-RJRJK') -Verb RunAs
         } '5' {
             if (test-path "$env:ProgramFiles\Microsoft Office\Office16\ospp.vbs"){
                 $path = "$env:ProgramFiles\Microsoft Office\Office16\"
