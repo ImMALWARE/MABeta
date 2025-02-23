@@ -6,7 +6,7 @@ $visproj = @"
     `$host.ui.RawUI.WindowTitle = 'MalwTool — Activating %p%'
     Set-Location '%path%'
     & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'..\root\Licenses16\pkeyconfig-office.xrm-ms' > `$null
-    Get-ChildItem -Path '..\root\Licenses16\' -Include 'client-issuance*.xrm-ms', 'VisioProVL_KMS*.xrm-ms', 'ProjectProVL_KMS*.xrm-ms', 'pkeyconfig-office.xrm-ms' | ForEach-Object { & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic:'`$(`$_.FullName)'}
+    Get-ChildItem -Path '..\root\Licenses16\' -Include 'client-issuance*.xrm-ms', 'VisioProVL_KMS*.xrm-ms', 'ProjectProVL_KMS*.xrm-ms' | ForEach-Object { & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inslic: ('..\root\Licenses16\' + `$_.Name) > `$null }
     & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /inpkey:%key% > `$null
     & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /sethst:kms.loli.best > `$null
     & '$env:SystemRoot\System32\cscript.exe' //nologo ospp.vbs /setprt:1688 > `$null
