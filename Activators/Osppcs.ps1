@@ -2,8 +2,8 @@ $Product = $Product.Replace('Office ', '')
 if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = "MalwTool — Активация Office $Product через подмену sppcs.dll"}
 else {$host.ui.RawUI.WindowTitle = "MalwTool — Activating Office $Product via replacing sppcs.dll"}
 
-$lics = @{"365" = "O365ProPlusR"; "2024" = "ProPlus2021VL_KMS"; "2021" = "ProPlus2021VL_KMS"; "2019" = "ProPlus2019VL"; "2016" = "proplusvl_kms"}
-$keys = @{"365" = "2N382-D6PKK-QTX4D-2JJYK-M96P2"; "2024" = "VWCNX-7FKBD-FHJYG-XBR4B-88KC6"; "2021" = "FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH"; "2019" = "NMMKJ-6RK4F-KMJVX-8D9MJ-6MWKP"; "2016" = "XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99"}
+$lics = @{"365" = "O365ProPlusR"; "2024" = "ProPlus2024VL_KMS"; "2021" = "ProPlus2021VL_KMS"; "2019" = "ProPlus2019VL"; "2016" = "proplusvl_kms"}
+$keys = @{"365" = "2N382-D6PKK-QTX4D-2JJYK-M96P2"; "2024" = "VWCNX-7FKBD-FHJYG-XBR4B-88KC6"; "2021" = "FXYTK-NJJ8C-GB6DW-3DYQT-6F7TH"; "2019" = "BN4XJ-R9DYY-96W48-YK8DM-MY7PY"; "2016" = "XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99"}
 
 cmd /c mklink "$env:ProgramFiles\Microsoft Office\root\vfs\System\sppcs.dll" "$env:SystemRoot\System32\sppc.dll"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
