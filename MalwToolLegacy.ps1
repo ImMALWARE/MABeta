@@ -38,8 +38,8 @@ while ($true) {
             if (test-path "$env:ProgramFiles\Microsoft Office\Office16\ospp.vbs"){
                 $path = "$env:ProgramFiles\Microsoft Office\Office16\"
             }
-            elseIf (test-path "$(env:ProgramFiles(x86))\Microsoft Office\Office16\ospp.vbs") {
-                $path = "$(env:ProgramFiles(x86))\Microsoft Office\Office16\"
+            elseIf (test-path "${env:ProgramFiles(x86)}\Microsoft Office\Office16\ospp.vbs") {
+                $path = "${env:ProgramFiles(x86)}\Microsoft Office\Office16\"
             }
             else {
                 Write-Host 'Visio 2016 not found!'
@@ -50,8 +50,8 @@ while ($true) {
             if (test-path "$env:ProgramFiles\Microsoft Office\Office16\ospp.vbs"){
                 $path = "$env:ProgramFiles\Microsoft Office\Office16\"
             }
-            elseIf (test-path "$(env:ProgramFiles(x86))\Microsoft Office\Office16\ospp.vbs") {
-                $path = "$(env:ProgramFiles(x86))\Microsoft Office\Office16\"
+            elseIf (test-path "${env:ProgramFiles(x86)}\Microsoft Office\Office16\ospp.vbs") {
+                $path = "${env:ProgramFiles(x86)}\Microsoft Office\Office16\"
             }
             else {
                 Write-Host 'Project 2016 not found!'
