@@ -1,4 +1,4 @@
-$Product = $Product.Replace('Office', '')
+$Product = $Product.Replace('Office ', '')
 if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = "MalwTool — Активация Office $Product через подмену sppcs.dll"}
 else {$host.ui.RawUI.WindowTitle = "MalwTool — Activating Office $Product via replacing sppcs.dll"}
 

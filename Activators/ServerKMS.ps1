@@ -1,5 +1,5 @@
-if ($PSUICulture -eq "ru-RU") {Write-Output "Активация Windows Server через KMS"}
-else {Write-Output "Activating Windows Server via KMS"}
+if ($PSUICulture -eq "ru-RU") {$host.ui.RawUI.WindowTitle = 'MalwTool — Активация Windows Server через KMS'}
+else {$host.ui.RawUI.WindowTitle = 'MalwTool — Activating Windows Server via KMS'}
 
 Set-Location $env:SystemRoot\System32
 ./cscript.exe //nologo slmgr.vbs /ckms > $null

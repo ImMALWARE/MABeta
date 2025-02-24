@@ -211,14 +211,14 @@ if ($PSUICulture -eq "ru-RU") {
     "Downloading Office16 folder")
 }
 $gstrings = @("irm https://raw.githubusercontent.com/ImMALWARE/MABeta/main/Activators", " | iex", "$env:ProgramFiles\Microsoft Office\root\vfs\System")
-$activators = @{"Win10" = "HWID.ps1"; "ConvertEvaluationToFull" = "LTSCEvaluationToFull.ps1"; "WinServer" = "ServerKMS.ps1"; "OfficeVisio" = "VisioProject.ps1"; "OfficeProject" = "VisioProject.ps1"; "MXT" = "MXT.ps1"}
-$paths = @{"OfficeVisio" = "."; "OfficeProject" = "."; "Office365" = $gstrings[2]; "Office2024" = $gstrings[2]; "Office2021" = $gstrings[2]; "Office2019" = $gstrings[2]; "Office2016" = $gstrings[2]; "Office2013" = "$env:ProgramFiles\Microsoft Office 15\root\vfs\System"; "PrismLauncher" = "$env:appdata\PrismLauncher"; "TL" = "$env:appdata\.minecraft\TlauncherProfiles.json"; "MXT" = "${env:ProgramFiles(x86)}\Mobatek\MobaXterm\version.dat"}
+$activators = @{"Win10" = "HWID.ps1"; "ConvertEvaluationToFull" = "LTSCEvaluationToFull.ps1"; "WinServer" = "ServerKMS.ps1"; "OfficeVisio" = "VisioProject.ps1"; "OfficeProject" = "VisioProject.ps1"; "MobaXterm" = "MXT.ps1"; "Office 365" = "Osppcs.ps1"; "Office 2024" = "Osppcs.ps1"; "Office 2021" = "Osppcs.ps1"; "Office 2019" = "Osppcs.ps1"; "Office 2016" = "Osppcs.ps1"; "Office 2013" = "Osppcs2013.ps1"}
+$paths = @{"Office 365" = $gstrings[2]; "Office 2024" = $gstrings[2]; "Office 2021" = $gstrings[2]; "Office 2019" = $gstrings[2]; "Office 2016" = $gstrings[2]; "Office 2013" = "$env:ProgramFiles\Microsoft Office 15\root\vfs\System"; "Prism Launcher" = "$env:appdata\PrismLauncher"; "TL" = "$env:appdata\.minecraft\TlauncherProfiles.json"; "MobaXterm" = "${env:ProgramFiles(x86)}\Mobatek\MobaXterm\version.dat"}
 
 function check_path ($path, $prod) {
     if (Test-Path $path) {
         return $true
     } else {
-        $mb.Invoke($strings[16].Replce('%p%', $prod))
+        $null = $mb.Invoke($strings[16].Replace('%p%', $prod))
         return $false
     }
 }
@@ -334,7 +334,7 @@ $tooltip.SetToolTip($ActProject, $strings[8].Replace("%p%", "Project"))
 $ActOffice365 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 6)
-    Name = "Office365"
+    Name = "Office 365"
     Size = [System.Drawing.Size]::new(79, 19)
     Text = "Office 365"
 }
@@ -343,7 +343,7 @@ $tooltip.SetToolTip($ActOffice365, $strings[9].Replace("%v%", "365").Replace("%i
 $ActOffice2024 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 31)
-    Name = "Office2024"
+    Name = "Office 2024"
     Size = [System.Drawing.Size]::new(83, 19)
     Text = "Office 2024"
 }
@@ -352,7 +352,7 @@ $tooltip.SetToolTip($ActOffice2024, $strings[9].Replace("%v%", "2024").Replace("
 $ActOffice2021 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 56)
-    Name = "Office2021"
+    Name = "Office 2021"
     Size = [System.Drawing.Size]::new(83, 19)
     Text = "Office 2021"
 }
@@ -361,7 +361,7 @@ $tooltip.SetToolTip($ActOffice2021, $strings[9].Replace("%v%", "2021").Replace("
 $ActOffice2019 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 81)
-    Name = "Office2019"
+    Name = "Office 2019"
     Size = [System.Drawing.Size]::new(84, 19)
     Text = "Office 2019"
 }
@@ -370,7 +370,7 @@ $tooltip.SetToolTip($ActOffice2019, $strings[9].Replace("%v%", "2019").Replace("
 $ActOffice2016 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 106)
-    Name = "Office2016"
+    Name = "Office 2016"
     Size = [System.Drawing.Size]::new(84, 19)
     Text = "Office 2016"
 }
@@ -379,7 +379,7 @@ $tooltip.SetToolTip($ActOffice2016, $strings[9].Replace("%v%", "2016").Replace("
 $ActOffice2013 = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(214, 131)
-    Name = "Office2013"
+    Name = "Office 2013"
     Size = [System.Drawing.Size]::new(83, 19)
     Text = "Office 2013"
 }
@@ -388,7 +388,7 @@ $tooltip.SetToolTip($ActOffice2013, $strings[12])
 $ActPrismLauncher = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 6)
-    Name = "PrismLauncher"
+    Name = "Prism Launcher"
     Size = [System.Drawing.Size]::new(201, 19)
     Text = "Prism Launcher"
 }
@@ -406,7 +406,7 @@ $tooltip.SetToolTip($ActTL, $strings[14])
 $ActMXT = New-Object System.Windows.Forms.RadioButton -Property @{
     AutoSize = $true
     Location = [System.Drawing.Point]::new(373, 56)
-    Name = "MXT"
+    Name = "MobaXterm"
     Size = [System.Drawing.Size]::new(88, 19)
     Text = "MobaXterm"
 }
@@ -421,13 +421,13 @@ $Act = New-Object System.Windows.Forms.Button -Property @{
 $Act.Add_Click({
     $prod = ($ActTab.Controls | Where-Object { $_.GetType() -eq [System.Windows.Forms.RadioButton] -and $_.Checked })[0].Name
     switch ($prod) {
-        "PrismLauncher" {
-            if (!(check_path $paths[$prod])) {return}
+        "Prism Launcher" {
+            if (!(check_path $paths[$prod] $prod)) {break}
             '{"accounts": [{"entitlement": {"canPlayMinecraft": true, "ownsMinecraft": true},"type": "MSA"}], "formatVersion": 3}' | Out-File ($paths[$prod] + "\accounts.json") -Encoding ASCII
             $mb.Invoke($strings[15], $app, "OK", "Information")
         }
         "TL" {
-            if (!(check_path $paths[$prod])) {return}
+            if (!(check_path $paths[$prod] $prod)) {break}
             $file = Get-Content -Path $paths[$prod] -Raw
             if ($file -match '"premiumAccount": false') {
                 $file -replace '"premiumAccount": false', '"premiumAccount": true' | Set-Content -Path $paths[$prod]
@@ -438,7 +438,7 @@ $Act.Add_Click({
             }
         }
         default {
-            if (!(check_path $paths[$prod])) {return}
+            if ($paths[$prod] -ne $null -and -not (check_path $paths[$prod] $prod)) {break}
             Start-Process powershell -ArgumentList ("`$Product = '$prod'; " + $gstrings[0] + "/" + $activators[$prod] + $gstrings[1]) -Verb RunAs
         }
     }
